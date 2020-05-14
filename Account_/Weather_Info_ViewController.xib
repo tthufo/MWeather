@@ -117,113 +117,173 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZB-NN-ABf">
                             <rect key="frame" x="0.0" y="179.5" width="320" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID Đăng nhập" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCW-xx-NdI">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID Đăng nhập" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCW-xx-NdI">
                                     <rect key="frame" x="19" y="8" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="5eH-0k-7PQ"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-WY-ngm">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-WY-ngm">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="1zG-dk-POK"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3j-ha-1g5">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3j-ha-1g5">
                                     <rect key="frame" x="0.0" y="74" width="320" height="0.5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="mYT-DQ-Kc6"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="l3j-ha-1g5" firstAttribute="leading" secondItem="IZB-NN-ABf" secondAttribute="leading" id="4kA-eh-25q"/>
+                                <constraint firstItem="f2d-WY-ngm" firstAttribute="top" secondItem="mCW-xx-NdI" secondAttribute="bottom" constant="13" id="7HA-7h-IVv"/>
+                                <constraint firstAttribute="trailing" secondItem="mCW-xx-NdI" secondAttribute="trailing" constant="18" id="Juu-v6-0pz"/>
+                                <constraint firstAttribute="trailing" secondItem="l3j-ha-1g5" secondAttribute="trailing" id="K5Q-J2-bOH"/>
+                                <constraint firstItem="mCW-xx-NdI" firstAttribute="top" secondItem="IZB-NN-ABf" secondAttribute="top" constant="8" id="MeF-Ne-l21"/>
+                                <constraint firstItem="l3j-ha-1g5" firstAttribute="top" secondItem="f2d-WY-ngm" secondAttribute="bottom" constant="11" id="TmS-G9-gdk"/>
+                                <constraint firstItem="mCW-xx-NdI" firstAttribute="leading" secondItem="IZB-NN-ABf" secondAttribute="leading" constant="19" id="WtG-bM-4T7"/>
+                                <constraint firstAttribute="trailing" secondItem="f2d-WY-ngm" secondAttribute="trailing" constant="18" id="fef-Qg-Ty2"/>
                                 <constraint firstAttribute="height" constant="75" id="tc9-l4-sbh"/>
+                                <constraint firstItem="f2d-WY-ngm" firstAttribute="leading" secondItem="IZB-NN-ABf" secondAttribute="leading" constant="19" id="xjH-jn-FoO"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZB-gt-A69">
                             <rect key="frame" x="0.0" y="254.5" width="320" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tên hiển thị (chạm để chỉnh sửa)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-OD-2Q5">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên hiển thị (chạm để chỉnh sửa)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-OD-2Q5">
                                     <rect key="frame" x="19" y="8" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="L8I-Os-EpU"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrP-ad-n6o">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrP-ad-n6o">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="CqO-fM-0xQ"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pel-RA-cp4">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pel-RA-cp4">
                                     <rect key="frame" x="0.0" y="74" width="320" height="0.5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="PTy-0X-a3Q"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="gM7-OD-2Q5" firstAttribute="leading" secondItem="WZB-gt-A69" secondAttribute="leading" constant="19" id="8vP-Mt-hKo"/>
+                                <constraint firstItem="yrP-ad-n6o" firstAttribute="top" secondItem="gM7-OD-2Q5" secondAttribute="bottom" constant="13" id="OIe-DS-goE"/>
+                                <constraint firstAttribute="trailing" secondItem="pel-RA-cp4" secondAttribute="trailing" id="SJU-Ds-mej"/>
+                                <constraint firstItem="pel-RA-cp4" firstAttribute="leading" secondItem="WZB-gt-A69" secondAttribute="leading" id="Ub5-y0-PYU"/>
+                                <constraint firstAttribute="trailing" secondItem="gM7-OD-2Q5" secondAttribute="trailing" constant="18" id="VhN-eG-Xes"/>
+                                <constraint firstAttribute="trailing" secondItem="yrP-ad-n6o" secondAttribute="trailing" constant="18" id="Xr4-mP-t3n"/>
                                 <constraint firstAttribute="height" constant="75" id="lmr-eo-ZCr"/>
+                                <constraint firstItem="yrP-ad-n6o" firstAttribute="leading" secondItem="WZB-gt-A69" secondAttribute="leading" constant="19" id="r0g-xU-ABq"/>
+                                <constraint firstItem="pel-RA-cp4" firstAttribute="top" secondItem="yrP-ad-n6o" secondAttribute="bottom" constant="11" id="rl7-j6-81t"/>
+                                <constraint firstItem="gM7-OD-2Q5" firstAttribute="top" secondItem="WZB-gt-A69" secondAttribute="top" constant="8" id="sRV-f8-9oP"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfi-gT-pzN">
                             <rect key="frame" x="0.0" y="329.5" width="320" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gói dịch vụ (chạm để xem chi tiết)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63O-t2-1jm">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gói dịch vụ (chạm để xem chi tiết)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63O-t2-1jm">
                                     <rect key="frame" x="19" y="8" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="HBx-G8-jHq"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s10-YT-hOA">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s10-YT-hOA">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="Nos-aA-9ge"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9a-dT-qto">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9a-dT-qto">
                                     <rect key="frame" x="0.0" y="74" width="320" height="0.5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="EKi-yI-bvq"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="63O-t2-1jm" secondAttribute="trailing" constant="18" id="0bf-Cc-oPO"/>
+                                <constraint firstItem="s10-YT-hOA" firstAttribute="leading" secondItem="rfi-gT-pzN" secondAttribute="leading" constant="19" id="Bfo-Ql-MBK"/>
+                                <constraint firstItem="63O-t2-1jm" firstAttribute="leading" secondItem="rfi-gT-pzN" secondAttribute="leading" constant="19" id="JM4-Ez-HxJ"/>
+                                <constraint firstItem="f9a-dT-qto" firstAttribute="leading" secondItem="rfi-gT-pzN" secondAttribute="leading" id="TKj-tQ-f0u"/>
+                                <constraint firstAttribute="trailing" secondItem="s10-YT-hOA" secondAttribute="trailing" constant="18" id="WUc-CG-VB7"/>
+                                <constraint firstAttribute="trailing" secondItem="f9a-dT-qto" secondAttribute="trailing" id="Wof-yv-d2S"/>
+                                <constraint firstItem="s10-YT-hOA" firstAttribute="top" secondItem="63O-t2-1jm" secondAttribute="bottom" constant="13" id="YjL-Cw-3w1"/>
+                                <constraint firstItem="f9a-dT-qto" firstAttribute="top" secondItem="s10-YT-hOA" secondAttribute="bottom" constant="11" id="fGz-fl-T30"/>
                                 <constraint firstAttribute="height" constant="75" id="hSO-jx-vhP"/>
+                                <constraint firstItem="63O-t2-1jm" firstAttribute="top" secondItem="rfi-gT-pzN" secondAttribute="top" constant="8" id="k5r-qu-TMA"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UkN-LH-4sp">
                             <rect key="frame" x="0.0" y="404.5" width="320" height="75"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ngày hết hạn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PC-Uk-Ipk">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày hết hạn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PC-Uk-Ipk">
                                     <rect key="frame" x="19" y="8" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="eoS-YL-wBH"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUA-b9-DPB">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUA-b9-DPB">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="aqO-IM-LSd"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IlG-DM-4EV">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlG-DM-4EV">
                                     <rect key="frame" x="0.0" y="74" width="320" height="0.5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="U8Y-2w-2js"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="3PC-Uk-Ipk" secondAttribute="trailing" constant="18" id="6C7-Ac-51j"/>
+                                <constraint firstAttribute="trailing" secondItem="uUA-b9-DPB" secondAttribute="trailing" constant="18" id="Id7-Or-hzX"/>
                                 <constraint firstAttribute="height" constant="75" id="L7R-nG-6VZ"/>
+                                <constraint firstItem="IlG-DM-4EV" firstAttribute="leading" secondItem="UkN-LH-4sp" secondAttribute="leading" id="UWK-Ca-PHi"/>
+                                <constraint firstItem="3PC-Uk-Ipk" firstAttribute="top" secondItem="UkN-LH-4sp" secondAttribute="top" constant="8" id="hev-vN-svO"/>
+                                <constraint firstItem="uUA-b9-DPB" firstAttribute="leading" secondItem="UkN-LH-4sp" secondAttribute="leading" constant="19" id="ilG-K0-h3K"/>
+                                <constraint firstItem="3PC-Uk-Ipk" firstAttribute="leading" secondItem="UkN-LH-4sp" secondAttribute="leading" constant="19" id="piu-J3-clD"/>
+                                <constraint firstItem="IlG-DM-4EV" firstAttribute="top" secondItem="uUA-b9-DPB" secondAttribute="bottom" constant="11" id="q4Z-CP-ce6"/>
+                                <constraint firstAttribute="trailing" secondItem="IlG-DM-4EV" secondAttribute="trailing" id="uEQ-K4-0ug"/>
+                                <constraint firstItem="uUA-b9-DPB" firstAttribute="top" secondItem="3PC-Uk-Ipk" secondAttribute="bottom" constant="13" id="zcv-LE-6Gy"/>
                             </constraints>
                         </view>
                     </subviews>

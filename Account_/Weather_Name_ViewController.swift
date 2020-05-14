@@ -13,12 +13,6 @@ import UIKit
 class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet var bg: UIImageView!
-    
-    @IBOutlet var cover: UIView!
-    
-    @IBOutlet var reNewBg: UIView!
-    
-//    @IBOutlet var titleLabel: MarqueeLabel!
 
     var kb: KeyBoard!
     
@@ -26,42 +20,15 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet var cell1: UITableViewCell!
     
-    @IBOutlet var cell2: UITableViewCell!
-
-    @IBOutlet var cell3: UITableViewCell!
-    
     @IBOutlet var oldPass: UITextField!
-    
-    @IBOutlet var newPass: UITextField!
-    
-    @IBOutlet var reNewPass: UITextField!
-    
+
     @IBOutlet var submit: UIButton!
-    
-    @IBOutlet var oldPassErr: UILabel!
-    
-    @IBOutlet var newPassErr: UILabel!
-    
-    @IBOutlet var reNewPassErr: UILabel!
-    
-    @IBOutlet var bottomHeight: NSLayoutConstraint!
-    
-    @IBOutlet var sideGapLeft: NSLayoutConstraint!
-      
-    @IBOutlet var sideGapRight: NSLayoutConstraint!
-    
-    @IBOutlet var sideGapBottomLeft: NSLayoutConstraint!
-       
-    @IBOutlet var sideGapBottomRight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if IS_IPAD {
-          sideGapLeft.constant = 100
-          sideGapRight.constant = -100
-          sideGapBottomLeft.constant = 100
-          sideGapBottomRight.constant = 100
+
         }
         
         kb = KeyBoard.shareInstance()
@@ -72,13 +39,11 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
         
 //        self.tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
         
-        if Information.bg != nil && Information.bg != "" {
-            bg.imageUrlNoCache(url: Information.bg ?? "")
-        }
+//        if Information.bg != nil && Information.bg != "" {
+//            bg.imageUrlNoCache(url: Information.bg ?? "")
+//        }
         
         oldPass.addTarget(self, action: #selector(textOldIsChanging), for: .editingChanged)
-        newPass.addTarget(self, action: #selector(textOldIsChanging), for: .editingChanged)
-        reNewPass.addTarget(self, action: #selector(textIsChanging), for: .editingChanged)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,7 +55,7 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
         super.viewWillAppear(animated)
         
         if self.isEmbed() {
-           bottomHeight.constant = 100
+//           bottomHeight.constant = 100
         }
         
         self.tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
@@ -108,7 +73,7 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
     @IBAction func didPressCheck(sender: UIButton) {
         let tag = sender.tag
 
-        let fields = [oldPass, newPass, reNewPass]
+        let fields = [oldPass]
 
         let check = sender.currentImage == UIImage(named: "design_ic_visibility_off")
         (fields[tag - 1])!.isSecureTextEntry = check
@@ -120,7 +85,7 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
         
         LTRequest.sharedInstance()?.didRequestInfo(["CMD_CODE":"changePassword",
                                                     "old_password":oldPass.text as Any,
-                                                    "new_password":newPass.text as Any,
+//                                                    "new_password":newPass.text as Any,
                                                     "session":Information.token ?? "",
                                                     "overrideLoading":"1",
                                                     "overrideAlert":"1",
@@ -137,7 +102,7 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
 
             let uInfo: NSDictionary = Information.log!
 
-            self.add(["name":uInfo["name"] as Any, "pass":self.newPass.text as Any], andKey: "log")
+//            self.add(["name":uInfo["name"] as Any, "pass":self.newPass.text as Any], andKey: "log")
             
             Information.saveInfo()
             
@@ -146,45 +111,46 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == oldPass {
-            newPass.becomeFirstResponder()
-        } else if textField == newPass {
-            reNewPass.becomeFirstResponder()
-        } else {
-            self.view.endEditing(true)
-        }
-        
+//        if textField == oldPass {
+//            newPass.becomeFirstResponder()
+//        } else if textField == newPass {
+//            reNewPass.becomeFirstResponder()
+//        } else {
+//            self.view.endEditing(true)
+//        }
+        self.view.endEditing(true)
+
         return true
     }
     
     @objc func textOldIsChanging(_ textField:UITextField) {
-        submit.isEnabled = oldPass.text?.count != 0 && newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text
-        submit.alpha = oldPass.text?.count != 0 && newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text ? 1 : 0.5
+        submit.isEnabled = oldPass.text?.count != 0
+        submit.alpha = oldPass.text?.count != 0 ? 1 : 0.5
     }
     
-    @objc func textIsChanging(_ textField:UITextField) {
-        let isMatch: Bool = newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text
-        reNewBg.backgroundColor = isMatch ? AVHexColor.color(withHexString: "#5530F5") : .red
-        reNewPassErr.alpha = isMatch ? 0 : 1
-        
-        submit.isEnabled = oldPass.text?.count != 0 && newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text
-        submit.alpha = oldPass.text?.count != 0 && newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text ? 1 : 0.5
-    }
+//    @objc func textIsChanging(_ textField:UITextField) {
+//        let isMatch: Bool = newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text
+//        reNewBg.backgroundColor = isMatch ? AVHexColor.color(withHexString: "#5530F5") : .red
+//        reNewPassErr.alpha = isMatch ? 0 : 1
+//
+//        submit.isEnabled = oldPass.text?.count != 0 && newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text
+//        submit.alpha = oldPass.text?.count != 0 && newPass.text?.count != 0 && reNewPass.text?.count != 0 && newPass.text == reNewPass.text ? 1 : 0.5
+//    }
 }
 
-extension PC_ChangePass_ViewController: UITableViewDataSource, UITableViewDelegate {
+extension Weather_Name_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.row == 2 ? 191 : 94
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return indexPath.row == 0 ? cell1 : indexPath.row == 1 ? cell2 : cell3
+        return cell1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

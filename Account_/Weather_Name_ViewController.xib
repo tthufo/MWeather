@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Weather_Name_ViewController" customModule="MeWeather" customModuleProvider="target">
             <connections>
                 <outlet property="cell1" destination="6Nm-8c-B3Z" id="LqP-5q-rf3"/>
+                <outlet property="oldPass" destination="xK1-Hx-h0l" id="mBU-eD-fVx"/>
                 <outlet property="submit" destination="Y5g-ha-EUN" id="Rl6-fz-4Tu"/>
                 <outlet property="tableView" destination="FR9-vg-bWW" id="ATK-vH-Jwf"/>
                 <outlet property="view" destination="KPO-Jy-kAr" id="OvZ-Tj-oxT"/>
@@ -31,6 +32,9 @@
                                 <constraint firstAttribute="height" constant="44" id="Lza-Le-bwD"/>
                             </constraints>
                             <state key="normal" image="icon_back"/>
+                            <connections>
+                                <action selector="didPressBack" destination="-1" eventType="touchUpInside" id="505-pQ-ae4"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên hiển thị" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOz-h9-oTH">
                             <rect key="frame" x="156.5" y="21" width="101" height="22"/>
@@ -57,6 +61,9 @@
                                     <integer key="value" value="8"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didPressSubmit" destination="-1" eventType="touchUpInside" id="Gvh-yB-mKj"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,7 +95,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="lTY-hR-1NV"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -134,7 +141,7 @@
                             <constraint firstAttribute="height" constant="33" id="dWd-k8-UiT"/>
                         </constraints>
                     </imageView>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mật khẩu cũ" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xK1-Hx-h0l">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tên hiển thị" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xK1-Hx-h0l">
                         <rect key="frame" x="41" y="32" width="314" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -142,7 +149,7 @@
                         </constraints>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <textInputTraits key="textInputTraits" keyboardType="phonePad" secureTextEntry="YES"/>
+                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                 <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

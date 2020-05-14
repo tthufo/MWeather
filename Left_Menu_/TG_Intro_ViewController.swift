@@ -217,10 +217,12 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 if logged() {
                                    
                 } else {
-                    let login = self.loginNav(type: "logIn") { (info) in
-                        print("dsdfssdf")
-                    }
-                    self.center()?.present(login, animated: true, completion: nil)
+                    self.center()?.pushViewController(Weather_FeedBack_ViewController.init(), animated: true)
+
+//                    let login = self.loginNav(type: "logIn") { (info) in
+//                        print("dsdfssdf")
+//                    }
+//                    self.center()?.present(login, animated: true, completion: nil)
                 }
                 break
                 

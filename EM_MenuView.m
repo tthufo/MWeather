@@ -20,6 +20,51 @@
 
 @synthesize menuCompletion;
 
+- (id)initWithPackage:(NSDictionary*)info
+{
+    self = [self init];
+    
+    [self setContainerView:[self didCreatePackageView:info]];
+    
+    [self setUseMotionEffects:true];
+    
+    return self;
+}
+
+- (UIView*)didCreatePackageView:(NSDictionary*)dict
+{
+    UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 310, 193)];
+    
+    [commentView setBackgroundColor:[UIColor clearColor]];
+    
+    UIView *contentView = [[NSBundle mainBundle] loadNibNamed:@"EM_Menu" owner:self options:nil][9];
+        
+    UILabel * label = (UILabel*)[self withView:contentView tag:11];
+    
+    label.text = [dict getValueFromKey:@"content"];
+    
+    float k = label.sizeOfMultiLineLabel.height;
+    
+    CGRect fram = commentView.frame;
+    
+    fram.size.height = k + 170;
+    
+    commentView.frame = fram;
+    
+    contentView.frame = CGRectMake(0, 0, commentView.frame.size.width, commentView.frame.size.height);
+
+    
+    [(UIButton*)[self withView:contentView tag:12] actionForTouch:@{} and:^(NSDictionary *touchInfo) {
+        self.menuCompletion(0, @{}, self);
+        [self close];
+    }];
+  
+    [commentView addSubview:contentView];
+    
+    return commentView;
+}
+
+
 - (id)initWithPreviewMenu:(NSDictionary*)info
 {
     self = [self init];

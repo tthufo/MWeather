@@ -21,6 +21,15 @@ class Weather_Info_ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        name.action(forTouch: [:]) { (obj) in
+            self.navigationController?.pushViewController(Weather_Name_ViewController.init(), animated: true)
+        }
+        
+        package.action(forTouch: [:]) { (obj) in
+            EM_MenuView.init(package: [:]).show { (index, objc, menu) in
+                
+            }
+        }
     }
     
     @IBAction func didPressBack() {

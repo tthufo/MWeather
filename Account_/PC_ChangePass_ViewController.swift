@@ -44,24 +44,24 @@ class PC_ChangePass_ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var reNewPassErr: UILabel!
     
-    @IBOutlet var bottomHeight: NSLayoutConstraint!
-    
-    @IBOutlet var sideGapLeft: NSLayoutConstraint!
-      
-    @IBOutlet var sideGapRight: NSLayoutConstraint!
-    
-    @IBOutlet var sideGapBottomLeft: NSLayoutConstraint!
-       
-    @IBOutlet var sideGapBottomRight: NSLayoutConstraint!
+//    @IBOutlet var bottomHeight: NSLayoutConstraint!
+//    
+//    @IBOutlet var sideGapLeft: NSLayoutConstraint!
+//      
+//    @IBOutlet var sideGapRight: NSLayoutConstraint!
+//    
+//    @IBOutlet var sideGapBottomLeft: NSLayoutConstraint!
+//       
+//    @IBOutlet var sideGapBottomRight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if IS_IPAD {
-          sideGapLeft.constant = 100
-          sideGapRight.constant = -100
-          sideGapBottomLeft.constant = 100
-          sideGapBottomRight.constant = 100
+//          sideGapLeft.constant = 100
+//          sideGapRight.constant = -100
+//          sideGapBottomLeft.constant = 100
+//          sideGapBottomRight.constant = 100
         }
         
         kb = KeyBoard.shareInstance()
@@ -90,7 +90,7 @@ class PC_ChangePass_ViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         
         if self.isEmbed() {
-           bottomHeight.constant = 100
+           //bottomHeight.constant = 100
         }
         
         self.tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
