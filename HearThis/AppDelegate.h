@@ -46,6 +46,8 @@
 
 @interface UIViewController (root)
 
+- (UINavigationController *)authenticationViewController:(NSString* )logOut;
+
 - (UIWindow*)WINDOW;
 
 - (TT_Panel_ViewController*)ROOT;

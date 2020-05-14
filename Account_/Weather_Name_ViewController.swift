@@ -1,16 +1,16 @@
 //
-//  PC_ChangePass_ViewController.swift
-//  PCTT
+//  Weather_Name_ViewController.swift
+//  HearThis
 //
-//  Created by Thanh Hai Tran on 8/4/19.
-//  Copyright © 2019 Thanh Hai Tran. All rights reserved.
+//  Created by Thanh Hai Tran on 5/14/20.
+//  Copyright © 2020 Thanh Hai Tran. All rights reserved.
 //
 
 import UIKit
 
-import MarqueeLabel
+//import MarqueeLabel
 
-class PC_ChangePass_ViewController: UIViewController, UITextFieldDelegate {
+class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet var bg: UIImageView!
     
@@ -18,7 +18,7 @@ class PC_ChangePass_ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var reNewBg: UIView!
     
-    @IBOutlet var titleLabel: MarqueeLabel!
+//    @IBOutlet var titleLabel: MarqueeLabel!
 
     var kb: KeyBoard!
     

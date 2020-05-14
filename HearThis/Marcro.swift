@@ -396,6 +396,20 @@ extension UITextField {
 
 extension UIViewController {
     
+    func loginNav(type: String, callBack: @escaping (Any) -> ()) -> UINavigationController {
+        
+        let login = PC_Login_ViewController.init()
+        login.callBack = callBack
+        login.logOut = type
+        
+        let nav = UINavigationController.init(rootViewController: login)
+        nav.isNavigationBarHidden = true
+        
+        nav.modalPresentationStyle = .fullScreen
+        
+        return nav
+    }
+    
     var isModal: Bool {
         
         let presentingIsModal = presentingViewController != nil

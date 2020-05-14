@@ -142,9 +142,17 @@ class PC_Weather_Main_ViewController: UIViewController {
     }
     
     @IBAction func didPressSearch() {
-        let search = Search_ViewController.init()
-        search.config = [:]
-        self.center()?.pushViewController(search, animated: true)
+        if logged() {
+                           
+        } else {
+            let login = self.loginNav(type: "logIn") { (info) in
+                print("dsdfssdf")
+            }
+            self.center()?.present(login, animated: true, completion: nil)
+        }
+//        let search = Search_ViewController.init()
+//        search.config = [:]
+//        self.center()?.pushViewController(search, animated: true)
     }
 }
 

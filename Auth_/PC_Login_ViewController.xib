@@ -67,9 +67,21 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6FO-KC-YKE">
+                    <rect key="frame" x="359" y="10" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="6sd-Zb-t9O"/>
+                        <constraint firstAttribute="height" constant="44" id="7YX-Nl-VNt"/>
+                    </constraints>
+                    <state key="normal" image="ic_menu_down_white"/>
+                    <connections>
+                        <action selector="didPressDis" destination="-1" eventType="touchUpInside" id="hRT-Ws-EYu"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6FO-KC-YKE" secondAttribute="trailing" constant="10" id="1WF-ud-7fP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1nj-Ed-LW2" secondAttribute="trailing" constant="10" id="Bre-kO-fV3"/>
                 <constraint firstItem="Ndf-cm-WVk" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="GZ5-S3-pkV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1nj-Ed-LW2" secondAttribute="bottom" constant="10" id="Gve-ds-sco"/>
@@ -80,6 +92,7 @@
                 <constraint firstItem="Ndf-cm-WVk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mg2-hz-FDJ"/>
                 <constraint firstItem="FbU-8U-w7A" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pkW-LH-P7m"/>
                 <constraint firstItem="FbU-8U-w7A" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="qmP-8u-vdJ"/>
+                <constraint firstItem="6FO-KC-YKE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="tQo-SC-Ri3"/>
                 <constraint firstItem="Ndf-cm-WVk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yMz-RS-ybS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -310,6 +323,7 @@
         <image name="bg-1" width="180" height="370"/>
         <image name="design_ic_visibility_off" width="29.333333969116211" height="29.333333969116211"/>
         <image name="gradient" width="79.666664123535156" height="11"/>
+        <image name="ic_menu_down_white" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_phone_white" width="13.666666984558105" height="13.666666984558105"/>
         <image name="icon_pass" width="13.333333015441895" height="13.333333015441895"/>
         <image name="logo-1" width="144" height="47.666667938232422"/>

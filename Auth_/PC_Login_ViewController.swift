@@ -52,6 +52,8 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
 
     let topGap = IS_IPHONE_5 ? 110 : 150
 
+    var callBack: ((_ info: Any)->())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -81,21 +83,18 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
         getPhoneNumber()
     }
     
+    @IBAction func didPressDis() {
+        self.dismiss(animated: true) {
+            
+        }
+        callBack!("")
+    }
+    
     //USING FIREPUSH PROJECT CONSOLE
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        if uName != nil {
-//            uName.text = ""
-//        }
-//        if pass != nil {
-//            pass.text = ""
-//        }
-//        if submit != nil {
-//            self.submit.isEnabled = self.uName.text?.count != 0 && self.pass.text?.count != 0
-//            self.submit.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
-//            self.sumitText.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
-//        }
+
         if (kb != nil) {
             kb.keyboardOff()
         }

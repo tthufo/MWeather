@@ -29,6 +29,10 @@
 		FC1AD7D91DA40CA8002BA7EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1AD7D71DA40CA8002BA7EC /* Main.storyboard */; };
 		FC1AD7DB1DA40CA8002BA7EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1AD7DA1DA40CA8002BA7EC /* Assets.xcassets */; };
 		FC1AD7DE1DA40CA8002BA7EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1AD7DC1DA40CA8002BA7EC /* LaunchScreen.storyboard */; };
+		FC20F86B246D2B9A002DBB18 /* Weather_Info_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC20F869246D2B9A002DBB18 /* Weather_Info_ViewController.swift */; };
+		FC20F86C246D2B9A002DBB18 /* Weather_Info_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC20F86A246D2B9A002DBB18 /* Weather_Info_ViewController.xib */; };
+		FC20F86F246D37EC002DBB18 /* Weather_Name_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC20F86D246D37EC002DBB18 /* Weather_Name_ViewController.swift */; };
+		FC20F870246D37EC002DBB18 /* Weather_Name_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC20F86E246D37EC002DBB18 /* Weather_Name_ViewController.xib */; };
 		FC23EB91243A4087003E5E1A /* Book_List_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC23EB90243A4087003E5E1A /* Book_List_Cell.xib */; };
 		FC23EB94243A4C8F003E5E1A /* List_Book_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC23EB92243A4C8F003E5E1A /* List_Book_ViewController.xib */; };
 		FC23EB95243A4C8F003E5E1A /* List_Book_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23EB93243A4C8F003E5E1A /* List_Book_ViewController.swift */; };
@@ -193,6 +197,10 @@
 		FC1AD7DD1DA40CA8002BA7EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC1AD7DF1DA40CA8002BA7EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC1AD7E51DA40CC3002BA7EC /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		FC20F869246D2B9A002DBB18 /* Weather_Info_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_Info_ViewController.swift; sourceTree = "<group>"; };
+		FC20F86A246D2B9A002DBB18 /* Weather_Info_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Weather_Info_ViewController.xib; sourceTree = "<group>"; };
+		FC20F86D246D37EC002DBB18 /* Weather_Name_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_Name_ViewController.swift; sourceTree = "<group>"; };
+		FC20F86E246D37EC002DBB18 /* Weather_Name_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Weather_Name_ViewController.xib; sourceTree = "<group>"; };
 		FC23EB90243A4087003E5E1A /* Book_List_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Book_List_Cell.xib; sourceTree = "<group>"; };
 		FC23EB92243A4C8F003E5E1A /* List_Book_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = List_Book_ViewController.xib; sourceTree = "<group>"; };
 		FC23EB93243A4C8F003E5E1A /* List_Book_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List_Book_ViewController.swift; sourceTree = "<group>"; };
@@ -628,6 +636,10 @@
 				FC130B8D2446236B00D64012 /* Package_ViewController.xib */,
 				FC130B902446270600D64012 /* Package_Cell.xib */,
 				FCF8A5B5244F54AD00E815E8 /* Package_Reg_Cell.xib */,
+				FC20F869246D2B9A002DBB18 /* Weather_Info_ViewController.swift */,
+				FC20F86A246D2B9A002DBB18 /* Weather_Info_ViewController.xib */,
+				FC20F86D246D37EC002DBB18 /* Weather_Name_ViewController.swift */,
+				FC20F86E246D37EC002DBB18 /* Weather_Name_ViewController.xib */,
 			);
 			path = Account_;
 			sourceTree = "<group>";
@@ -920,6 +932,7 @@
 				FCAD57F1243DB7E400101A47 /* TG_Room_Cell_0.xib in Resources */,
 				FCB238C424421BC20034B40B /* Author_Filter_Cell.xib in Resources */,
 				FCB238C824422DFB0034B40B /* Author_Detail_ViewController.xib in Resources */,
+				FC20F86C246D2B9A002DBB18 /* Weather_Info_ViewController.xib in Resources */,
 				FCB238E124435C410034B40B /* Publisher_Cell.xib in Resources */,
 				FC7550FC1DACDB53007992DF /* M_Menu.xib in Resources */,
 				FCB3CD721DA4E3FA002FABDD /* ItemCell.xib in Resources */,
@@ -952,6 +965,7 @@
 				FC69D43124405879006D57D9 /* TG_Room_Cell_10.xib in Resources */,
 				FC78398424391F6700470148 /* TG_Intro_ViewController.xib in Resources */,
 				FCB238CC244235D70034B40B /* Author_Bio_Cell.xib in Resources */,
+				FC20F870246D37EC002DBB18 /* Weather_Name_ViewController.xib in Resources */,
 				FC1AD7DE1DA40CA8002BA7EC /* LaunchScreen.storyboard in Resources */,
 				FCD36BFC2437BE2D009BB530 /* GoogleService-Info.plist in Resources */,
 				FCAD57F2243DB7E400101A47 /* TG_Room_Cell_Banner_1.xib in Resources */,
@@ -1017,6 +1031,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC20F86F246D37EC002DBB18 /* Weather_Name_ViewController.swift in Sources */,
 				FC640A871DAAAD8C00DAEF55 /* M_Core.m in Sources */,
 				FC0A8FB22437770E001A75AF /* PC_Login_ViewController.swift in Sources */,
 				FC78397F2438F42400470148 /* PC_ChangePass_ViewController.swift in Sources */,
@@ -1082,6 +1097,7 @@
 				FC0A8FB02437770E001A75AF /* PC_Register_ViewController.swift in Sources */,
 				FCD381872444D78E004D78C9 /* CustomFlowLayou.m in Sources */,
 				FC8E91B6246BD6B900D61E67 /* PC_Weather_Main_ViewController.swift in Sources */,
+				FC20F86B246D2B9A002DBB18 /* Weather_Info_ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

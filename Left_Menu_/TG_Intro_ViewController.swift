@@ -22,7 +22,6 @@ class TG_Intro_ViewController: UIViewController {
 
     @IBOutlet var widthConstant: NSLayoutConstraint!
 
-//    var dataList: NSMutableArray!
     
     let refreshControl = UIRefreshControl()
         
@@ -35,7 +34,7 @@ class TG_Intro_ViewController: UIViewController {
         ["title": "Thỏa thuận dịch vụ", "icon": "ico_info"],
         ["title": "Phản hồi", "icon": "ico_email"],
         ["title": "Chia sẻ tới bạn bè", "icon": "ico_share"],
-        ["title": "Đăng nhập", "icon": "ico_logout"],
+        ["title": logged() ? "Đăng xuất" : "Đăng nhập", "icon": "ico_logout"],
     ]
     
     override func viewDidLoad() {
@@ -177,9 +176,29 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.row {
             case 0:
+                if logged() {
+                    
+                } else {
+                    self.center()?.pushViewController(Weather_Info_ViewController.init(), animated: true)
+
+//                    let login = self.loginNav(type: "logIn") { (info) in
+//                        print("dsdfssdf")
+//                    }
+//                    self.center()?.present(login, animated: true, completion: nil)
+                }
                 break
                 
              case 1:
+                if logged() {
+                       
+                } else {
+                    self.center()?.pushViewController(PC_ChangePass_ViewController.init(), animated: true)
+                    
+//                    let login = self.loginNav(type: "logIn") { (info) in
+//                        print("dsdfssdf")
+//                    }
+//                    self.center()?.present(login, animated: true, completion: nil)
+                }
                 break
                 
             case 2:
@@ -195,6 +214,14 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 break
                 
             case 6:
+                if logged() {
+                                   
+                } else {
+                    let login = self.loginNav(type: "logIn") { (info) in
+                        print("dsdfssdf")
+                    }
+                    self.center()?.present(login, animated: true, completion: nil)
+                }
                 break
                 
             case 7:
@@ -202,6 +229,18 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 break
             
             case 8:
+                if logged() {
+                   DropAlert.shareInstance()?.alert(withInfor: ["cancel":"Thoát", "buttons":["Đăng xuất"], "title":"Thông báo", "message": "Bạn có muốn đăng xuất khỏi tài khoản ?"], andCompletion: { (index, objc) in
+                       if index == 0 {
+                           Information.removeInfo()
+                       }
+                   })
+                } else {
+                    let login = self.loginNav(type: "logIn") { (info) in
+                        
+                    }
+                    self.center()?.present(login, animated: true, completion: nil)
+                }
                 break
             
             default:

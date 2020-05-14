@@ -8,8 +8,6 @@
 
 import UIKit
 
-//import DKImagePickerController
-
 class PC_Inner_Info_ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var tableView: UITableView!
