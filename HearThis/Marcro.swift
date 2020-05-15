@@ -397,6 +397,22 @@ extension UITextField {
 
 extension UIViewController {
     
+    @objc func lat() -> String {
+        if (Permission.shareInstance()?.isLocationEnable())! {
+            return Permission.shareInstance()?.currentLocation()["lat"] as! String
+        }
+        
+        return "0"
+    }
+    
+    @objc func lng() -> String {
+          if (Permission.shareInstance()?.isLocationEnable())! {
+              return Permission.shareInstance()?.currentLocation()["lng"] as! String
+          }
+          
+          return "0"
+      }
+    
     @objc func loginNav(type: String, callBack: @escaping (Any) -> ()) -> UINavigationController {
         
         let login = PC_Login_ViewController.init()

@@ -137,7 +137,29 @@ class PC_Weather_Main_ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.didReload()
         })
+        
+        didGetWeather()
     }
+    
+     func didGetWeather() {
+       LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getCurrentWeather",
+                                                   "lat": self.lat(),
+                                                   "long": self.lng(),
+                                                   "overrideAlert":"1",
+                                                   "overrideLoading":"1",
+                                                   "host":self], withCache: { (cacheString) in
+       }, andCompletion: { (response, errorCode, error, isValid, object) in
+           let result = response?.dictionize() ?? [:]
+                                               
+           if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+               self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+               return
+           }
+                  
+           print(result)
+           
+       })
+   }
     
     @objc func didReload() {
         for dict in self.config {

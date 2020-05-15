@@ -59,6 +59,9 @@
                                     <integer key="value" value="8"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didUpdateFeedBack" destination="-1" eventType="touchUpInside" id="oVw-pc-FBp"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

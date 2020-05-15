@@ -19,13 +19,36 @@ class Weather_FeedBack_ViewController: UIViewController, UITextViewDelegate {
 
         textView.inputAccessoryView = self.toolBar()
 
-         self.view.action(forTouch: [:]) { (objc) in
-             self.view.endEditing(true)
-         }
+        self.view.action(forTouch: [:]) { (objc) in
+            self.view.endEditing(true)
+        }
+    }
+    
+    @IBAction func didUpdateFeedBack() {
+          LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"updateFeedback",
+                                                      "feedback":textView.text ?? "",
+                                                      "session":Information.token ?? "",
+                                                      "overrideAlert":"1",
+                                                      "overrideLoading":"1",
+                                                      "host":self], withCache: { (cacheString) in
+          }, andCompletion: { (response, errorCode, error, isValid, object) in
+              let result = response?.dictionize() ?? [:]
+                                                  
+              if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                  self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                  return
+              }
+                                 
+            self.showSVHUD("Đã gửi phản hồi", andOption: 1)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.hideSVHUD()
+                self.navigationController?.popViewController(animated: true)
+            })
+        })
     }
     
     func toolBar() -> UIToolbar {
-              
       let toolBar = UIToolbar.init(frame: CGRect.init(x: 0, y: 0, width: Int(self.screenWidth()), height: 50))
       
       toolBar.barStyle = .default

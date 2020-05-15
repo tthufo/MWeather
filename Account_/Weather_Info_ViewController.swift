@@ -107,7 +107,7 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
             if showMenu {
                 EM_MenuView.init(package: (info as! [AnyHashable : Any])).show { (index, objc, menu) in
                     if index == 0 {
-                        let data = (objc as! NSDictionary)                        
+                        let data = (objc as! NSDictionary)
                         if (MFMessageComposeViewController.canSendText()) {
                              let controller = MFMessageComposeViewController()
                              controller.body = data.getValueFromKey("reg_keyword")
