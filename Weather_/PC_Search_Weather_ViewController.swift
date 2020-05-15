@@ -61,8 +61,6 @@ class PC_Search_Weather_ViewController: UIViewController {
             self.dataList.addObjects(from: ((result["result"] as! NSArray) as! [Any]))
                                                
             self.tableView.reloadData()
-            
-            print(self.dataList)
       })
    }
     
