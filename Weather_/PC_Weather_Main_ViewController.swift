@@ -8,9 +8,11 @@
 
 import UIKit
 
+import MessageUI
+
 //import MarqueeLabel
 
-class PC_Weather_Main_ViewController: UIViewController {
+class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 
     @IBOutlet var tableView: OwnTableView!
     
@@ -178,7 +180,9 @@ class PC_Weather_Main_ViewController: UIViewController {
     
     @IBAction func didPressSearch() {
         if logged() {
-                           
+            self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
+
+//            self.didGetPackage(showMenu: true)
         } else {
             let login = self.loginNav(type: "logOut") { (info) in
                 self.bottomView.isHidden = logged() ? true : false
@@ -189,6 +193,43 @@ class PC_Weather_Main_ViewController: UIViewController {
 //        let search = Search_ViewController.init()
 //        search.config = [:]
 //        self.center()?.pushViewController(search, animated: true)
+    }
+    
+    func didGetPackage(showMenu: Bool) {
+        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getPackageInfo",
+                                                    "session": Information.token ?? "",
+                                                    "overrideAlert":"1",
+                                                    "overrideLoading":"1",
+                                                    "host":self], withCache: { (cacheString) in
+        }, andCompletion: { (response, errorCode, error, isValid, object) in
+            let result = response?.dictionize() ?? [:]
+                          
+            if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                return
+            }
+                    
+            let info = ((result["result"] as! NSArray)[0] as! NSDictionary)
+            
+            if showMenu {
+                if info.getValueFromKey("status") == "1" {
+                    self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
+                } else {
+                    EM_MenuView.init(package: (info as! [AnyHashable : Any])).show { (index, objc, menu) in
+                        if index == 0 {
+                            let data = (objc as! NSDictionary)
+                            if (MFMessageComposeViewController.canSendText()) {
+                                 let controller = MFMessageComposeViewController()
+                                 controller.body = data.getValueFromKey("reg_keyword")
+                                 controller.recipients = [data.getValueFromKey("reg_shortcode")]
+                                 controller.messageComposeDelegate = self
+                                 self.present(controller, animated: true, completion: nil)
+                             }
+                        }
+                    }
+                }
+            }
+        })
     }
     
     @IBAction func didPressLogin() {
@@ -270,5 +311,9 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

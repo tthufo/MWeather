@@ -162,6 +162,9 @@
 		FCD979892447693D00970A4E /* Reader_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD979872447693D00970A4E /* Reader_ViewController.swift */; };
 		FCD9798A2447693D00970A4E /* Reader_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD979882447693D00970A4E /* Reader_ViewController.xib */; };
 		FCE38C4A243E4B6C003864BC /* OwnTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE38C49243E4B6C003864BC /* OwnTableView.swift */; };
+		FCE4CBCE246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE4CBCC246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift */; };
+		FCE4CBCF246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE4CBCD246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib */; };
+		FCE4CBD1246EA4D4002C5D8B /* PC_Notification_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE4CBD0246EA4D4002C5D8B /* PC_Notification_Cell.xib */; };
 		FCF8A5B6244F54AD00E815E8 /* Package_Reg_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCF8A5B5244F54AD00E815E8 /* Package_Reg_Cell.xib */; };
 		FCFB516C1DD075E200D49FB2 /* Action.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCFB516A1DD075E200D49FB2 /* Action.xib */; };
 		FCFB516D1DD075E200D49FB2 /* actions.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCFB516B1DD075E200D49FB2 /* actions.plist */; };
@@ -372,6 +375,9 @@
 		FCD979872447693D00970A4E /* Reader_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader_ViewController.swift; sourceTree = "<group>"; };
 		FCD979882447693D00970A4E /* Reader_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Reader_ViewController.xib; sourceTree = "<group>"; };
 		FCE38C49243E4B6C003864BC /* OwnTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnTableView.swift; sourceTree = "<group>"; };
+		FCE4CBCC246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PC_Search_Weather_ViewController.swift; sourceTree = "<group>"; };
+		FCE4CBCD246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Search_Weather_ViewController.xib; sourceTree = "<group>"; };
+		FCE4CBD0246EA4D4002C5D8B /* PC_Notification_Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PC_Notification_Cell.xib; sourceTree = "<group>"; };
 		FCF8A5B5244F54AD00E815E8 /* Package_Reg_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Package_Reg_Cell.xib; sourceTree = "<group>"; };
 		FCFB516A1DD075E200D49FB2 /* Action.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Action.xib; sourceTree = "<group>"; };
 		FCFB516B1DD075E200D49FB2 /* actions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = actions.plist; sourceTree = "<group>"; };
@@ -695,6 +701,9 @@
 				FCBBF631246D9FFA00D82664 /* PC_Weather_Cell.xib */,
 				FCBBF638246DA92600D82664 /* DateValueFormatter.h */,
 				FCBBF639246DA92600D82664 /* DateValueFormatter.m */,
+				FCE4CBCC246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift */,
+				FCE4CBCD246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib */,
+				FCE4CBD0246EA4D4002C5D8B /* PC_Notification_Cell.xib */,
 			);
 			path = Weather_;
 			sourceTree = "<group>";
@@ -950,6 +959,7 @@
 				FC78398D2439C23700470148 /* Third_Tab_ViewController.xib in Resources */,
 				FC7839812438F91600470148 /* PC_Info_Cell.xib in Resources */,
 				FCAD57F1243DB7E400101A47 /* TG_Room_Cell_0.xib in Resources */,
+				FCE4CBCF246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib in Resources */,
 				FCB238C424421BC20034B40B /* Author_Filter_Cell.xib in Resources */,
 				FCB238C824422DFB0034B40B /* Author_Detail_ViewController.xib in Resources */,
 				FC20F86C246D2B9A002DBB18 /* Weather_Info_ViewController.xib in Resources */,
@@ -997,6 +1007,7 @@
 				FC1AD7DB1DA40CA8002BA7EC /* Assets.xcassets in Resources */,
 				FC78397B2438F37F00470148 /* PC_Inner_Info_ViewController.xib in Resources */,
 				FC7550EC1DAC8E95007992DF /* HT_Genres_Cell.xib in Resources */,
+				FCE4CBD1246EA4D4002C5D8B /* PC_Notification_Cell.xib in Resources */,
 				FC1AD7D91DA40CA8002BA7EC /* Main.storyboard in Resources */,
 				FC7551041DAE4640007992DF /* Default.png in Resources */,
 			);
@@ -1106,6 +1117,7 @@
 				FC640A881DAAAD8C00DAEF55 /* Records.m in Sources */,
 				FC7550FF1DACDD78007992DF /* YouTube.m in Sources */,
 				FC130B8E2446236B00D64012 /* Package_ViewController.swift in Sources */,
+				FCE4CBCE246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift in Sources */,
 				FC91B7352431217F00AA6671 /* XMLReader.m in Sources */,
 				FC7A98D32444B0420038C226 /* Tag_Cell.swift in Sources */,
 				FC91B731243120F400AA6671 /* GUISlider.m in Sources */,

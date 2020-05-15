@@ -85,7 +85,9 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
         self.dismiss(animated: true) {
             
         }
-        callBack!("")
+        if callBack != nil {
+            callBack!("")
+        }
     }
     
     //USING FIREPUSH PROJECT CONSOLE
