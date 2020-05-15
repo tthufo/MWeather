@@ -201,11 +201,11 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
 
         sw.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
 
-        sw.isOn = self.getValue("deg") == "1"
+        sw.isOn = self.getValue("deg") == "0"
 
         sw.action(forTouch: [:]) { (obj) in
             self.addValue(self.getValue("deg") == "1" ? "0" : "1", andKey: "deg")
-            sw.isOn = self.getValue("deg") == "1"
+            sw.isOn = self.getValue("deg") == "0"
         }
         
         sw.alpha = data["sw"] != nil ? 1 : 0;

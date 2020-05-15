@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@import Charts;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PC_Weather_Cell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet LineChartView *chartView;
+@property (nonatomic, assign) NSDictionary * data;
 
 @end
 

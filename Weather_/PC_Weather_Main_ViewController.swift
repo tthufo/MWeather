@@ -26,6 +26,10 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     var dataList: NSMutableArray!
     
+    
+    var weatherData: NSMutableDictionary!
+    
+    
     let refreshControl = UIRefreshControl()
 
     func reloadState() {
@@ -46,6 +50,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
             self.bottomView.isHidden = logged() ? true : false
         }
         self.center()?.present(login, animated: false, completion: nil)
+        
+        weatherData = NSMutableDictionary.init()
         
         tableView.withCell("PC_Weather_Cell")
 
@@ -158,8 +164,11 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                return
            }
                   
-           print(result)
-           
+           self.weatherData.removeAllObjects()
+        
+           self.weatherData.addEntries(from: (result["result"] as! NSDictionary) as! [AnyHashable : Any])
+        
+           self.tableView.reloadData()
        })
    }
     
@@ -261,6 +270,10 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let conf = config[indexPath.row] as! NSMutableDictionary
         let cell = tableView.dequeueReusableCell(withIdentifier: conf.getValueFromKey("ident") != "" ? conf.getValueFromKey("ident") : "TG_Room_Cell_%i".format(parameters: indexPath.row) , for: indexPath)
+        
+        if indexPath.row == 0 {
+            (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
+        }
         
 //        if(conf.getValueFromKey("ident") != "") {
 //            (cell as! TG_Room_Cell).config = (config[indexPath.row] as! NSDictionary)

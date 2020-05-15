@@ -285,7 +285,6 @@ extension UITapGestureRecognizer {
         
         return NSLocationInRange(indexOfCharacter, targetRange)
     }
-    
 }
 
 extension String {
@@ -318,11 +317,11 @@ extension String {
         return substring(to: toIndex)
     }
     
-    func substring(with r: Range<Int>) -> String {
-        let startIndex = index(from: r.lowerBound)
-        let endIndex = index(from: r.upperBound)
-        return substring(with: startIndex..<endIndex)
-    }
+//    func substring(with r: Range<Int>) -> String {
+//        let startIndex = index(from: r.lowerBound)
+//        let endIndex = index(from: r.upperBound)
+//        return substring(with: startIndex..<endIndex)
+//    }
     
     func index(at position: Int, from start: Index? = nil) -> Index? {
         let startingIndex = start ?? startIndex
@@ -402,7 +401,7 @@ extension UIViewController {
             return Permission.shareInstance()?.currentLocation()["lat"] as! String
         }
         
-        return "0"
+        return "21.004610"
     }
     
     @objc func lng() -> String {
@@ -410,7 +409,7 @@ extension UIViewController {
               return Permission.shareInstance()?.currentLocation()["lng"] as! String
           }
           
-          return "0"
+          return "105.834800"
       }
     
     @objc func loginNav(type: String, callBack: @escaping (Any) -> ()) -> UINavigationController {

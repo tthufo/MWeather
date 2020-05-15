@@ -66,10 +66,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="33" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2o-mi-5ZE">
-                                        <rect key="frame" x="0.0" y="0.0" width="91" height="69"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2o-mi-5ZE">
+                                        <rect key="frame" x="-6" y="0.0" width="97" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -142,6 +142,15 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="current" destination="kFl-kh-RSi" id="26f-GW-U67"/>
+                <outlet property="date" destination="q6g-t7-x8b" id="pwZ-91-1jz"/>
+                <outlet property="down" destination="RxA-XQ-bBf" id="YZe-Cd-rMq"/>
+                <outlet property="state" destination="KWC-IZ-LzO" id="Acc-Mx-sta"/>
+                <outlet property="temprature" destination="y2o-mi-5ZE" id="k7f-1A-4ih"/>
+                <outlet property="unit" destination="PFh-uY-PeC" id="CIZ-Uz-lVO"/>
+                <outlet property="up" destination="KKv-0V-aMN" id="L5u-Hj-wrg"/>
+            </connections>
             <point key="canvasLocation" x="15.942028985507248" y="104.79910714285714"/>
         </tableViewCell>
     </objects>
