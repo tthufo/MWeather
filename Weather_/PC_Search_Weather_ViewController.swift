@@ -62,9 +62,28 @@ class PC_Search_Weather_ViewController: UIViewController {
                                                
             self.tableView.reloadData()
             
-//             print(result)
-       })
+            print(self.dataList)
+      })
    }
+    
+    func didGetDeleteLocation(id: String) {
+          LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"deleteFavouriteLocation",
+                                                      "session":Information.token ?? "",
+                                                      "id":id,
+                                                      "overrideAlert":"1",
+                                                      "overrideLoading":"1",
+                                                      "host":self], withCache: { (cacheString) in
+          }, andCompletion: { (response, errorCode, error, isValid, object) in
+              let result = response?.dictionize() ?? [:]
+                                                  
+              if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                  self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                  return
+              }
+
+              self.showToast("Xóa địa điểm thành công", andPos: 0)
+       })
+    }
 }
 
 extension PC_Search_Weather_ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -84,7 +103,7 @@ extension PC_Search_Weather_ViewController: UITableViewDataSource, UITableViewDe
 
         let weather = ((dataList[indexPath.row] as! NSDictionary)["weather"] as! NSDictionary)["currently"] as! NSDictionary
 
-        let swipeView = viewWithImageName("ic-delete-all")
+        let swipeView = viewWithImageName("ic_delete_all")
         let swipeColor = AVHexColor.color(withHexString: "#CCCCCD")
         
         (self.withView(cell, tag: 11) as! UILabel).text = (data["info"] as! NSDictionary).getValueFromKey("name")
@@ -92,20 +111,12 @@ extension PC_Search_Weather_ViewController: UITableViewDataSource, UITableViewDe
         (self.withView(cell, tag: 12) as! UILabel).text = weather.getValueFromKey("temperature") + "°"
 
         (self.withView(cell, tag: 13) as! UIImageView).image = UIImage.init(named: (weather.getValueFromKey("icon")?.replacingOccurrences(of: "-", with: "_"))!)
-        
-        print(weather.getValueFromKey("icon"))
-        
+                
         cell.addSwipeTrigger(forState: .state(0, .right), withMode: .exit, swipeView: swipeView, swipeColor: swipeColor!, completion: { cell, trigger, state, mode in
-            
-//            self.dataList.removeObject(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            let status = data.getValueFromKey("status")
-//            if status == "0" {
-//                Information.changeInfo(notification: -1)
-//            }
-//            self.tableView.reloadData()
-//            self.didRequestDeleteNotification(idNotification: data.getValueFromKey("notification_id")! as NSString)
-            
+            self.dataList.removeObject(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+            self.didGetDeleteLocation(id: (data["info"] as! NSDictionary).getValueFromKey("id")!)
         })
         
         return cell
