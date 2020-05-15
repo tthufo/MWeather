@@ -18,6 +18,8 @@ class PC_Confirm_ViewController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet var cover: UIView!
 
+    @IBOutlet var phoneNo: UILabel!
+
     var typing: NSString!
     
     var uName: String!
@@ -44,6 +46,8 @@ class PC_Confirm_ViewController: UIViewController , UITextFieldDelegate {
         if Information.check == "1" {
             self.logo.image = UIImage(named: "icon_success_white")
         }
+        
+        phoneNo.text = uName ?? ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,11 +123,11 @@ class PC_Confirm_ViewController: UIViewController , UITextFieldDelegate {
     func setUpLogin() {
         var frame = login.frame
         
-        frame.origin.y = CGFloat(self.screenHeight() - 380) / 2 + CGFloat(self.topGap)
-        
+        frame.origin.y = CGFloat(self.screenHeight() - 450) / 2 + CGFloat(self.topGap)
+
         frame.size.width = CGFloat(self.screenWidth() - (IS_IPAD ? 200 : 40))
                
-        frame.size.height = CGFloat(CGFloat(self.screenHeight()) - CGFloat(self.topGap) - CGFloat(self.bottomGap) - (IS_IPAD ? 240 : 80))
+        frame.size.height = CGFloat(CGFloat(self.screenHeight()) - CGFloat(self.topGap) - CGFloat(self.bottomGap) - (IS_IPAD ? 240 : 170))
 
         frame.origin.x = IS_IPAD ? 100 : 20
         
@@ -140,15 +144,15 @@ class PC_Confirm_ViewController: UIViewController , UITextFieldDelegate {
         }
     }
     
-    func convertPhone() -> String {
-        let phone = uName
-        if phone?.substring(to: 2) == "84" {
-            return phone!
-        } else if phone?.substring(to: 1) == "0"  {
-            return "84" + (phone?.dropFirst())!
-        }
-        return phone!
-    }
+//    func convertPhone() -> String {
+//        let phone = uName
+//        if phone?.substring(to: 2) == "84" {
+//            return phone!
+//        } else if phone?.substring(to: 1) == "0"  {
+//            return "84" + (phone?.dropFirst())!
+//        }
+//        return phone!
+//    }
     
     @IBAction func didPressBack() {
         self.view.endEditing(true)

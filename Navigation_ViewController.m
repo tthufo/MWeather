@@ -10,6 +10,8 @@
 
 #import "HT_Player_ViewController.h"
 
+#import "MeWeather-Swift.h"
+
 @interface Navigation_ViewController ()<UIGestureRecognizerDelegate>
 
 @end
@@ -33,9 +35,10 @@
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    if ([[self.viewControllers lastObject] isKindOfClass:[HT_Root_ViewController class]]) {
+    if ([[self.viewControllers lastObject] isKindOfClass:[HT_Root_ViewController class]] || [[self.viewControllers lastObject] isKindOfClass:[PC_Weather_Main_ViewController class]]) {
         if (![self isFullEmbed]) {
             [[self ROOT] toggleLeftPanel:nil];
+            [(TG_Intro_ViewController*)[self LEFT] reloadLogin];
         }
         return NO;
     }

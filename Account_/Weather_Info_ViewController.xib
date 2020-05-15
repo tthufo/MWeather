@@ -11,8 +11,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Weather_Info_ViewController" customModule="MeWeather" customModuleProvider="target">
             <connections>
                 <outlet property="avatar" destination="0r9-ki-EAe" id="zwA-La-ftA"/>
+                <outlet property="avatarName" destination="pGk-1j-U2X" id="NQL-00-f1Q"/>
+                <outlet property="expire" destination="uUA-b9-DPB" id="dYI-2m-jqn"/>
                 <outlet property="name" destination="yrP-ad-n6o" id="Mo1-8a-f64"/>
                 <outlet property="package" destination="s10-YT-hOA" id="QfD-FO-ove"/>
+                <outlet property="phone" destination="f2d-WY-ngm" id="joB-Pz-8DH"/>
                 <outlet property="view" destination="K1c-sN-r1u" id="4wN-av-waH"/>
             </connections>
         </placeholder>
@@ -126,7 +129,7 @@
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-WY-ngm">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-WY-ngm">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="1zG-dk-POK"/>
@@ -169,7 +172,7 @@
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrP-ad-n6o">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrP-ad-n6o">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="CqO-fM-0xQ"/>
@@ -212,7 +215,7 @@
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s10-YT-hOA">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s10-YT-hOA">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="Nos-aA-9ge"/>
@@ -255,7 +258,7 @@
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trang cá nhân" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUA-b9-DPB">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUA-b9-DPB">
                                     <rect key="frame" x="19" y="42" width="283" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="aqO-IM-LSd"/>

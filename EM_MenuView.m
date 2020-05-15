@@ -40,8 +40,8 @@
     UIView *contentView = [[NSBundle mainBundle] loadNibNamed:@"EM_Menu" owner:self options:nil][9];
         
     UILabel * label = (UILabel*)[self withView:contentView tag:11];
-    
-    label.text = [dict getValueFromKey:@"content"];
+        
+    label.text = [dict getValueFromKey:@"info"];
     
     float k = label.sizeOfMultiLineLabel.height;
     
@@ -53,9 +53,8 @@
     
     contentView.frame = CGRectMake(0, 0, commentView.frame.size.width, commentView.frame.size.height);
 
-    
     [(UIButton*)[self withView:contentView tag:12] actionForTouch:@{} and:^(NSDictionary *touchInfo) {
-        self.menuCompletion(0, @{}, self);
+        self.menuCompletion(0, dict, self);
         [self close];
     }];
   

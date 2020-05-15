@@ -24,6 +24,8 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet var submit: UIButton!
     
+    var uName: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,12 +39,11 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
             self.view.endEditing(true)
         }
         
-//        self.tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        oldPass.text = uName ?? ""
         
-//        if Information.bg != nil && Information.bg != "" {
-//            bg.imageUrlNoCache(url: Information.bg ?? "")
-//        }
-        
+        submit.isEnabled = oldPass.text?.count != 0
+        submit.alpha = oldPass.text?.count != 0 ? 1 : 0.5
+                
         oldPass.addTarget(self, action: #selector(textOldIsChanging), for: .editingChanged)
     }
     
@@ -109,6 +110,28 @@ class Weather_Name_ViewController: UIViewController , UITextFieldDelegate {
             self.navigationController?.popViewController(animated: true)
         })
     }
+    
+      @IBAction func didPressEdit() {
+           self.view.endEditing(true)
+           LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"updateUserInfo",
+                                                        "session":Information.token ?? "",
+                                                        "name":oldPass.text as Any,
+                                                        "overrideAlert":"1",
+                                                        "overrideLoading":"1",
+                                                        "host":self], withCache: { (cacheString) in
+           }, andCompletion: { (response, errorCode, error, isValid, object) in
+               let result = response?.dictionize() ?? [:]
+                                                   
+               if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                   self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                   return
+               }
+            
+               self.showToast("Cập nhật thông tin thành công", andPos: 0)
+               
+               self.navigationController?.popViewController(animated: true)
+           })
+       }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        if textField == oldPass {

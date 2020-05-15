@@ -80,6 +80,7 @@ func appDelegate() -> AppDelegate {
 //    return ((root() as! UINavigationController).viewControllers.first as! TG_Root_ViewController).viewControllers?.last as! TG_User_ViewController
 //}
 //
+
 func logged() -> Bool {
     return Information.token != nil
 }
@@ -396,7 +397,7 @@ extension UITextField {
 
 extension UIViewController {
     
-    func loginNav(type: String, callBack: @escaping (Any) -> ()) -> UINavigationController {
+    @objc func loginNav(type: String, callBack: @escaping (Any) -> ()) -> UINavigationController {
         
         let login = PC_Login_ViewController.init()
         login.callBack = callBack

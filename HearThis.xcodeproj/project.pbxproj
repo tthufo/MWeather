@@ -147,6 +147,9 @@
 		FCB782E01DA413E000BDF913 /* HT_Root_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB782DF1DA413E000BDF913 /* HT_Root_ViewController.m */; };
 		FCB782E61DA414D400BDF913 /* Second_Tab_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB782E41DA414D400BDF913 /* Second_Tab_ViewController.m */; };
 		FCB782E71DA414D400BDF913 /* Second_Tab_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCB782E51DA414D400BDF913 /* Second_Tab_ViewController.xib */; };
+		FCBBF632246D9FFA00D82664 /* PC_Weather_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBBF631246D9FFA00D82664 /* PC_Weather_Cell.xib */; };
+		FCBBF637246DA8C500D82664 /* PC_Weather_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBBF636246DA8C500D82664 /* PC_Weather_Cell.m */; };
+		FCBBF63A246DA92600D82664 /* DateValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBBF639246DA92600D82664 /* DateValueFormatter.m */; };
 		FCC7EFB51DB9348A0080A08A /* HT_Player_Item.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC7EFB41DB9348A0080A08A /* HT_Player_Item.m */; };
 		FCC965AA1DA5F4200025971E /* HT_Player_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC965A81DA5F4200025971E /* HT_Player_ViewController.m */; };
 		FCC965AB1DA5F4200025971E /* HT_Player_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCC965A91DA5F4200025971E /* HT_Player_ViewController.xib */; };
@@ -348,6 +351,11 @@
 		FCB782E31DA414D400BDF913 /* Second_Tab_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Second_Tab_ViewController.h; sourceTree = "<group>"; };
 		FCB782E41DA414D400BDF913 /* Second_Tab_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Second_Tab_ViewController.m; sourceTree = "<group>"; };
 		FCB782E51DA414D400BDF913 /* Second_Tab_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Second_Tab_ViewController.xib; sourceTree = "<group>"; };
+		FCBBF631246D9FFA00D82664 /* PC_Weather_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Weather_Cell.xib; sourceTree = "<group>"; };
+		FCBBF635246DA8C500D82664 /* PC_Weather_Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PC_Weather_Cell.h; sourceTree = "<group>"; };
+		FCBBF636246DA8C500D82664 /* PC_Weather_Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PC_Weather_Cell.m; sourceTree = "<group>"; };
+		FCBBF638246DA92600D82664 /* DateValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateValueFormatter.h; sourceTree = "<group>"; };
+		FCBBF639246DA92600D82664 /* DateValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateValueFormatter.m; sourceTree = "<group>"; };
 		FCC7EFB31DB9348A0080A08A /* HT_Player_Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Player_Item.h; sourceTree = "<group>"; };
 		FCC7EFB41DB9348A0080A08A /* HT_Player_Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_Player_Item.m; sourceTree = "<group>"; };
 		FCC965A71DA5F4200025971E /* HT_Player_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_Player_ViewController.h; sourceTree = "<group>"; };
@@ -682,6 +690,11 @@
 				FC8E91B5246BD6B900D61E67 /* PC_Weather_Main_ViewController.xib */,
 				FC797698246D5A9200D104B8 /* Weather_FeedBack_ViewController.swift */,
 				FC797699246D5A9200D104B8 /* Weather_FeedBack_ViewController.xib */,
+				FCBBF635246DA8C500D82664 /* PC_Weather_Cell.h */,
+				FCBBF636246DA8C500D82664 /* PC_Weather_Cell.m */,
+				FCBBF631246D9FFA00D82664 /* PC_Weather_Cell.xib */,
+				FCBBF638246DA92600D82664 /* DateValueFormatter.h */,
+				FCBBF639246DA92600D82664 /* DateValueFormatter.m */,
 			);
 			path = Weather_;
 			sourceTree = "<group>";
@@ -971,6 +984,7 @@
 				FC130B8B24461D1A00D64012 /* List_Header_Cell.xib in Resources */,
 				FC69D43124405879006D57D9 /* TG_Room_Cell_10.xib in Resources */,
 				FC78398424391F6700470148 /* TG_Intro_ViewController.xib in Resources */,
+				FCBBF632246D9FFA00D82664 /* PC_Weather_Cell.xib in Resources */,
 				FCB238CC244235D70034B40B /* Author_Bio_Cell.xib in Resources */,
 				FC20F870246D37EC002DBB18 /* Weather_Name_ViewController.xib in Resources */,
 				FC1AD7DE1DA40CA8002BA7EC /* LaunchScreen.storyboard in Resources */,
@@ -1045,6 +1059,7 @@
 				FCFB51751DD0EFE300D49FB2 /* M_Detail_ViewController.m in Sources */,
 				FC7A98CC2444ABC70038C226 /* Search_ViewController.swift in Sources */,
 				FC1357DE24377B92001BA5B1 /* Information.swift in Sources */,
+				FCBBF637246DA8C500D82664 /* PC_Weather_Cell.m in Sources */,
 				FC7A98CF2444AC370038C226 /* TagFlowLayout.swift in Sources */,
 				FC7550FA1DACDB53007992DF /* EM_MenuView.m in Sources */,
 				FCAD57F3243DB7E400101A47 /* TG_Room_Cell_N.swift in Sources */,
@@ -1083,6 +1098,7 @@
 				FC640A811DAAAD8B00DAEF55 /* CoreModel.xcdatamodel in Sources */,
 				FC78398524391F6700470148 /* TG_Intro_ViewController.swift in Sources */,
 				FCB3CD711DA4E3FA002FABDD /* ItemCell.m in Sources */,
+				FCBBF63A246DA92600D82664 /* DateValueFormatter.m in Sources */,
 				FC1AD7D61DA40CA8002BA7EC /* ViewController.m in Sources */,
 				FCB238D0244354AB0034B40B /* Event_ViewController.swift in Sources */,
 				FC7839792438F37F00470148 /* PC_Inner_Info_ViewController.swift in Sources */,

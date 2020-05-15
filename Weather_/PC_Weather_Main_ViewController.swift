@@ -8,32 +8,44 @@
 
 import UIKit
 
-import MarqueeLabel
-
-import WebKit
+//import MarqueeLabel
 
 class PC_Weather_Main_ViewController: UIViewController {
 
     @IBOutlet var tableView: OwnTableView!
     
-    @IBOutlet var titleLabel: MarqueeLabel!
+    @IBOutlet var bottomView: UIView!
     
-    
-//    @IBOutlet var webView: WKWebView!
+    @IBOutlet var coverView: UIImageView!
 
+//    @IBOutlet var titleLabel: MarqueeLabel!
+    
     var config: NSArray!
     
     var dataList: NSMutableArray!
     
     let refreshControl = UIRefreshControl()
 
+    func reloadState() {
+        self.bottomView.isHidden = logged() ? true : false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.bottomView.isHidden = logged() ? true : false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let url = URL(string: "https://p3.minischool.co.kr/brclient/qlVSv2G35yBYy647qMUab75e3d8d31734854a0be338901a68169?wz=0&shareFlag=1&name=Truong&userId=20039")!
-//        webView.load(URLRequest(url: url))
+        let login = self.loginNav(type: "logIn") { (info) in
+            self.coverView.alpha = 0
+            self.bottomView.isHidden = logged() ? true : false
+        }
+        self.center()?.present(login, animated: false, completion: nil)
         
-        tableView.withCell("TG_Room_Cell_Banner_0")
+        tableView.withCell("PC_Weather_Cell")
 
         tableView.withCell("TG_Room_Cell_Banner_1")
 
@@ -69,7 +81,7 @@ class PC_Weather_Main_ViewController: UIViewController {
                                                "page_index": 1,
                                                "page_size": 24,
                                                "position": 1,
-                                        ], "height": 0, "loaded": false, "ident": "TG_Room_Cell_Banner_0"],
+            ], "height": self.screenHeight() - 44, "loaded": false, "ident": "PC_Weather_Cell"],
                                       ["title":"Mới nhất",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -139,20 +151,33 @@ class PC_Weather_Main_ViewController: UIViewController {
     
     @IBAction func didPressMenu() {
         self.root()?.toggleLeftPanel(nil)
+        (self.left() as! TG_Intro_ViewController).reloadLogin()
     }
     
     @IBAction func didPressSearch() {
         if logged() {
                            
         } else {
-            let login = self.loginNav(type: "logIn") { (info) in
-                print("dsdfssdf")
+            let login = self.loginNav(type: "logOut") { (info) in
+                self.bottomView.isHidden = logged() ? true : false
             }
             self.center()?.present(login, animated: true, completion: nil)
         }
+        
 //        let search = Search_ViewController.init()
 //        search.config = [:]
 //        self.center()?.pushViewController(search, animated: true)
+    }
+    
+    @IBAction func didPressLogin() {
+        let login = self.loginNav(type: "logOut") { (info) in
+            self.bottomView.isHidden = logged() ? true : false
+        }
+        self.center()?.present(login, animated: true, completion: nil)
+    }
+    
+    @IBAction func didPressRegister() {
+       
     }
 }
 
@@ -167,55 +192,55 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return config.count
+        return 1//config.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let conf = config[indexPath.row] as! NSMutableDictionary
         let cell = tableView.dequeueReusableCell(withIdentifier: conf.getValueFromKey("ident") != "" ? conf.getValueFromKey("ident") : "TG_Room_Cell_%i".format(parameters: indexPath.row) , for: indexPath)
         
-        if(conf.getValueFromKey("ident") != "") {
-            (cell as! TG_Room_Cell).config = (config[indexPath.row] as! NSDictionary)
-            (cell as! TG_Room_Cell).returnValue = { value in
-                (self.config[indexPath.row] as! NSMutableDictionary)["height"] = value
-                (self.config[indexPath.row] as! NSMutableDictionary)["loaded"] = true
-                tableView.reloadData()
-            }
-            (cell as! TG_Room_Cell).callBack = { info in
-                let eventDetail = Event_Detail_ViewController.init()
-                eventDetail.config = ((info as! NSDictionary)["selection"] as! NSDictionary)
-                eventDetail.chapList = (info as! NSDictionary)["data"] as! NSMutableArray
-                self.center()?.pushViewController(eventDetail, animated: true)
-            }
-        } else {
-            (cell as! TG_Room_Cell_N).config = (config[indexPath.row] as! NSDictionary)
-            (cell as! TG_Room_Cell_N).returnValue = { value in
-                (self.config[indexPath.row] as! NSMutableDictionary)["height"] = value
-                (self.config[indexPath.row] as! NSMutableDictionary)["loaded"] = true
-                tableView.reloadData()
-            }
-            (cell as! TG_Room_Cell_N).callBack = { info in
-                if (info as! NSDictionary).getValueFromKey("book_type") == "3" {
-                    self.didRequestUrl(info: (info as! NSDictionary))
-                    return
-                }
-                let bookDetail = Book_Detail_ViewController.init()
-                let bookInfo = NSMutableDictionary.init(dictionary: self.removeKey(info: conf))
-                bookInfo.addEntries(from: info as! [AnyHashable : Any])
-                bookDetail.config = bookInfo
-                self.center()?.pushViewController(bookDetail, animated: true)
-            }
-            
-            let more = self.withView((cell as! TG_Room_Cell_N), tag: 12) as! UIButton
-            
-            more.action(forTouch:[:]) { (obj) in
-                let list = List_Book_ViewController.init()
-                
-                list.config = self.removeKey(info: conf)
-                       
-                self.center()?.pushViewController(list, animated: true)
-            }
-        }
+//        if(conf.getValueFromKey("ident") != "") {
+//            (cell as! TG_Room_Cell).config = (config[indexPath.row] as! NSDictionary)
+//            (cell as! TG_Room_Cell).returnValue = { value in
+//                (self.config[indexPath.row] as! NSMutableDictionary)["height"] = value
+//                (self.config[indexPath.row] as! NSMutableDictionary)["loaded"] = true
+//                tableView.reloadData()
+//            }
+//            (cell as! TG_Room_Cell).callBack = { info in
+//                let eventDetail = Event_Detail_ViewController.init()
+//                eventDetail.config = ((info as! NSDictionary)["selection"] as! NSDictionary)
+//                eventDetail.chapList = (info as! NSDictionary)["data"] as! NSMutableArray
+//                self.center()?.pushViewController(eventDetail, animated: true)
+//            }
+//        } else {
+//            (cell as! TG_Room_Cell_N).config = (config[indexPath.row] as! NSDictionary)
+//            (cell as! TG_Room_Cell_N).returnValue = { value in
+//                (self.config[indexPath.row] as! NSMutableDictionary)["height"] = value
+//                (self.config[indexPath.row] as! NSMutableDictionary)["loaded"] = true
+//                tableView.reloadData()
+//            }
+//            (cell as! TG_Room_Cell_N).callBack = { info in
+//                if (info as! NSDictionary).getValueFromKey("book_type") == "3" {
+//                    self.didRequestUrl(info: (info as! NSDictionary))
+//                    return
+//                }
+//                let bookDetail = Book_Detail_ViewController.init()
+//                let bookInfo = NSMutableDictionary.init(dictionary: self.removeKey(info: conf))
+//                bookInfo.addEntries(from: info as! [AnyHashable : Any])
+//                bookDetail.config = bookInfo
+//                self.center()?.pushViewController(bookDetail, animated: true)
+//            }
+//
+//            let more = self.withView((cell as! TG_Room_Cell_N), tag: 12) as! UIButton
+//
+//            more.action(forTouch:[:]) { (obj) in
+//                let list = List_Book_ViewController.init()
+//
+//                list.config = self.removeKey(info: conf)
+//
+//                self.center()?.pushViewController(list, animated: true)
+//            }
+//        }
         
         return cell
     }

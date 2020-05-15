@@ -60,10 +60,10 @@ class PC_Inner_Info_ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         if IS_IPAD {
-           sideGapLeft.constant = 100
-           sideGapRight.constant = -100
-           sideGapBottomLeft.constant = 100
-           sideGapBottomRight.constant = 100
+//           sideGapLeft.constant = 100
+//           sideGapRight.constant = -100
+//           sideGapBottomLeft.constant = 100
+//           sideGapBottomRight.constant = 100
         }
         
         kb = KeyBoard.shareInstance()
@@ -88,7 +88,9 @@ class PC_Inner_Info_ViewController: UIViewController, UITextFieldDelegate {
             avatarTemp = Information.avatar
             avatar.image = avatarTemp
         } else {
-            avatar.imageUrlHolder(url: (Information.userInfo?.getValueFromKey("avatar"))!, holder: "ic_avatar")
+            if Information.userInfo != nil {
+                avatar.imageUrlHolder(url: (Information.userInfo?.getValueFromKey("avatar"))!, holder: "ic_avatar")
+            }
         }
                 
         phone.addTarget(self, action: #selector(textRePassIsChanging), for: .editingChanged)

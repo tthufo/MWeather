@@ -118,7 +118,7 @@ class PC_ChangePass_ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func didPressSubmit() {
         self.view.endEditing(true)
         
-        LTRequest.sharedInstance()?.didRequestInfo(["CMD_CODE":"changePassword",
+        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"changePassword",
                                                     "old_password":oldPass.text as Any,
                                                     "new_password":newPass.text as Any,
                                                     "session":Information.token ?? "",

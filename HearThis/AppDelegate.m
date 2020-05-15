@@ -94,43 +94,12 @@
     
 
     
-    self.window.rootViewController =  [self rootViewController]; //[self authenticationViewController: @"logIn"];
+    self.window.rootViewController =  [self rootViewController];
+    
+    //[self authenticationViewController: @"logIn"];
     
     [self.window makeKeyAndVisible];
     
-    
-//    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-//
-//     if(status == AVAuthorizationStatusAuthorized) { // authorized
-//
-//     }
-//     else if(status == AVAuthorizationStatusDenied){ // denied
-//
-//     }
-//     else if(status == AVAuthorizationStatusRestricted){ // restricted
-//
-//
-//     }
-//     else if(status == AVAuthorizationStatusNotDetermined){ // not determined
-//
-//         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-//             if(granted){ // Access has been granted ..do something
-//
-//             } else { // Access denied ..do something
-//
-//             }
-//         }];
-//     }
-//
-//     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-//         if (granted) {
-//             // Microphone enabled code
-//         }
-//         else {
-//             // Microphone disabled code
-//         }
-//     }];
-     
     
     
     return YES;
@@ -270,11 +239,16 @@ UIBackgroundTaskIdentifier bgTask;
     return (UINavigationController*)[self ROOT].centerPanel;
 }
 
+- (UIViewController*)LEFT
+{
+    return (UIViewController*)[self ROOT].leftPanel;
+}
+
+
 - (UIViewController*)TOPVIEWCONTROLER
 {
     return [((UINavigationController*)[self ROOT].centerPanel).viewControllers lastObject];
 }
-
 
 - (UIViewController*)LAST
 {

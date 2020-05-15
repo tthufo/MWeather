@@ -18,6 +18,8 @@
 
 #import "TT_Synced_ViewController.h"
 
+//#import "MeWeather-Swift.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -53,6 +55,8 @@
 - (TT_Panel_ViewController*)ROOT;
 
 - (UIViewController*)LAST;
+
+- (UIViewController*)LEFT;
 
 - (HT_Player_ViewController*)PLAYER;
 

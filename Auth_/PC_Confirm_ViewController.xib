@@ -14,6 +14,7 @@
                 <outlet property="cover" destination="iN3-Af-e4J" id="iHC-Jz-EWX"/>
                 <outlet property="login" destination="rIC-gj-iCS" id="xQb-yx-sUf"/>
                 <outlet property="logo" destination="bhQ-IT-ebz" id="EpK-Cn-ve1"/>
+                <outlet property="phoneNo" destination="mM9-6l-oRP" id="BLN-EA-ATn"/>
                 <outlet property="view" destination="Xhm-3E-7p3" id="vmf-8o-pQi"/>
             </connections>
         </placeholder>

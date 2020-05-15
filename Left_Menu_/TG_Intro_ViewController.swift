@@ -22,31 +22,52 @@ class TG_Intro_ViewController: UIViewController {
 
     @IBOutlet var widthConstant: NSLayoutConstraint!
 
-    
     let refreshControl = UIRefreshControl()
         
-    let dataList = [
-        ["title": "Thông tin cá nhân", "icon": "ico_user"],
-        ["title": "Đổi mật khẩu", "icon": "ico_change_pass"],
-        ["title": "Đơn vị đo", "icon": "ico_measurement", "sw":"1"],
-        ["title": "", "icon": ""],
-        ["title": "Dịch vụ MeWeather", "icon": "ico_meweather"],
-        ["title": "Thỏa thuận dịch vụ", "icon": "ico_info"],
-        ["title": "Phản hồi", "icon": "ico_email"],
-        ["title": "Chia sẻ tới bạn bè", "icon": "ico_share"],
-        ["title": logged() ? "Đăng xuất" : "Đăng nhập", "icon": "ico_logout"],
-    ]
+    var dataList: [[String: String]] = []
+    
+    @objc func reloadLogin() {
+        dataList = [
+            ["title": "Thông tin cá nhân", "icon": "ico_user"],
+            ["title": "Đổi mật khẩu", "icon": "ico_change_pass"],
+            ["title": "Đơn vị đo", "icon": "ico_measurement", "sw":"1"],
+            ["title": "", "icon": ""],
+            ["title": "Dịch vụ MeWeather", "icon": "ico_meweather"],
+            ["title": "Thỏa thuận dịch vụ", "icon": "ico_info"],
+            ["title": "Phản hồi", "icon": "ico_email"],
+            ["title": "Chia sẻ tới bạn bè", "icon": "ico_share"],
+            ["title": logged() ? "Đăng xuất" : "Đăng nhập", "icon": "ico_logout"],
+        ]
+        
+        phoneNo.text = Information.userInfo != nil ?
+            (Information.userInfo?.getValueFromKey("name")) == "" ? (Information.userInfo?.getValueFromKey("phone")) :
+            (Information.userInfo?.getValueFromKey("name"))! : "84xxxxxxxxx"
+
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+       super.viewDidLoad()
           
-        widthConstant.constant = CGFloat(self.screenWidth() * (IS_IPAD ? 0.4 : 0.8));
+       widthConstant.constant = CGFloat(self.screenWidth() * (IS_IPAD ? 0.4 : 0.8));
         
-        tableView.refreshControl = refreshControl
-           
-        refreshControl.tintColor = UIColor.black
+       dataList = [
+            ["title": "Thông tin cá nhân", "icon": "ico_user"],
+            ["title": "Đổi mật khẩu", "icon": "ico_change_pass"],
+            ["title": "Đơn vị đo", "icon": "ico_measurement", "sw":"1"],
+            ["title": "", "icon": ""],
+            ["title": "Dịch vụ MeWeather", "icon": "ico_meweather"],
+            ["title": "Thỏa thuận dịch vụ", "icon": "ico_info"],
+            ["title": "Phản hồi", "icon": "ico_email"],
+            ["title": "Chia sẻ tới bạn bè", "icon": "ico_share"],
+            ["title": logged() ? "Đăng xuất" : "Đăng nhập", "icon": "ico_logout"],
+        ]
         
-        refreshControl.addTarget(self, action: #selector(didRequestNotification), for: .valueChanged)
+//        tableView.refreshControl = refreshControl
+//           
+//        refreshControl.tintColor = UIColor.black
+//        
+//        refreshControl.addTarget(self, action: #selector(didRequestNotification), for: .valueChanged)
                    
 //        dataList = NSMutableArray.init()
                 
@@ -55,11 +76,12 @@ class TG_Intro_ViewController: UIViewController {
 //        tableView.withHeaderOrFooter("PC_Header_Tab")
         
         didRequestNotification()
+        
         if Information.check == "1" {
-            avatar.action(forTouch: [:]) { (objc) in
-                    self.center()?.pushViewController(PC_Inner_Info_ViewController.init(), animated: true)
-                    self.root()?.showCenterPanel(animated: true)
-            }
+//            avatar.action(forTouch: [:]) { (objc) in
+//                    self.center()?.pushViewController(PC_Inner_Info_ViewController.init(), animated: true)
+//                    self.root()?.showCenterPanel(animated: true)
+//            }
         } else {
             avatar.image = UIImage.init(named: "ic_default_avatar")
         }
@@ -72,9 +94,9 @@ class TG_Intro_ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
                 
-//        userName.text = Information.userInfo?.getValueFromKey("name") == "" ? "Vô danh" : Information.userInfo?.getValueFromKey("name")
+        self.tableView.reloadData()
         
-//        phoneNo.text = " " + (Information.userInfo?.getValueFromKey("phone"))! + "  "
+//        userName.text = Information.userInfo?.getValueFromKey("name") == "" ? "Vô danh" : Information.userInfo?.getValueFromKey("name")
     }
     
     @objc func didRequestNotification() {
@@ -123,6 +145,29 @@ class TG_Intro_ViewController: UIViewController {
     @IBAction func didPressFAQ() {
 
     }
+    
+    @objc func didRequestLogout() {
+        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"logout",
+                                                    "session":Information.token ?? "",
+                                                    "push_token": FirePush.shareInstance()?.deviceToken() ?? self.uniqueDeviceId() as Any,
+                                                    "overrideAlert":"1",
+                                                    ], withCache: { (cacheString) in
+        }, andCompletion: { (response, errorCode, error, isValid, object) in
+            let result = response?.dictionize() ?? [:]
+                                                                                 
+            if (error != nil) || result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                return
+            }
+            
+            Information.removeInfo()
+
+            let login = self.loginNav(type: "logOut") { (info) in
+                self.checkLogin()
+            }
+            self.center()?.present(login, animated: true, completion: nil)
+        })
+    }
 }
 
 extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -169,6 +214,12 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func checkLogin() {
+        if (self.topviewcontroler()?.isKind(of: PC_Weather_Main_ViewController.self))! {
+            (self.topviewcontroler() as! PC_Weather_Main_ViewController).reloadState()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
        
@@ -177,27 +228,23 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
             case 0:
                 if logged() {
-                    
-                } else {
                     self.center()?.pushViewController(Weather_Info_ViewController.init(), animated: true)
-
-//                    let login = self.loginNav(type: "logIn") { (info) in
-//                        print("dsdfssdf")
-//                    }
-//                    self.center()?.present(login, animated: true, completion: nil)
+                } else {
+                    let login = self.loginNav(type: "logOut") { (info) in
+                        self.checkLogin()
+                    }
+                    self.center()?.present(login, animated: true, completion: nil)
                 }
                 break
                 
              case 1:
                 if logged() {
-                       
+                   self.center()?.pushViewController(PC_ChangePass_ViewController.init(), animated: true)
                 } else {
-                    self.center()?.pushViewController(PC_ChangePass_ViewController.init(), animated: true)
-                    
-//                    let login = self.loginNav(type: "logIn") { (info) in
-//                        print("dsdfssdf")
-//                    }
-//                    self.center()?.present(login, animated: true, completion: nil)
+                    let login = self.loginNav(type: "logOut") { (info) in
+                        self.checkLogin()
+                    }
+                    self.center()?.present(login, animated: true, completion: nil)
                 }
                 break
                 
@@ -215,14 +262,12 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 
             case 6:
                 if logged() {
-                                   
+                   self.center()?.pushViewController(Weather_FeedBack_ViewController.init(), animated: true)
                 } else {
-                    self.center()?.pushViewController(Weather_FeedBack_ViewController.init(), animated: true)
-
-//                    let login = self.loginNav(type: "logIn") { (info) in
-//                        print("dsdfssdf")
-//                    }
-//                    self.center()?.present(login, animated: true, completion: nil)
+                    let login = self.loginNav(type: "logOut") { (info) in
+                        self.checkLogin()
+                    }
+                    self.center()?.present(login, animated: true, completion: nil)
                 }
                 break
                 
@@ -234,12 +279,12 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 if logged() {
                    DropAlert.shareInstance()?.alert(withInfor: ["cancel":"Thoát", "buttons":["Đăng xuất"], "title":"Thông báo", "message": "Bạn có muốn đăng xuất khỏi tài khoản ?"], andCompletion: { (index, objc) in
                        if index == 0 {
-                           Information.removeInfo()
+                        self.didRequestLogout()
                        }
                    })
                 } else {
-                    let login = self.loginNav(type: "logIn") { (info) in
-                        
+                    let login = self.loginNav(type: "logOut") { (info) in
+                        self.checkLogin()
                     }
                     self.center()?.present(login, animated: true, completion: nil)
                 }

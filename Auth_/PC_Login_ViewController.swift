@@ -33,9 +33,7 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
     @IBOutlet var uNameView: UIView!
 
     @IBOutlet var passErr: UILabel!
-    
-    @IBOutlet var sumitText: UILabel!
-    
+        
     @IBOutlet var bottom: MarqueeLabel!
     
     @objc var logOut: String!
@@ -166,7 +164,6 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
                self.pass.text = Information.log!["pass"] as? String
                self.submit.isEnabled = self.uName.text?.count != 0 && self.pass.text?.count != 0
                self.submit.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
-               self.sumitText.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
            }
            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
               if self.logOut == "logIn" {
@@ -180,9 +177,7 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
     func setUp(phoneNumber: Any) {
                 
         let logged = Information.token != nil && Information.token != ""
-                
-//        let bbgg = Information.bbgg != nil && Information.bbgg != ""
-        
+                        
         var frame = logo.frame
 
         frame.origin.y = CGFloat(self.screenHeight() - 70) / 2
@@ -270,7 +265,6 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
                                 self.pass.text = Information.log!["pass"] as? String
                                 self.submit.isEnabled = self.uName.text?.count != 0 && self.pass.text?.count != 0
                                 self.submit.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
-                                self.sumitText.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
                             }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
                                 if self.logOut == "logIn" {
@@ -323,17 +317,13 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
     @IBAction func didPressRegister() {
         self.view.endEditing(true)
         
-        
-//        if (MFMessageComposeViewController.canSendText()) {
-//            let controller = MFMessageComposeViewController()
-//            controller.body = "EB"
-//            controller.recipients = ["1352"]
-//            controller.messageComposeDelegate = self
-//            self.present(controller, animated: true, completion: nil)
-//        }
-        
-        
-        (UIApplication.shared.delegate as! AppDelegate).changeRoot(false)
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "EB"
+            controller.recipients = ["1352"]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     func checkPhone() -> Bool {
@@ -377,6 +367,7 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
         if phoneNumber is String {
             if (phoneNumber as! String) == "" {
                 is3G = false
+                self.didPressDis()
             } else {
                 is3G = true
             }
@@ -386,18 +377,19 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
                 
         if is3G {
             self.uName.text = (phoneNumber as! String)
-            requestLogin(request: ["username":phoneNumber,
+            requestLogin(request: ["msisdn":phoneNumber,
 //                                   "password":pass.text as Any,
                                    "login_type":"3G"])
             print("3G")
         } else {
             if logged {
-                requestLogin(request: ["username":convertPhone(),
+                requestLogin(request: ["msisdn":convertPhone(),
                                        "password":pass.text as Any,
                                        "login_type":"WIFI"])
                 print("LOGIN")
             } else {
                 print("BUTTON")
+                
                 if phoneNumber is UIButton {
                     isValid = self.checkPhone()
                     if !isValid {
@@ -405,7 +397,7 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
                         return
                     }
                     print(convertPhone())
-                    requestLogin(request: ["username":convertPhone(),
+                    requestLogin(request: ["msisdn":convertPhone(),
                                             "password":pass.text as Any,
                                             "login_type":"WIFI"])
                 }
@@ -414,12 +406,12 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
     }
     
     func requestLogin(request: NSDictionary) {
-        let requesting = NSMutableDictionary.init(dictionary: ["CMD_CODE":"login",
+        let requesting = NSMutableDictionary.init(dictionary: ["cmd_code":"login",
                                                                "push_token": FirePush.shareInstance()?.deviceToken() ?? self.uniqueDeviceId(),
-                                                                "platform":"IOS",
-                                                                "overrideAlert":"1",
-                                                                "overrideLoading":"1",
-                                                                "host":self])
+                                                               "platform":"IOS",
+                                                               "overrideAlert":"1",
+                                                               "overrideLoading":"1",
+                                                               "host":self])
         requesting.addEntries(from: request as! [AnyHashable : Any])
         LTRequest.sharedInstance()?.didRequestInfo(requesting as? [AnyHashable : Any], withCache: { (cacheString) in
         }, andCompletion: { (response, errorCode, error, isValid, object) in
@@ -431,7 +423,7 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
                 self.showToast("Không có thông tin tài khoản. Liên hệ quản trị viên để được tài trợ.", andPos: 0)
                 return
             }
-                                                
+                                         
             self.add(["name":self.uName.text as Any, "pass":self.pass.text as Any], andKey: "log")
 
             self.add((response?.dictionize()["result"] as! NSDictionary).reFormat() as? [AnyHashable : Any], andKey: "info")
@@ -441,47 +433,49 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
             self.addValue((response?.dictionize()["result"] as! NSDictionary).getValueFromKey("session"), andKey: "token")
 
             Information.saveToken()
-            
+
             print(Information.userInfo as Any)
-            
-            if Information.check == "1" {
+
+//            if Information.check == "1" {
                 self.didRequestPackage()   //CHECK PACKAGE
+//            } else {
 //                (UIApplication.shared.delegate as! AppDelegate).changeRoot(false) //CHECK PACKAGE
-            } else {
-                (UIApplication.shared.delegate as! AppDelegate).changeRoot(false) //CHECK PACKAGE
-            }
+//            }
+            
+            self.didPressDis()
         })
     }
     
     func didRequestPackage() {
-        LTRequest.sharedInstance()?.didRequestInfo(["CMD_CODE":"getPackageInfo",
+        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getPackageInfo",
                                                     "session":Information.token ?? "",
                                                     "overrideAlert":"1",
                                                     "overrideLoading":"1",
                                                     "host":self], withCache: { (cacheString) in
        }, andCompletion: { (response, errorCode, error, isValid, object) in
             let result = response?.dictionize() ?? [:]
-                                           
+        
             if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
                self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
                return
             }
         
+            print(result)
+        
             if !self.checkRegister(package: response?.dictionize()["result"] as! NSArray) {
                 self.showToast("Xin chào " + self.uName.text! + ", Quý khách chưa đăng ký dịch vụ, hãy bấm \"Đăng ký\" để sử dụng dịch vụ", andPos: 0)
             } else {
-                (UIApplication.shared.delegate as! AppDelegate).changeRoot(false)
-                if self.uName != nil {
-                   self.uName.text = ""
-                }
-                if self.pass != nil {
-                   self.pass.text = ""
-                }
-                if self.submit != nil {
-                   self.submit.isEnabled = self.uName.text?.count != 0 && self.pass.text?.count != 0
-                   self.submit.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
-                   self.sumitText.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
-                }
+//                (UIApplication.shared.delegate as! AppDelegate).changeRoot(false)
+//                if self.uName != nil {
+//                   self.uName.text = ""
+//                }
+//                if self.pass != nil {
+//                   self.pass.text = ""
+//                }
+//                if self.submit != nil {
+//                   self.submit.isEnabled = self.uName.text?.count != 0 && self.pass.text?.count != 0
+//                   self.submit.alpha = self.uName.text?.count != 0 && self.pass.text?.count != 0 ? 1 : 0.5
+//                }
             }
        })
     }

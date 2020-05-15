@@ -133,11 +133,15 @@ class PC_Forgot_ViewController: UIViewController , UITextFieldDelegate {
     func setUpLogin() {
         var frame = login.frame
         
-        frame.origin.y = CGFloat(self.screenHeight() - 380) / 2 + CGFloat(self.topGap)
+//        frame.origin.y = CGFloat(self.screenHeight() - 380) / 2 + CGFloat(self.topGap)
+//
+//        frame.size.width = CGFloat(self.screenWidth() - (IS_IPAD ? 200 : 40))
         
+        frame.origin.y = CGFloat(self.screenHeight() - 450) / 2 + CGFloat(self.topGap)
+              
         frame.size.width = CGFloat(self.screenWidth() - (IS_IPAD ? 200 : 40))
                
-        frame.size.height = CGFloat(CGFloat(self.screenHeight()) - CGFloat(self.topGap) - CGFloat(self.bottomGap) - (IS_IPAD ? 240 : 80))
+        frame.size.height = CGFloat(CGFloat(self.screenHeight()) - CGFloat(self.topGap) - CGFloat(self.bottomGap) - (IS_IPAD ? 240 : 170))
 
         frame.origin.x = IS_IPAD ? 100 : 20
         
@@ -185,16 +189,14 @@ class PC_Forgot_ViewController: UIViewController , UITextFieldDelegate {
     
     @IBAction func didPressSubmit() {
         self.view.endEditing(true)
-        
-        self.navigationController?.pushViewController(PC_Confirm_ViewController.init(), animated: true)
-        
+                
         isValid = self.checkPhone()
         if !isValid {
             validPhone()
             return
         }
-        LTRequest.sharedInstance()?.didRequestInfo(["CMD_CODE":"forgetPassword",
-                                                    "username":convertPhone(),
+        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"forgetPassword",
+                                                    "msisdn":convertPhone(),
                                                     "overrideAlert":"1",
                                                     "overrideLoading":"1",
                                                     "host":self], withCache: { (cacheString) in
@@ -206,9 +208,14 @@ class PC_Forgot_ViewController: UIViewController , UITextFieldDelegate {
                 return
             }
             
+            let confirm = PC_Confirm_ViewController.init()
+            
+            confirm.uName = self.convertPhone()
+            
+            self.navigationController?.pushViewController(confirm, animated: true)
+            
 //            self.showToast("Lấy lại mật khẩu thành công. Mật khẩu mới sẽ đưởi gửi về số điện thoại %@".format(parameters: self.uName.text!), andPos: 0)
 //            self.didPressBack()
-            
         })
     }
     

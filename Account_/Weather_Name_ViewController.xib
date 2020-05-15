@@ -62,7 +62,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="didPressSubmit" destination="-1" eventType="touchUpInside" id="Gvh-yB-mKj"/>
+                                <action selector="didPressEdit" destination="-1" eventType="touchUpInside" id="DjX-Z3-PbA"/>
                             </connections>
                         </button>
                     </subviews>
@@ -149,7 +149,7 @@
                         </constraints>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        <textInputTraits key="textInputTraits"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                 <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
