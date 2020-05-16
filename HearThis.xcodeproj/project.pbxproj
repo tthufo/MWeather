@@ -46,6 +46,9 @@
 		FC483CAA246FDEA000875338 /* PC_Day_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CA9246FDEA000875338 /* PC_Day_Cell.xib */; };
 		FC483CAC246FE1BB00875338 /* PC_Week_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CAB246FE1BB00875338 /* PC_Week_Cell.xib */; };
 		FC483CAE246FEAA400875338 /* PC_Rain_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */; };
+		FC483CB22470535700875338 /* PC_Wind_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC483CB02470535700875338 /* PC_Wind_Cell.m */; };
+		FC483CB32470535700875338 /* PC_Wind_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CB12470535700875338 /* PC_Wind_Cell.xib */; };
+		FC483CB6247076AB00875338 /* PC_Rain_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC483CB5247076AB00875338 /* PC_Rain_Cell.m */; };
 		FC640A811DAAAD8B00DAEF55 /* CoreModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = FC640A721DAAAD8B00DAEF55 /* CoreModel.xcdatamodel */; };
 		FC640A821DAAAD8C00DAEF55 /* DownLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = FC640A741DAAAD8B00DAEF55 /* DownLoad.m */; };
 		FC640A831DAAAD8C00DAEF55 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC640A761DAAAD8B00DAEF55 /* DownloadManager.m */; };
@@ -226,6 +229,11 @@
 		FC483CA9246FDEA000875338 /* PC_Day_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Day_Cell.xib; sourceTree = "<group>"; };
 		FC483CAB246FE1BB00875338 /* PC_Week_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Week_Cell.xib; sourceTree = "<group>"; };
 		FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Rain_Cell.xib; sourceTree = "<group>"; };
+		FC483CAF2470535700875338 /* PC_Wind_Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PC_Wind_Cell.h; sourceTree = "<group>"; };
+		FC483CB02470535700875338 /* PC_Wind_Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PC_Wind_Cell.m; sourceTree = "<group>"; };
+		FC483CB12470535700875338 /* PC_Wind_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Wind_Cell.xib; sourceTree = "<group>"; };
+		FC483CB4247076AB00875338 /* PC_Rain_Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PC_Rain_Cell.h; sourceTree = "<group>"; };
+		FC483CB5247076AB00875338 /* PC_Rain_Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PC_Rain_Cell.m; sourceTree = "<group>"; };
 		FC640A721DAAAD8B00DAEF55 /* CoreModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreModel.xcdatamodel; sourceTree = "<group>"; };
 		FC640A731DAAAD8B00DAEF55 /* DownLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoad.h; sourceTree = "<group>"; };
 		FC640A741DAAAD8B00DAEF55 /* DownLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoad.m; sourceTree = "<group>"; };
@@ -712,6 +720,11 @@
 				FCE4CBD0246EA4D4002C5D8B /* PC_Notification_Cell.xib */,
 				FC483CA9246FDEA000875338 /* PC_Day_Cell.xib */,
 				FC483CAB246FE1BB00875338 /* PC_Week_Cell.xib */,
+				FC483CAF2470535700875338 /* PC_Wind_Cell.h */,
+				FC483CB02470535700875338 /* PC_Wind_Cell.m */,
+				FC483CB12470535700875338 /* PC_Wind_Cell.xib */,
+				FC483CB4247076AB00875338 /* PC_Rain_Cell.h */,
+				FC483CB5247076AB00875338 /* PC_Rain_Cell.m */,
 				FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */,
 			);
 			path = Weather_;
@@ -963,6 +976,7 @@
 				FCB238C2244218DB0034B40B /* Author_ViewController.xib in Resources */,
 				FC7A98D12444AD010038C226 /* Tag_Cell.xib in Resources */,
 				FCF8A5B6244F54AD00E815E8 /* Package_Reg_Cell.xib in Resources */,
+				FC483CB32470535700875338 /* PC_Wind_Cell.xib in Resources */,
 				FC7550E41DAC85DE007992DF /* HT_Feed_ViewController.xib in Resources */,
 				FCC965AB1DA5F4200025971E /* HT_Player_ViewController.xib in Resources */,
 				FC78398D2439C23700470148 /* Third_Tab_ViewController.xib in Resources */,
@@ -1097,6 +1111,7 @@
 				FCE38C4A243E4B6C003864BC /* OwnTableView.swift in Sources */,
 				FC640A861DAAAD8C00DAEF55 /* List.m in Sources */,
 				FCC965AA1DA5F4200025971E /* HT_Player_ViewController.m in Sources */,
+				FC483CB6247076AB00875338 /* PC_Rain_Cell.m in Sources */,
 				FCD979892447693D00970A4E /* Reader_ViewController.swift in Sources */,
 				FCB238E424437D410034B40B /* Event_Detail_ViewController.swift in Sources */,
 				FC91278D246BADBF001797A8 /* PC_Confirm_ViewController.swift in Sources */,
@@ -1143,6 +1158,7 @@
 				FCAD4AAA2434FD1A00387AF6 /* SC_Menu_ViewController.m in Sources */,
 				FC78398E2439C23700470148 /* Third_Tab_ViewController.m in Sources */,
 				FC0A8FB02437770E001A75AF /* PC_Register_ViewController.swift in Sources */,
+				FC483CB22470535700875338 /* PC_Wind_Cell.m in Sources */,
 				FCD381872444D78E004D78C9 /* CustomFlowLayou.m in Sources */,
 				FC8E91B6246BD6B900D61E67 /* PC_Weather_Main_ViewController.swift in Sources */,
 				FC20F86B246D2B9A002DBB18 /* Weather_Info_ViewController.swift in Sources */,

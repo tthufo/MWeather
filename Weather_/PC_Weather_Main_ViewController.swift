@@ -61,6 +61,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
 
         tableView.withCell("PC_Rain_Cell")
 
+        tableView.withCell("PC_Wind_Cell")
+
         
         tableView.withCell("TG_Room_Cell_Banner_1")
 
@@ -128,7 +130,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                           "book_type": 3,
                                           "price": 0,
                                           "sorting": 1,
-                                      ], "height": 0, "direction": "horizontal", "loaded": false],
+                                      ], "height": 300, "direction": "horizontal", "loaded": false, "ident": "PC_Wind_Cell"],
                                       ["title":"Khuyên nên đọc",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -271,7 +273,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4//config.count
+        return 5//config.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -283,53 +285,64 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         }
         
         if indexPath.row == 1 {
+            self.dayCell(cell: cell)
         }
         
-//        if(conf.getValueFromKey("ident") != "") {
-//            (cell as! TG_Room_Cell).config = (config[indexPath.row] as! NSDictionary)
-//            (cell as! TG_Room_Cell).returnValue = { value in
-//                (self.config[indexPath.row] as! NSMutableDictionary)["height"] = value
-//                (self.config[indexPath.row] as! NSMutableDictionary)["loaded"] = true
-//                tableView.reloadData()
-//            }
-//            (cell as! TG_Room_Cell).callBack = { info in
-//                let eventDetail = Event_Detail_ViewController.init()
-//                eventDetail.config = ((info as! NSDictionary)["selection"] as! NSDictionary)
-//                eventDetail.chapList = (info as! NSDictionary)["data"] as! NSMutableArray
-//                self.center()?.pushViewController(eventDetail, animated: true)
-//            }
-//        } else {
-//            (cell as! TG_Room_Cell_N).config = (config[indexPath.row] as! NSDictionary)
-//            (cell as! TG_Room_Cell_N).returnValue = { value in
-//                (self.config[indexPath.row] as! NSMutableDictionary)["height"] = value
-//                (self.config[indexPath.row] as! NSMutableDictionary)["loaded"] = true
-//                tableView.reloadData()
-//            }
-//            (cell as! TG_Room_Cell_N).callBack = { info in
-//                if (info as! NSDictionary).getValueFromKey("book_type") == "3" {
-//                    self.didRequestUrl(info: (info as! NSDictionary))
-//                    return
-//                }
-//                let bookDetail = Book_Detail_ViewController.init()
-//                let bookInfo = NSMutableDictionary.init(dictionary: self.removeKey(info: conf))
-//                bookInfo.addEntries(from: info as! [AnyHashable : Any])
-//                bookDetail.config = bookInfo
-//                self.center()?.pushViewController(bookDetail, animated: true)
-//            }
-//
-//            let more = self.withView((cell as! TG_Room_Cell_N), tag: 12) as! UIButton
-//
-//            more.action(forTouch:[:]) { (obj) in
-//                let list = List_Book_ViewController.init()
-//
-//                list.config = self.removeKey(info: conf)
-//
-//                self.center()?.pushViewController(list, animated: true)
-//            }
-//        }
+        if indexPath.row == 2 {
+            self.weekCell(cell: cell)
+        }
         
         return cell
     }
+    
+    func dayCell(cell: UITableViewCell) {
+        if !self.weatherData.response(forKey: "currently") {
+            return
+        }
+        let currently = (self.weatherData as NSDictionary)["currently"] as! NSDictionary
+        
+        let keys = [["key":"precipIntensity", "tag": 1, "unit": "mm"],
+                    ["key":"dewPoint", "tag": 2, "unit": "°"],
+                    ["key":"humidity", "tag": 3, "unit": "%"],
+                    ["key":"windSpeed", "tag": 4, "unit": "km/h"],
+                    ["key":"windGust", "tag": 5, "unit": "km/h"],
+                    ["key":"pressure", "tag": 6, "unit": "mb"],
+                    ["key":"windBearing", "tag": 7, "unit": ""],
+                    ["key":"uvIndex", "tag": 8, "unit": "UV"]]
+        
+        for view in cell.contentView.subviews {
+            print(view)
+            for key in keys {
+                if view.tag == key["tag"] as! Int + 9 {
+                    (view as! UILabel).text = self.returnValCurrent(currently.getValueFromKey((key["key"] as! String)), unit: (key["unit"] as! String))
+                }
+            }
+        }
+    }
+    
+    func weekCell(cell: UITableViewCell) {
+        if !self.weatherData.response(forKey: "daily") {
+            return
+        }
+        let daily = (self.weatherData as NSDictionary)["daily"] as! NSArray
+        let keys = ["temperatureHigh", "temperatureLow", "icon", "humidity", "time"]
+        var index = 0
+        for view in (self.withView(cell, tag: 11) as! UIStackView).subviews {
+            var indexing = 0
+            for subView in view.subviews {
+                let tempa = (daily[index] as! NSDictionary).getValueFromKey(keys[indexing])
+                if subView is UILabel {
+                    (subView as! UILabel).text = indexing == 4 ? self.returnDate(tempa) : self.returnVal(tempa, unit: indexing == 3 ? "%" : "°")
+                } else {
+                    (subView as! UIImageView).image = UIImage.init(named: tempa!.replacingOccurrences(of: "-", with: "_"))
+                }
+                indexing += 1
+            }
+            index += 1
+        }
+    }
+    
+   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

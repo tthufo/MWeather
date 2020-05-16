@@ -650,6 +650,44 @@ UIBackgroundTaskIdentifier bgTask;
     }];
 }
 
+- (NSString*)returnVal:(NSString*)value unit:(NSString*)unit {
+
+    double tempo = [[self getValue:@"deg"] isEqualToString:@"0"] ? [value doubleValue] : [unit isEqualToString:@"%"] ? [value doubleValue] : ([value doubleValue] * 9/5) + 32;
+
+    NSString * val = [NSString stringWithFormat:@"%.f%@", ceil(tempo), unit];
+    
+    return val;
+}
+
+- (NSString*)returnValCurrent:(NSString*)value unit:(NSString*)unit {
+
+    if ([unit isEqualToString:@"°"]){
+        return [self returnVal:value unit:unit];
+    }
+    
+    if ([unit isEqualToString:@""]){
+        return value;
+    }
+    
+    double tempo = [unit isEqualToString:@"%"] ? [value doubleValue] * 100 : [unit isEqualToString:@"mm"] || [unit isEqualToString:@"UV"] || [unit isEqualToString:@"mb"] ? [value doubleValue] : [value doubleValue] * 1.609344;
+
+    NSString * val = [NSString stringWithFormat:@"%.f %@", ceil(tempo), unit];
+    
+    return val;
+}
+
+- (NSString*)returnDate:(NSString*)value {
+    NSDate *currDate = [value dateWithFormat:@"dd/MM/yyyy"];
+    NSCalendar* currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents* dateComponents = [currentCalendar components:NSCalendarUnitWeekday fromDate:currDate];
+    
+    NSInteger day = [dateComponents weekday];
+    
+    NSArray * date = @[@"CN", @"Thứ 2", @"Thứ 3", @"Thứ 4", @"Thứ 5", @"Thứ 6", @"Thứ 7"];
+        
+    return  date[day - 1];
+}
+
 - (CGFloat)returnSizing:(NSAttributedString*)labelString  {
 //    NSAttributedString* labelString = [[NSAttributedString alloc] initWithString:des attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
            CGRect cellRect = [labelString boundingRectWithSize:CGSizeMake(screenWidth1 - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];

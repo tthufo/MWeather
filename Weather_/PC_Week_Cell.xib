@@ -33,7 +33,7 @@
                             <constraint firstAttribute="height" constant="1" id="wdU-Wm-j9u"/>
                         </constraints>
                     </view>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="1Ck-kN-5gd">
+                    <stackView opaque="NO" tag="11" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="1Ck-kN-5gd">
                         <rect key="frame" x="10" y="58" width="217" height="366"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="tUY-IG-Sgs">

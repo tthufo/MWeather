@@ -48,6 +48,12 @@
 
 @interface UIViewController (root)
 
+- (NSString*)returnValCurrent:(NSString*)value unit:(NSString*)unit;
+
+- (NSString*)returnVal:(NSString*)value unit:(NSString*)unit;
+
+- (NSString*)returnDate:(NSString*)value;
+
 - (UINavigationController *)authenticationViewController:(NSString* )logOut;
 
 - (UIWindow*)WINDOW;
