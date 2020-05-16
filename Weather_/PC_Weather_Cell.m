@@ -86,7 +86,7 @@
 
    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
        
-    _chartView.maxVisibleCount = 24;
+//    _chartView.maxVisibleCount = 24;
 
     
     _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc] init];
@@ -140,15 +140,13 @@
        self.chartView.xAxis.drawGridLinesEnabled = NO;
        self.chartView.leftAxis.drawLabelsEnabled = NO;
        self.chartView.legend.enabled = NO;
-       
-//       [_chartView animateWithXAxisDuration:];
-    
+           
     [self updateChartData];
 }
 
 - (void)updateChartData
 {
-    [self setDataCount:45 range:100];
+    [self setDataCount];
 }
 
 - (NSDate*)date:(NSString*)dateString
@@ -156,17 +154,16 @@
     return [dateString dateWithFormat:@"HH:mm dd/MM/yyyy"];
 }
 
-- (void)setDataCount:(int)count range:(double)range
+- (void)setDataCount
 {
     NSMutableArray *values = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < ((NSArray*)data[@"hourly"]).count ; i++)
     {
         NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
-
-        NSLog(@"---->%@", [self returnValueH:data[@"hourly"][i]]);
         
         double val = [[self returnValueH:data[@"hourly"][i]] doubleValue];
+        
         [values addObject:[[ChartDataEntry alloc] initWithX:now y:val icon: [UIImage imageNamed:@"trans"]]];
         
 //        double val = [[[data[@"hourly"][i][@"time"] componentsSeparatedByString:@" "] firstObject] doubleValue];

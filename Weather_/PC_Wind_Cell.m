@@ -118,16 +118,16 @@
    xAxis.labelCount = 7;
 //   xAxis.valueFormatter = [[DayAxisValueFormatter alloc] initForChart:_chartView];
    
-   NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
-   leftAxisFormatter.minimumFractionDigits = 0;
-   leftAxisFormatter.maximumFractionDigits = 1;
-   leftAxisFormatter.negativeSuffix = @" $";
-   leftAxisFormatter.positiveSuffix = @" $";
+//   NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
+//   leftAxisFormatter.minimumFractionDigits = 0;
+//   leftAxisFormatter.maximumFractionDigits = 1;
+//   leftAxisFormatter.negativeSuffix = @" $";
+//   leftAxisFormatter.positiveSuffix = @" $";
    
    ChartYAxis *leftAxis = _chartView.leftAxis;
    leftAxis.labelFont = [UIFont systemFontOfSize:10.f];
    leftAxis.labelCount = 8;
-   leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
+//   leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
    leftAxis.labelPosition = YAxisLabelPositionOutsideChart;
    leftAxis.spaceTop = 0.15;
    leftAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
@@ -150,6 +150,25 @@
    l.formSize = 9.0;
    l.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f];
    l.xEntrySpace = 4.0;
+    
+    _chartView.rightAxis.enabled = NO;
+          
+          self.chartView.xAxis.drawGridLinesEnabled = NO;
+          self.chartView.leftAxis.drawLabelsEnabled = NO;
+          self.chartView.legend.enabled = NO;
+    
+    _chartView.leftAxis.enabled = NO;
+          
+          
+          _chartView.delegate = self;
+          
+          _chartView.chartDescription.enabled = NO;
+          
+          _chartView.dragEnabled = YES;
+          [_chartView setScaleEnabled:NO];
+          _chartView.pinchZoomEnabled = YES;
+          _chartView.drawGridBackgroundEnabled = NO;
+
    
 //   XYMarkerView *marker = [[XYMarkerView alloc]
 //                                 initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
@@ -166,7 +185,7 @@
 
 - (void)updateChartData
 {
-    [self setDataCount:45 range:100];
+    [self setDataCount];
 }
 
 - (NSDate*)date:(NSString*)dateString
@@ -174,20 +193,36 @@
     return [dateString dateWithFormat:@"HH:mm dd/MM/yyyy"];
 }
 
-- (void)setDataCount:(int)count range:(double)range
+- (void)setDataCount
 {
-    NSMutableArray *values = [[NSMutableArray alloc] init];
+      double start = 1.0;
+
+      NSMutableArray *values = [[NSMutableArray alloc] init];
+
+      for (int i = start; i < start + 10 + 1; i++)
+      {
+          double mult = (1 + 1);
+          double val = (double) (arc4random_uniform(mult));
+//          if (arc4random_uniform(100) < 25) {
+//              [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val icon: [UIImage imageNamed:@"icon"]]];
+//          } else {
+//              [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
+//          }
+      }
     
-    for (int i = 0; i < count; i++)
+    
+//    NSMutableArray *values = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < ((NSArray*)data[@"hourly"]).count ; i++)
     {
         NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
-        
+
         double val = [[self returnValueH:data[@"hourly"][i]] doubleValue];
-        [values addObject:[[BarChartDataEntry alloc] initWithX:now y:val icon: [UIImage imageNamed:@"trans"]]];
-        
-//        double val = [[[data[@"hourly"][i][@"time"] componentsSeparatedByString:@" "] firstObject] doubleValue];
-//        [values addObject:[[ChartDataEntry alloc] initWithX:val y:[[self returnValue:data[@"hourly"][i][@"temperature"]] doubleValue] icon: [UIImage imageNamed:@"trans"]]];
+        [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val icon: [UIImage imageNamed:@"trans"]]];
     }
+    
+    NSLog(@"%@", values);
+
     
     BarChartDataSet *set1 = nil;
       if (_chartView.data.dataSetCount > 0)
