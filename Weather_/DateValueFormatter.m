@@ -26,7 +26,7 @@
     if (self)
     {
         _dateFormatter = [[NSDateFormatter alloc] init];
-        _dateFormatter.dateFormat = @"dd.MM.yyyy";
+        _dateFormatter.dateFormat = @"HH:mm";
     }
     return self;
 }
