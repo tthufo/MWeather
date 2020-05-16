@@ -54,7 +54,14 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         weatherData = NSMutableDictionary.init()
         
         tableView.withCell("PC_Weather_Cell")
+        
+        tableView.withCell("PC_Day_Cell")
 
+        tableView.withCell("PC_Week_Cell")
+
+        tableView.withCell("PC_Rain_Cell")
+
+        
         tableView.withCell("TG_Room_Cell_Banner_1")
 
         tableView.withCell("TG_Room_Cell_0")
@@ -97,7 +104,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                           "book_type": 2,
                                           "price": 0,
                                           "sorting": 1,
-                                        ], "height": 0, "direction": "horizontal", "loaded": false],
+                                        ], "height": 290, "direction": "horizontal", "loaded": false, "ident": "PC_Day_Cell"],
                                       ["title":"Miễn phí HOT",
                                        "url": ["CMD_CODE":"getListBook",
                                            "page_index": 1,
@@ -105,7 +112,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                            "book_type": 0,
                                            "price": 2,
                                            "sorting": 1,
-                                       ], "height": 0, "direction": "horizontal", "loaded": false],
+                                       ], "height": 450, "direction": "horizontal", "loaded": false, "ident": "PC_Week_Cell"],
                                       ["title":"Đọc nhiều nhất",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -113,7 +120,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                           "book_type": 0,
                                           "price": 0,
                                           "sorting": 1,
-                                      ], "height": 0, "direction": "vertical", "loaded": false],
+                                      ], "height": 300, "direction": "vertical", "loaded": false, "ident": "PC_Rain_Cell"],
                                       ["title":"Sách nói",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -264,7 +271,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1//config.count
+        return 4//config.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -273,6 +280,9 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 0 {
             (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
+        }
+        
+        if indexPath.row == 1 {
         }
         
 //        if(conf.getValueFromKey("ident") != "") {

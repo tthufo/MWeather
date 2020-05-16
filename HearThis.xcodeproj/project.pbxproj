@@ -43,6 +43,9 @@
 		FC40A0FF243EFE5C0096B9DB /* TG_Room_Cell_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC40A0FB243EFE5C0096B9DB /* TG_Room_Cell_2.xib */; };
 		FC40A101243EFE680096B9DB /* TG_Room_Cell_5.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC40A100243EFE680096B9DB /* TG_Room_Cell_5.xib */; };
 		FC43399C2436493A00CFD50E /* Navigation_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC43399B2436493A00CFD50E /* Navigation_ViewController.m */; };
+		FC483CAA246FDEA000875338 /* PC_Day_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CA9246FDEA000875338 /* PC_Day_Cell.xib */; };
+		FC483CAC246FE1BB00875338 /* PC_Week_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CAB246FE1BB00875338 /* PC_Week_Cell.xib */; };
+		FC483CAE246FEAA400875338 /* PC_Rain_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */; };
 		FC640A811DAAAD8B00DAEF55 /* CoreModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = FC640A721DAAAD8B00DAEF55 /* CoreModel.xcdatamodel */; };
 		FC640A821DAAAD8C00DAEF55 /* DownLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = FC640A741DAAAD8B00DAEF55 /* DownLoad.m */; };
 		FC640A831DAAAD8C00DAEF55 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC640A761DAAAD8B00DAEF55 /* DownloadManager.m */; };
@@ -220,6 +223,9 @@
 		FC40A100243EFE680096B9DB /* TG_Room_Cell_5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TG_Room_Cell_5.xib; sourceTree = "<group>"; };
 		FC43399A2436493A00CFD50E /* Navigation_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Navigation_ViewController.h; sourceTree = "<group>"; };
 		FC43399B2436493A00CFD50E /* Navigation_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Navigation_ViewController.m; sourceTree = "<group>"; };
+		FC483CA9246FDEA000875338 /* PC_Day_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Day_Cell.xib; sourceTree = "<group>"; };
+		FC483CAB246FE1BB00875338 /* PC_Week_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Week_Cell.xib; sourceTree = "<group>"; };
+		FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PC_Rain_Cell.xib; sourceTree = "<group>"; };
 		FC640A721DAAAD8B00DAEF55 /* CoreModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreModel.xcdatamodel; sourceTree = "<group>"; };
 		FC640A731DAAAD8B00DAEF55 /* DownLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoad.h; sourceTree = "<group>"; };
 		FC640A741DAAAD8B00DAEF55 /* DownLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoad.m; sourceTree = "<group>"; };
@@ -704,6 +710,9 @@
 				FCE4CBCC246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift */,
 				FCE4CBCD246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib */,
 				FCE4CBD0246EA4D4002C5D8B /* PC_Notification_Cell.xib */,
+				FC483CA9246FDEA000875338 /* PC_Day_Cell.xib */,
+				FC483CAB246FE1BB00875338 /* PC_Week_Cell.xib */,
+				FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */,
 			);
 			path = Weather_;
 			sourceTree = "<group>";
@@ -958,6 +967,7 @@
 				FCC965AB1DA5F4200025971E /* HT_Player_ViewController.xib in Resources */,
 				FC78398D2439C23700470148 /* Third_Tab_ViewController.xib in Resources */,
 				FC7839812438F91600470148 /* PC_Info_Cell.xib in Resources */,
+				FC483CAA246FDEA000875338 /* PC_Day_Cell.xib in Resources */,
 				FCAD57F1243DB7E400101A47 /* TG_Room_Cell_0.xib in Resources */,
 				FCE4CBCF246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib in Resources */,
 				FCB238C424421BC20034B40B /* Author_Filter_Cell.xib in Resources */,
@@ -992,9 +1002,11 @@
 				FCC965B01DA75BF60025971E /* HT_Player_Cell.xib in Resources */,
 				FC69D4422440D500006D57D9 /* Book_Detail_Header.xib in Resources */,
 				FC130B8B24461D1A00D64012 /* List_Header_Cell.xib in Resources */,
+				FC483CAE246FEAA400875338 /* PC_Rain_Cell.xib in Resources */,
 				FC69D43124405879006D57D9 /* TG_Room_Cell_10.xib in Resources */,
 				FC78398424391F6700470148 /* TG_Intro_ViewController.xib in Resources */,
 				FCBBF632246D9FFA00D82664 /* PC_Weather_Cell.xib in Resources */,
+				FC483CAC246FE1BB00875338 /* PC_Week_Cell.xib in Resources */,
 				FCB238CC244235D70034B40B /* Author_Bio_Cell.xib in Resources */,
 				FC20F870246D37EC002DBB18 /* Weather_Name_ViewController.xib in Resources */,
 				FC1AD7DE1DA40CA8002BA7EC /* LaunchScreen.storyboard in Resources */,
