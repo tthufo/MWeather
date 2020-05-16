@@ -292,6 +292,14 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
             self.weekCell(cell: cell)
         }
         
+        if indexPath.row == 3 {
+            
+        }
+        
+        if indexPath.row == 4 {
+            (cell as! PC_Wind_Cell).data = self.weatherData as NSDictionary
+        }
+        
         return cell
     }
     
@@ -311,7 +319,6 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
                     ["key":"uvIndex", "tag": 8, "unit": "UV"]]
         
         for view in cell.contentView.subviews {
-            print(view)
             for key in keys {
                 if view.tag == key["tag"] as! Int + 9 {
                     (view as! UILabel).text = self.returnValCurrent(currently.getValueFromKey((key["key"] as! String)), unit: (key["unit"] as! String))

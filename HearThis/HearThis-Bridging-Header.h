@@ -29,3 +29,4 @@
 
 #import "PC_Weather_Cell.h"
 
+#import "PC_Wind_Cell.h"

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PC_Rain_Cell : UITableViewCell
 
+@property (nonatomic, assign) NSDictionary * data;
+
 @end
 
 NS_ASSUME_NONNULL_END

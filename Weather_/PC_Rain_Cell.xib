@@ -34,7 +34,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khả năng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mk-i1-kxy">
-                        <rect key="frame" x="10" y="55" width="77" height="21"/>
+                        <rect key="frame" x="10" y="68" width="77" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="77" id="hvY-tT-TIP"/>
                             <constraint firstAttribute="height" constant="21" id="lbP-9Y-mn8"/>
@@ -43,34 +43,44 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aM-q2-Sj8">
-                        <rect key="frame" x="338" y="12" width="64" height="30"/>
+                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aM-q2-Sj8">
+                        <rect key="frame" x="322" y="12" width="80" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="64" id="m2R-il-W5t"/>
+                            <constraint firstAttribute="width" constant="80" id="m2R-il-W5t"/>
                             <constraint firstAttribute="height" constant="30" id="znc-Jb-rdW"/>
                         </constraints>
-                        <state key="normal" title="7 Ngày"/>
+                        <state key="normal" title="7 Ngày">
+                            <color key="titleColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didPressOption:" destination="ZXr-aW-4Oh" eventType="touchUpInside" id="DNh-cE-npi"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHb-aa-1hU">
-                        <rect key="frame" x="263" y="12" width="67" height="30"/>
+                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHb-aa-1hU">
+                        <rect key="frame" x="234" y="12" width="80" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Qaz-Ub-JoE"/>
-                            <constraint firstAttribute="width" constant="67" id="pKE-sh-vzV"/>
+                            <constraint firstAttribute="width" constant="80" id="pKE-sh-vzV"/>
                         </constraints>
-                        <state key="normal" title="24 Giờ"/>
+                        <state key="normal" title="24 Giờ">
+                            <color key="titleColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didPressOption:" destination="ZXr-aW-4Oh" eventType="touchUpInside" id="K1M-Yb-1gq"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-pS-bLc">
-                        <rect key="frame" x="10" y="125" width="90" height="72"/>
+                        <rect key="frame" x="10" y="138" width="90" height="72"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="GTw-JX-g1Z"/>
                             <constraint firstAttribute="height" constant="72" id="UdW-7S-ztc"/>
@@ -81,21 +91,25 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="O0K-Ge-ell">
-                        <rect key="frame" x="108" y="46" width="296" height="205"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="O0K-Ge-ell">
+                        <rect key="frame" x="108" y="57" width="296" height="205"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="205" id="jTo-DJ-e3A"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Id-qC-pUc">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Id-qC-pUc">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="ZXr-aW-4Oh" id="hyb-xQ-lC3"/>
+                            <outlet property="delegate" destination="ZXr-aW-4Oh" id="F19-np-kO1"/>
+                        </connections>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tổng lượng mưa trong ngày" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWW-FI-Ypd">
-                        <rect key="frame" x="10" y="264" width="394" height="21"/>
+                        <rect key="frame" x="10" y="275" width="394" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="tfl-z6-pi6"/>
                         </constraints>
@@ -106,7 +120,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="6aM-q2-Sj8" secondAttribute="trailing" constant="12" id="0Xf-Lr-scB"/>
-                    <constraint firstItem="O0K-Ge-ell" firstAttribute="top" secondItem="6aM-q2-Sj8" secondAttribute="bottom" constant="4" id="1QV-MF-C1F"/>
+                    <constraint firstItem="O0K-Ge-ell" firstAttribute="top" secondItem="6aM-q2-Sj8" secondAttribute="bottom" constant="15" id="1QV-MF-C1F"/>
                     <constraint firstItem="pHb-aa-1hU" firstAttribute="top" secondItem="rsZ-ue-seq" secondAttribute="top" constant="12" id="3oV-ud-mEh"/>
                     <constraint firstItem="O0K-Ge-ell" firstAttribute="leading" secondItem="Jaw-pS-bLc" secondAttribute="trailing" constant="8" id="6WT-IE-WZi"/>
                     <constraint firstItem="wH7-Aq-AZS" firstAttribute="leading" secondItem="rsZ-ue-seq" secondAttribute="leading" id="Fo6-WU-lC6"/>
@@ -123,9 +137,14 @@
                     <constraint firstAttribute="trailing" secondItem="O0K-Ge-ell" secondAttribute="trailing" constant="10" id="oOH-sl-7JX"/>
                     <constraint firstItem="6aM-q2-Sj8" firstAttribute="top" secondItem="rsZ-ue-seq" secondAttribute="top" constant="12" id="pt6-yW-1zv"/>
                     <constraint firstAttribute="bottom" secondItem="wH7-Aq-AZS" secondAttribute="bottom" id="rU8-7n-B9w"/>
-                    <constraint firstItem="2Mk-i1-kxy" firstAttribute="top" secondItem="riZ-om-Ggr" secondAttribute="bottom" constant="17" id="x2o-K7-srS"/>
+                    <constraint firstItem="2Mk-i1-kxy" firstAttribute="top" secondItem="riZ-om-Ggr" secondAttribute="bottom" constant="30" id="x2o-K7-srS"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionView" destination="O0K-Ge-ell" id="2T6-fU-ncu"/>
+                <outlet property="daily" destination="pHb-aa-1hU" id="jiG-UN-mvw"/>
+                <outlet property="weekLy" destination="6aM-q2-Sj8" id="BNC-Xr-vZL"/>
+            </connections>
             <point key="canvasLocation" x="-144.92753623188406" y="0.33482142857142855"/>
         </tableViewCell>
     </objects>

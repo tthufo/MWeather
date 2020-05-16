@@ -86,6 +86,8 @@
 
    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
        
+    _chartView.maxVisibleCount = 24;
+
     
     _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc] init];
 
@@ -139,7 +141,7 @@
        self.chartView.leftAxis.drawLabelsEnabled = NO;
        self.chartView.legend.enabled = NO;
        
-       [_chartView animateWithXAxisDuration:2.5];
+//       [_chartView animateWithXAxisDuration:];
     
     [self updateChartData];
 }

@@ -178,6 +178,7 @@
 		FCFB51711DD0E72700D49FB2 /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCFB51701DD0E72700D49FB2 /* CellView.xib */; };
 		FCFB51751DD0EFE300D49FB2 /* M_Detail_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFB51731DD0EFE300D49FB2 /* M_Detail_ViewController.m */; };
 		FCFB51761DD0EFE300D49FB2 /* M_Detail_ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCFB51741DD0EFE300D49FB2 /* M_Detail_ViewController.xib */; };
+		FCFB70E024707B6C00B30771 /* Rainy_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCFB70DF24707B6C00B30771 /* Rainy_Cell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -400,6 +401,7 @@
 		FCFB51721DD0EFE300D49FB2 /* M_Detail_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M_Detail_ViewController.h; sourceTree = "<group>"; };
 		FCFB51731DD0EFE300D49FB2 /* M_Detail_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M_Detail_ViewController.m; sourceTree = "<group>"; };
 		FCFB51741DD0EFE300D49FB2 /* M_Detail_ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M_Detail_ViewController.xib; sourceTree = "<group>"; };
+		FCFB70DF24707B6C00B30771 /* Rainy_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Rainy_Cell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -726,6 +728,7 @@
 				FC483CB4247076AB00875338 /* PC_Rain_Cell.h */,
 				FC483CB5247076AB00875338 /* PC_Rain_Cell.m */,
 				FC483CAD246FEAA400875338 /* PC_Rain_Cell.xib */,
+				FCFB70DF24707B6C00B30771 /* Rainy_Cell.xib */,
 			);
 			path = Weather_;
 			sourceTree = "<group>";
@@ -974,6 +977,7 @@
 				FC91278E246BADBF001797A8 /* PC_Confirm_ViewController.xib in Resources */,
 				FC783989243922C100470148 /* PC_Sub_Cell.xib in Resources */,
 				FCB238C2244218DB0034B40B /* Author_ViewController.xib in Resources */,
+				FCFB70E024707B6C00B30771 /* Rainy_Cell.xib in Resources */,
 				FC7A98D12444AD010038C226 /* Tag_Cell.xib in Resources */,
 				FCF8A5B6244F54AD00E815E8 /* Package_Reg_Cell.xib in Resources */,
 				FC483CB32470535700875338 /* PC_Wind_Cell.xib in Resources */,
