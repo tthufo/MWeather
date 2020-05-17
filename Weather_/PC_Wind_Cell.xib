@@ -48,6 +48,7 @@
                             <constraint firstAttribute="width" constant="80" id="65b-ue-3T6"/>
                             <constraint firstAttribute="height" constant="30" id="mGE-OH-5X9"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <state key="normal" title="7 Ngày"/>
                         <connections>
                             <action selector="didPressOption:" destination="B6t-Hj-jRa" eventType="touchUpInside" id="qqf-46-8QD"/>
@@ -59,6 +60,7 @@
                             <constraint firstAttribute="height" constant="30" id="tug-bn-al4"/>
                             <constraint firstAttribute="width" constant="80" id="vkc-yO-YQH"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <state key="normal" title="24 Giờ"/>
                         <connections>
                             <action selector="didPressOption:" destination="B6t-Hj-jRa" eventType="touchUpInside" id="Ale-UD-P0r"/>

@@ -10,9 +10,13 @@ import UIKit
 
 import SwipyCell
 
+import LocationPickerViewController
+
 class PC_Search_Weather_ViewController: UIViewController {
 
     var dataList: NSMutableArray!
+
+    @IBOutlet var searchView: UIView!
 
     @IBOutlet weak var tableView: UITableView! {
           didSet {
@@ -33,6 +37,10 @@ class PC_Search_Weather_ViewController: UIViewController {
         tableView.withCell("PC_Notification_Cell")
         
         didGetLocation()
+        
+        searchView.action(forTouch: [:]) { (objc) in
+            self.didPressLocation()
+        }
     }
     
     func viewWithImageName(_ imageName: String) -> UIView {
@@ -40,6 +48,58 @@ class PC_Search_Weather_ViewController: UIViewController {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .center
         return imageView
+    }
+    
+    func didPressLocation() {
+        let locationPicker = LocationPicker()
+        locationPicker.pickCompletion = { (pickedLocationItem) in
+            print(pickedLocationItem.mapItem.name)
+            print(pickedLocationItem.mapItem.placemark.coordinate.latitude)
+            print(pickedLocationItem.mapItem.placemark.coordinate.longitude)
+
+        }
+        locationPicker.addBarButtons()
+        locationPicker.setColors(themeColor: AVHexColor.color(withHexString: "#5530F5"), primaryTextColor: UIColor.black, secondaryTextColor: UIColor.darkGray)
+        
+
+        let navigationController = UINavigationController(rootViewController: locationPicker)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        present(navigationController, animated: true, completion: nil)
+        
+//        let locationPicker = LocationPickerViewController()
+//
+//        // you can optionally set initial location
+//        let location = CLLocation(latitude: 35, longitude: 35)
+//        let initialLocation = Location(name: "My home", location: location, placemark: CLPlacemark.init())
+//        locationPicker.location = initialLocation
+//
+//        // button placed on right bottom corner
+//        locationPicker.showCurrentLocationButton = true // default: true
+//
+//        // default: navigation bar's `barTintColor` or `.whiteColor()`
+//        locationPicker.currentLocationButtonBackground = .blue
+//
+//        // ignored if initial location is given, shows that location instead
+//        locationPicker.showCurrentLocationInitially = true // default: true
+//
+//        locationPicker.mapType = .standard // default: .Hybrid
+//
+//        // for searching, see `MKLocalSearchRequest`'s `region` property
+//        locationPicker.useCurrentLocationAsHint = true // default: false
+//
+//        locationPicker.searchBarPlaceholder = "Search places" // default: "Search or enter an address"
+//
+//        locationPicker.searchHistoryLabel = "Previously searched" // default: "Search History"
+//
+//        // optional region distance to be used for creation region when user selects place from search results
+//        locationPicker.resultRegionDistance = 500 // default: 600
+//
+//        locationPicker.completion = { location in
+//            // do some awesome stuff with location
+//        }
+//
+//        navigationController?.pushViewController(locationPicker, animated: true)
     }
     
     func didGetLocation() {

@@ -49,6 +49,7 @@
                             <constraint firstAttribute="width" constant="80" id="m2R-il-W5t"/>
                             <constraint firstAttribute="height" constant="30" id="znc-Jb-rdW"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <state key="normal" title="7 Ngày">
                             <color key="titleColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
@@ -67,6 +68,7 @@
                             <constraint firstAttribute="height" constant="30" id="Qaz-Ub-JoE"/>
                             <constraint firstAttribute="width" constant="80" id="pKE-sh-vzV"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <state key="normal" title="24 Giờ">
                             <color key="titleColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>

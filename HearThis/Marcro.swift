@@ -398,7 +398,7 @@ extension UIViewController {
     
     @objc func lat() -> String {
         if (Permission.shareInstance()?.isLocationEnable())! {
-            return Permission.shareInstance()?.currentLocation()["lat"] as! String
+            return (Permission.shareInstance()?.currentLocation()! as! NSDictionary).getValueFromKey("lat")
         }
         
         return "21.004610"
@@ -406,7 +406,7 @@ extension UIViewController {
     
     @objc func lng() -> String {
           if (Permission.shareInstance()?.isLocationEnable())! {
-              return Permission.shareInstance()?.currentLocation()["lng"] as! String
+            return (Permission.shareInstance()?.currentLocation()! as! NSDictionary).getValueFromKey("lng")
           }
           
           return "105.834800"

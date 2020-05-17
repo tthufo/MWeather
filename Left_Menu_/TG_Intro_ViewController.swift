@@ -75,7 +75,7 @@ class TG_Intro_ViewController: UIViewController {
         
 //        tableView.withHeaderOrFooter("PC_Header_Tab")
         
-        didRequestNotification()
+//        didRequestNotification()
         
         if Information.check == "1" {
 //            avatar.action(forTouch: [:]) { (objc) in

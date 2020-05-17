@@ -86,7 +86,10 @@
 
    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
        
-//    _chartView.maxVisibleCount = 24;
+
+//    _chartView.leftAxis.axisMinimum = 0;
+//
+//    _chartView.leftAxis.axisMaximum = 100;
 
     
     _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc] init];
@@ -140,7 +143,7 @@
        self.chartView.xAxis.drawGridLinesEnabled = NO;
        self.chartView.leftAxis.drawLabelsEnabled = NO;
        self.chartView.legend.enabled = NO;
-           
+    
     [self updateChartData];
 }
 
@@ -158,7 +161,7 @@
 {
     NSMutableArray *values = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < ((NSArray*)data[@"hourly"]).count ; i++)
+    for (int i = 0; i < 24/*((NSArray*)data[@"hourly"]).count*/ ; i++)
     {
         NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
         
@@ -283,16 +286,6 @@
 //}
 
 #pragma mark - ChartViewDelegate
-
-- (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry highlight:(ChartHighlight * __nonnull)highlight
-{
-    NSLog(@"chartValueSelected");
-}
-
-- (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
-{
-    NSLog(@"chartValueNothingSelected");
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

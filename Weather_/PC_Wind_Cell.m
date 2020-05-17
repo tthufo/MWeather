@@ -38,6 +38,7 @@
 - (IBAction)didPressOption:(UIButton*)button {
     day = button.tag != 11;
     [self optional];
+    [self updateChartData];
 }
 
 - (void)optional {
@@ -65,11 +66,10 @@
 
 - (NSString*)returnValueH:(NSDictionary*)currently {
                 
-    NSString * key = @"temperature";
+    NSString * key = @"windSpeed";
 
-    double tempo = [[self getValue:@"deg"] isEqualToString:@"0"] ? [[currently getValueFromKey:key] doubleValue] : ([[currently getValueFromKey:key] doubleValue] * 9/5) + 32;
-
-    NSString * value = [NSString stringWithFormat:@"%.f", ceil(tempo)];
+    double tempo = [[currently getValueFromKey:key] floatValue];
+    NSString * value = [NSString stringWithFormat:@"%.0f", ceil(tempo)];
     
     return value;
 }
@@ -81,7 +81,7 @@
 //    [formatter setDateFormat:@"yyyy"];
 //    NSString *year = [formatter stringFromDate:[NSDate date]];
 //
-    NSDictionary * currently = data[@"currently"];
+//    NSDictionary * currently = data[@"currently"];
 //
 //    date.text = [[currently getValueFromKey:@"time"] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""];
 //
@@ -169,17 +169,6 @@
           _chartView.pinchZoomEnabled = YES;
           _chartView.drawGridBackgroundEnabled = NO;
 
-   
-//   XYMarkerView *marker = [[XYMarkerView alloc]
-//                                 initWithColor: [UIColor colorWithWhite:180/255. alpha:1.0]
-//                                 font: [UIFont systemFontOfSize:12.0]
-//                                 textColor: UIColor.whiteColor
-//                                 insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
-//                                 xAxisValueFormatter: _chartView.xAxis.valueFormatter];
-//   marker.chartView = _chartView;
-//   marker.minimumSize = CGSizeMake(80.f, 40.f);
-//   _chartView.marker = marker;
-    
     [self updateChartData];
 }
 
@@ -190,39 +179,34 @@
 
 - (NSDate*)date:(NSString*)dateString
 {
-    return [dateString dateWithFormat:@"HH:mm dd/MM/yyyy"];
+    return [dateString dateWithFormat:!day ? @"dd/MM/yyyy" : @"HH:mm dd/MM/yyyy"];
+}
+
+- (NSString*)returnVal:(NSString*)val {
+    return [NSString stringWithFormat:@"%.01f", [val floatValue]];
+}
+
+- (NSString*)returnTime:(NSString*)val {
+    if (!day) {
+        return [[val componentsSeparatedByString:@" "] firstObject];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *year = [formatter stringFromDate:[NSDate date]];
+
+    return [[[val componentsSeparatedByString:@" "] firstObject] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""];
 }
 
 - (void)setDataCount
 {
-      double start = 1.0;
+    NSMutableArray *values = [[NSMutableArray alloc] init];
 
-      NSMutableArray *values = [[NSMutableArray alloc] init];
-
-      for (int i = start; i < start + 10 + 1; i++)
-      {
-          double mult = (1 + 1);
-          double val = (double) (arc4random_uniform(mult));
-//          if (arc4random_uniform(100) < 25) {
-//              [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val icon: [UIImage imageNamed:@"icon"]]];
-//          } else {
-//              [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
-//          }
-      }
-    
-    
-//    NSMutableArray *values = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < ((NSArray*)data[@"hourly"]).count ; i++)
+    for (int i = 0; i < (!day ? 24 : ((NSArray*)data[@"daily"]).count) ; i++)
     {
-        NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
-
-        double val = [[self returnValueH:data[@"hourly"][i]] doubleValue];
+        double val = [[self returnValueH:data[!day ? @"hourly" : @"daily"][i]] doubleValue];
         [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val icon: [UIImage imageNamed:@"trans"]]];
     }
-    
-    NSLog(@"%@", values);
-
     
     BarChartDataSet *set1 = nil;
       if (_chartView.data.dataSetCount > 0)
@@ -235,7 +219,7 @@
       else
       {
           set1 = [[BarChartDataSet alloc] initWithEntries:values label:@""];
-          [set1 setColors: @[[UIColor redColor]]];
+          [set1 setColors: @[[AVHexColor colorWithHexString:@"#5530F5"]]];
           set1.drawIconsEnabled = NO;
           
           NSMutableArray *dataSets = [[NSMutableArray alloc] init];
@@ -246,131 +230,14 @@
           
           data.barWidth = 0.9f;
           
+          [_chartView.data notifyDataChanged];
+          [_chartView notifyDataSetChanged];
+          
           _chartView.data = data;
       }
-    
-//    LineChartDataSet *set1 = nil;
-//    if (_chartView.data.dataSetCount > 0)
-//    {
-//        set1 = (LineChartDataSet *)_chartView.data.dataSets[0];
-//        [set1 replaceEntries: values];
-//        [_chartView.data notifyDataChanged];
-//        [_chartView notifyDataSetChanged];
-//    }
-//    else
-//    {
-//        set1 = [[LineChartDataSet alloc] initWithEntries:values label:@""];
-//
-//        set1.highlightColor = [UIColor clearColor];
-//        set1.drawIconsEnabled = NO;
-//        set1.lineWidth = 1.0;
-//        set1.circleRadius = 3.0;
-//        set1.drawCircleHoleEnabled = NO;
-//        set1.valueFont = [UIFont systemFontOfSize:9.f];
-//        set1.formLineDashLengths = @[@5.f, @2.5f];
-//        set1.formLineWidth = 1.0;
-//        set1.formSize = 15.0;
-//
-//        NSArray *gradientColors = @[
-//                                    (id)[ChartColorTemplates colorFromString:@"#78A6E5"].CGColor,
-//                                    (id)[ChartColorTemplates colorFromString:@"#FFFFFF"].CGColor
-//                                    ];
-//        CGGradientRef gradient = CGGradientCreateWithColors(nil, (CFArrayRef)gradientColors, nil);
-//
-//        set1.fillAlpha = 1.f;
-//        set1.fill = [ChartFill fillWithLinearGradient:gradient angle:90.f];
-//        set1.drawFilledEnabled = YES;
-//
-//        CGGradientRelease(gradient);
-//
-//        NSMutableArray *dataSets = [[NSMutableArray alloc] init];
-//
-//        [dataSets addObject:set1];
-//
-//        LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
-//
-//        _chartView.data = data;
-//
-//         for (id<ILineChartDataSet> set in _chartView.data.dataSets)
-//        {
-//            set.drawCirclesEnabled = NO;
-//            set.mode = LineChartModeCubicBezier;
-//        }
-//
-//        [_chartView setNeedsDisplay];
 }
 
-
-//- (void)setData
-//{
-//    _chartView.data = nil;
-//
-//    NSMutableArray * dataList = [NSMutableArray new];
-//
-//    for(int o = 0; o < dataSource.count; o++)
-//    {
-//        NSMutableArray * arr = [[NSMutableArray alloc] init];
-//
-//
-//        for(int i = 0; i < ((NSArray*)dataSource[o][@"Data"]).count; i++)
-//        {
-////            NSLog(@"%@", dataSource[o][@"Data"][i][@"NgayApDung"]);
-//
-//            NSTimeInterval now = [[self date:dataSource[o][@"Data"][i][@"NgayApDung"]] timeIntervalSince1970];
-//
-//            [arr addObject:[[ChartDataEntry alloc] initWithX:now y:[((NSArray*)dataSource[o][@"Data"])[i][@"Gia"] intValue]]];
-//        }
-//
-//        LineChartDataSet *set1 = nil;
-//
-////        if (_chartView.data.dataSetCount > 0)
-////        {
-////            set1 = (LineChartDataSet *)_chartView.data.dataSets[o];
-////
-////            set1.values = arr;
-////
-////            [_chartView.data notifyDataChanged];
-////
-////            [_chartView notifyDataSetChanged];
-////        }
-////        else
-//        {
-//            set1 = [[LineChartDataSet alloc] initWithValues:arr label:dataSource[o][@"Ten"]];
-//            set1.axisDependency = AxisDependencyLeft;
-//            [set1 setColor:[self getRandomColor]];//[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]];
-//            [set1 setCircleColor:UIColor.darkGrayColor];
-//            set1.lineWidth = 2.0;
-//            set1.circleRadius = 4.0;
-//            set1.fillAlpha = 65/255.0;
-//            set1.fillColor = [self getRandomColor];//[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f];
-//            set1.highlightColor = [self getRandomColor];//[UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-//            set1.drawCircleHoleEnabled = NO;
-//        }
-//
-//        [dataList addObject:set1];
-//    }
-//
-//    LineChartData *data = [[LineChartData alloc] initWithDataSets:dataList];
-//    [data setValueTextColor:UIColor.blackColor];
-//    [data setValueFont:[UIFont systemFontOfSize:9.f]];
-//
-//    [_chartView.data notifyDataChanged];
-//    [_chartView notifyDataSetChanged];
-//
-//    _chartView.data = data;
-//}
-
 #pragma mark - ChartViewDelegate
-
-//- (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry highlight:(ChartHighlight * __nonnull)highlight
-//{
-//    NSLog(@"chartValueSelected");
-//}
-//
-//- (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
-//{
-//    NSLog(@"chartValueNothingSelected");
-//}
 
 - (void)setupBarLineChartView:(BarLineChartViewBase *)chartView
 {
@@ -381,9 +248,7 @@
     chartView.dragEnabled = YES;
     [chartView setScaleEnabled:YES];
     chartView.pinchZoomEnabled = NO;
-    
-    // ChartYAxis *leftAxis = chartView.leftAxis;
-    
+        
     ChartXAxis *xAxis = chartView.xAxis;
     xAxis.labelPosition = XAxisLabelPositionBottom;
     
@@ -395,4 +260,5 @@
     [super setSelected:selected animated:animated];
 
 }
+
 @end

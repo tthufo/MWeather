@@ -18,6 +18,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     @IBOutlet var bottomView: UIView!
     
+    @IBOutlet var bg: UIImageView!
+    
     @IBOutlet var coverView: UIImageView!
 
 //    @IBOutlet var titleLabel: MarqueeLabel!
@@ -26,20 +28,24 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     var dataList: NSMutableArray!
     
-    
     var weatherData: NSMutableDictionary!
     
-    
     let refreshControl = UIRefreshControl()
+    
+    var registered: Bool = false
 
     func reloadState() {
         self.bottomView.isHidden = logged() ? true : false
+        self.tableView.isScrollEnabled = logged() && registered
+        self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
+        self.tableView.reloadData()
+        print(logged(), registered)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.bottomView.isHidden = logged() ? true : false
+                
+        self.reloadState()
     }
     
     override func viewDidLoad() {
@@ -47,7 +53,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
 
         let login = self.loginNav(type: "logIn") { (info) in
             self.coverView.alpha = 0
-            self.bottomView.isHidden = logged() ? true : false
+//            self.reloadState()
+            self.didRequestPackage()
         }
         self.center()?.present(login, animated: false, completion: nil)
         
@@ -122,7 +129,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                           "book_type": 0,
                                           "price": 0,
                                           "sorting": 1,
-                                      ], "height": 300, "direction": "vertical", "loaded": false, "ident": "PC_Rain_Cell"],
+                                      ], "height": 320, "direction": "vertical", "loaded": false, "ident": "PC_Rain_Cell"],
                                       ["title":"Sách nói",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -178,6 +185,9 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
            self.weatherData.addEntries(from: (result["result"] as! NSDictionary) as! [AnyHashable : Any])
         
            self.tableView.reloadData()
+        
+           self.didRequestPackage()
+
        })
    }
     
@@ -198,19 +208,52 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     @IBAction func didPressSearch() {
         if logged() {
-            self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
+//            self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
 
-//            self.didGetPackage(showMenu: true)
+            self.didGetPackage(showMenu: true)
         } else {
             let login = self.loginNav(type: "logOut") { (info) in
-                self.bottomView.isHidden = logged() ? true : false
+//                self.reloadState()
+                self.didRequestPackage()
             }
             self.center()?.present(login, animated: true, completion: nil)
         }
+    }
+    
+    func didRequestPackage() {
+        if !logged() {
+            return
+        }
+        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getPackageInfo",
+                                                    "session":Information.token ?? "",
+                                                    "overrideAlert":"1",
+                                                    "overrideLoading":"1",
+                                                    "host":self], withCache: { (cacheString) in
+       }, andCompletion: { (response, errorCode, error, isValid, object) in
+            let result = response?.dictionize() ?? [:]
         
-//        let search = Search_ViewController.init()
-//        search.config = [:]
-//        self.center()?.pushViewController(search, animated: true)
+            if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+               self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+               return
+            }
+                
+            self.registered = self.checkRegister(package: response?.dictionize()["result"] as! NSArray)
+        
+            self.reloadState()
+        })
+    }
+    
+    func checkRegister(package: NSArray) -> Bool {
+      var isReg = false
+      for dict in package {
+          let expDate = ((dict as! NSDictionary).getValueFromKey("expireTime")! as NSString).date(withFormat: "dd-MM-yyyy")
+          if (dict as! NSDictionary).getValueFromKey("status") == "1" && expDate! > Date() {
+              isReg = true
+              break
+          }
+      }
+        
+      return isReg
     }
     
     func didGetPackage(showMenu: Bool) {
@@ -252,7 +295,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     @IBAction func didPressLogin() {
         let login = self.loginNav(type: "logOut") { (info) in
-            self.bottomView.isHidden = logged() ? true : false
+//            self.reloadState()
+            self.didRequestPackage()
         }
         self.center()?.present(login, animated: true, completion: nil)
     }
@@ -273,7 +317,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//config.count
+        return !logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -293,7 +337,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         }
         
         if indexPath.row == 3 {
-            
+            (cell as! PC_Rain_Cell).data = self.weatherData as NSDictionary
         }
         
         if indexPath.row == 4 {

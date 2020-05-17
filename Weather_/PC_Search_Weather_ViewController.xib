@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PC_Search_Weather_ViewController" customModule="MeWeather" customModuleProvider="target">
             <connections>
+                <outlet property="searchView" destination="90q-Cr-ePD" id="8gd-FI-Gdk"/>
                 <outlet property="tableView" destination="eIP-7u-FSn" id="zXC-Jb-iPl"/>
                 <outlet property="view" destination="rzu-sC-TFg" id="VWb-QS-fs4"/>
             </connections>

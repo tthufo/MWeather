@@ -18,4 +18,5 @@ pod 'ParallaxHeader', '~> 3.0.0'
 pod "ExpandableLabel"
 pod 'Charts', '~> 3.1'
 pod 'SwipyCell', '~> 4.0'
+pod 'LocationPickerViewController'
 end

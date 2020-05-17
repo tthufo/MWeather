@@ -30,17 +30,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [[LTRequest sharedInstance] initRequest];
-    
     [[LTRequest sharedInstance] initRequestWithWatch:^(NSDictionary *response) {
         if ([response responseForKey:@"error_code"] && [[response getValueFromKey:@"error_code"] isEqualToString:@"-1"]) {
             if ([self.window.rootViewController isEmbed]) {
                 [self.window.rootViewController unEmbed];
             }
-//            [Information removeInfo];
+                [Information removeInfo];
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self changeRoot:YES];
+                                
+                [[self.window.rootViewController CENTER] presentViewController:[[self.window.rootViewController CENTER] loginNavWithType:@"logOut" callBack:^(id obj) {
+                    
+                }] animated:YES completion:nil];
+                
             });
         }
     }];
