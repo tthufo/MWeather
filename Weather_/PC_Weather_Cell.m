@@ -121,7 +121,7 @@
     
        _chartView.drawGridBackgroundEnabled = NO;
 
-    _chartView.xAxis.granularity = 1;
+    _chartView.xAxis.granularity = 10;
        // x-axis limit line
        ChartLimitLine *llXAxis = [[ChartLimitLine alloc] initWithLimit:10.0 label:@"Index 10"];
        llXAxis.lineWidth = 4.0;

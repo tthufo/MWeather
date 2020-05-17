@@ -33,7 +33,7 @@
                             <constraint firstAttribute="height" constant="1" id="vaz-TK-8cN"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khả năng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-OJ-aAM">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-OJ-aAM">
                         <rect key="frame" x="118" y="91" width="286" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="d1B-pS-yup"/>
@@ -73,7 +73,7 @@
                             <constraint firstAttribute="height" constant="50" id="Z5H-BD-934"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="55"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.33333333329999998" green="0.18823529410000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Km/h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08O-eN-k2E">
@@ -95,7 +95,7 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="c9P-Mj-aeT">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_e_swind" translatesAutoresizingMaskIntoConstraints="NO" id="c9P-Mj-aeT">
                         <rect key="frame" x="82" y="60" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="DfA-E0-ISc"/>
@@ -136,14 +136,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bearing" destination="Rd7-OJ-aAM" id="WUW-Re-jJy"/>
                 <outlet property="chartView" destination="y4I-Pd-ZOH" id="4ud-gE-hBi"/>
                 <outlet property="daily" destination="2OR-9c-awI" id="8zZ-0f-aT7"/>
+                <outlet property="speed" destination="oyJ-ak-YG1" id="a4a-mJ-X9d"/>
                 <outlet property="weekLy" destination="Lfq-zd-aUX" id="m5b-WQ-lxf"/>
             </connections>
             <point key="canvasLocation" x="-144.92753623188406" y="0.33482142857142855"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="wind" width="163.5" height="163.5"/>
+        <image name="ico_e_swind" width="33" height="33"/>
     </resources>
 </document>

@@ -10,6 +10,8 @@
 
 @import Charts;
 
+#import "DayAxisValueFormatter.h"
+
 #import "DateValueFormatter.h"
 
 #include <math.h>
@@ -17,6 +19,8 @@
 @interface PC_Wind_Cell ()<ChartViewDelegate>
 {
     IBOutlet UIButton * daily, * weekLy;
+    
+    IBOutlet UILabel * speed, * bearing;
         
     BOOL day;
 }
@@ -68,8 +72,9 @@
                 
     NSString * key = @"windSpeed";
 
-    double tempo = [[currently getValueFromKey:key] floatValue];
-    NSString * value = [NSString stringWithFormat:@"%.0f", ceil(tempo)];
+    double tempo = [[currently getValueFromKey:key] floatValue] * 1.609344;
+    
+    NSString * value = [NSString stringWithFormat:@"%.f", ceil(tempo)];
     
     return value;
 }
@@ -77,33 +82,15 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
         
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy"];
-//    NSString *year = [formatter stringFromDate:[NSDate date]];
-//
-//    NSDictionary * currently = data[@"currently"];
-//
-//    date.text = [[currently getValueFromKey:@"time"] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""];
-//
-//    temprature.text = [self returnValue:@"temperature"];
-//
-//    unit.text = [[self getValue:@"deg"] isEqualToString:@"0"] ? @"°C" : @"°F";
-//
-//    up.text = [NSString stringWithFormat:@"%@°↑", [self returnValue:@"temperatureHigh"]];
-//
-//    down.text = [NSString stringWithFormat:@"%@°↓", [self returnValue:@"temperatureLow"]];
-//
-//    current.text = [NSString stringWithFormat:@"Thực tế ~ %@°", [self returnValue:@"apparentTemperature"]];
-//
-//    state.image = [UIImage imageNamed:[[currently getValueFromKey: @"icon"] stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
-//
-//    dataSource = [@[] mutableCopy];
-//
-//    titles = [@[] mutableCopy];
+    NSDictionary * currently = data[@"currently"];
+
+    speed.text = [self returnValueH:currently];
+
+    bearing.text = [currently getValueFromKey:@"windBearing"];
 
     [self setupBarLineChartView:_chartView];
 
-      _chartView.delegate = self;
+    _chartView.delegate = self;
    
    _chartView.drawBarShadowEnabled = NO;
    _chartView.drawValueAboveBarEnabled = YES;
@@ -118,7 +105,7 @@
    xAxis.drawGridLinesEnabled = NO;
    xAxis.granularity = 1.0; // only intervals of 1 day
    xAxis.labelCount = 7;
-//   xAxis.valueFormatter = [[DayAxisValueFormatter alloc] initForChart:_chartView];
+   xAxis.valueFormatter = [[DayAxisValueFormatter alloc] initForChart:_chartView];
    
 //   NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
 //   leftAxisFormatter.minimumFractionDigits = 0;

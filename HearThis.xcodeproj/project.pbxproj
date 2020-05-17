@@ -118,6 +118,7 @@
 		FC91B731243120F400AA6671 /* GUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91B72E243120F400AA6671 /* GUISlider.m */; };
 		FC91B732243120F400AA6671 /* GUIPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91B72F243120F400AA6671 /* GUIPlayerView.m */; };
 		FC91B7352431217F00AA6671 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FC91B7332431217F00AA6671 /* XMLReader.m */; };
+		FC93BB732471B6D3006ED6D8 /* DayAxisValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FC93BB722471B6D3006ED6D8 /* DayAxisValueFormatter.m */; };
 		FCAD4AA82434FD1A00387AF6 /* MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCAD4AA32434FD1A00387AF6 /* MenuList.plist */; };
 		FCAD4AA92434FD1A00387AF6 /* SC_Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCAD4AA42434FD1A00387AF6 /* SC_Menu.xib */; };
 		FCAD4AAA2434FD1A00387AF6 /* SC_Menu_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAD4AA52434FD1A00387AF6 /* SC_Menu_ViewController.m */; };
@@ -327,6 +328,8 @@
 		FC91B730243120F400AA6671 /* GUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUISlider.h; sourceTree = SOURCE_ROOT; };
 		FC91B7332431217F00AA6671 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		FC91B7342431217F00AA6671 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		FC93BB712471B6D3006ED6D8 /* DayAxisValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayAxisValueFormatter.h; sourceTree = "<group>"; };
+		FC93BB722471B6D3006ED6D8 /* DayAxisValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayAxisValueFormatter.m; sourceTree = "<group>"; };
 		FCAD4AA32434FD1A00387AF6 /* MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuList.plist; sourceTree = "<group>"; };
 		FCAD4AA42434FD1A00387AF6 /* SC_Menu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SC_Menu.xib; sourceTree = "<group>"; };
 		FCAD4AA52434FD1A00387AF6 /* SC_Menu_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SC_Menu_ViewController.m; sourceTree = "<group>"; };
@@ -717,6 +720,8 @@
 				FCBBF631246D9FFA00D82664 /* PC_Weather_Cell.xib */,
 				FCBBF638246DA92600D82664 /* DateValueFormatter.h */,
 				FCBBF639246DA92600D82664 /* DateValueFormatter.m */,
+				FC93BB712471B6D3006ED6D8 /* DayAxisValueFormatter.h */,
+				FC93BB722471B6D3006ED6D8 /* DayAxisValueFormatter.m */,
 				FCE4CBCC246E9D7A002C5D8B /* PC_Search_Weather_ViewController.swift */,
 				FCE4CBCD246E9D7A002C5D8B /* PC_Search_Weather_ViewController.xib */,
 				FCE4CBD0246EA4D4002C5D8B /* PC_Notification_Cell.xib */,
@@ -1155,6 +1160,7 @@
 				FC7550F01DAC959A007992DF /* HT_Detail_ViewController.m in Sources */,
 				FC91B732243120F400AA6671 /* GUIPlayerView.m in Sources */,
 				FC1AD7D31DA40CA8002BA7EC /* AppDelegate.m in Sources */,
+				FC93BB732471B6D3006ED6D8 /* DayAxisValueFormatter.m in Sources */,
 				FCC7EFB51DB9348A0080A08A /* HT_Player_Item.m in Sources */,
 				FC1AD7D01DA40CA8002BA7EC /* main.m in Sources */,
 				FC640A821DAAAD8C00DAEF55 /* DownLoad.m in Sources */,

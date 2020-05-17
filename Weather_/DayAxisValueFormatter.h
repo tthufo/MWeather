@@ -5,7 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChartsDemo_iOS-Swift.h"
+@import Charts;
 
 @interface DayAxisValueFormatter : NSObject <IChartAxisValueFormatter>
 

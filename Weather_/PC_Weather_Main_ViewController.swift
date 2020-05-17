@@ -319,7 +319,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//!logged() || !registered ? 1 : 5
+        return 5 //!logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -328,7 +328,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 0 {
             (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
-            (cell as! PC_Weather_Cell).chartState(registered)
+//            (cell as! PC_Weather_Cell).chartState(registered)
         }
         
         if indexPath.row == 1 {
