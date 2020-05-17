@@ -10,6 +10,8 @@
 
 #import "DateValueFormatter.h"
 
+#import "MeWeather-Swift.h"
+
 #include <math.h>
 
 @import Charts;
@@ -33,10 +35,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    [self chartState: YES];
 }
 
 - (NSString*)returnValue:(NSString*)key {
-            
     NSDictionary * currently = data[@"currently"];
 
     double tempo = [[self getValue:@"deg"] isEqualToString:@"0"] ? [[currently getValueFromKey:key] doubleValue] : ([[currently getValueFromKey:key] doubleValue] * 9/5) + 32;
@@ -57,9 +60,15 @@
     return value;
 }
 
+- (void)chartState:(BOOL)show {
+    _chartView.alpha = !show ? 0 : [Information token] == nil ? 0 : 1 ;
+}
+
 - (void)prepareForReuse {
     [super prepareForReuse];
         
+    [self chartState: YES];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *year = [formatter stringFromDate:[NSDate date]];
@@ -87,11 +96,6 @@
    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
        
 
-//    _chartView.leftAxis.axisMinimum = 0;
-//
-//    _chartView.leftAxis.axisMaximum = 100;
-
-    
     _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc] init];
 
        _chartView.leftAxis.enabled = NO;
@@ -102,10 +106,22 @@
        _chartView.chartDescription.enabled = NO;
        
        _chartView.dragEnabled = YES;
+    
        [_chartView setScaleEnabled:NO];
-       _chartView.pinchZoomEnabled = YES;
+        
+//       _chartView.pinchZoomEnabled = YES;
+//
+//    _chartView.scaleXEnabled = NO;
+//
+//    _chartView.scaleYEnabled = YES;
+
+//    pinchZoomEnabled, scaleXEnabled, scaleYEnabled
+    
+    _chartView.xAxis.labelTextColor = [UIColor whiteColor];
+    
        _chartView.drawGridBackgroundEnabled = NO;
 
+    _chartView.xAxis.granularity = 1;
        // x-axis limit line
        ChartLimitLine *llXAxis = [[ChartLimitLine alloc] initWithLimit:10.0 label:@"Index 10"];
        llXAxis.lineWidth = 4.0;
@@ -161,16 +177,13 @@
 {
     NSMutableArray *values = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 24/*((NSArray*)data[@"hourly"]).count*/ ; i++)
+    for (int i = 0; i < 24; i++)
     {
         NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
-        
+                        
         double val = [[self returnValueH:data[@"hourly"][i]] doubleValue];
         
-        [values addObject:[[ChartDataEntry alloc] initWithX:now y:val icon: [UIImage imageNamed:@"trans"]]];
-        
-//        double val = [[[data[@"hourly"][i][@"time"] componentsSeparatedByString:@" "] firstObject] doubleValue];
-//        [values addObject:[[ChartDataEntry alloc] initWithX:val y:[[self returnValue:data[@"hourly"][i][@"temperature"]] doubleValue] icon: [UIImage imageNamed:@"trans"]]];
+        [values addObject:[[ChartDataEntry alloc] initWithX:now y:val icon:[UIImage imageNamed:@"trans"]]];
     }
     
     LineChartDataSet *set1 = nil;
@@ -184,7 +197,7 @@
     else
     {
         set1 = [[LineChartDataSet alloc] initWithEntries:values label:@""];
-        
+        set1.valueColors = @[[UIColor whiteColor]];
         set1.highlightColor = [UIColor clearColor];
         set1.drawIconsEnabled = NO;
         set1.lineWidth = 1.0;
@@ -214,6 +227,7 @@
         LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
         
         _chartView.data = data;
+        
         
          for (id<ILineChartDataSet> set in _chartView.data.dataSets)
         {

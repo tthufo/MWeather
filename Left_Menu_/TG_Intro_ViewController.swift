@@ -199,14 +199,16 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let sw = (self.withView(cell, tag: 14) as! UISwitch)
 
+        sw.isUserInteractionEnabled = false
+        
         sw.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
 
         sw.isOn = self.getValue("deg") == "0"
 
-        sw.action(forTouch: [:]) { (obj) in
-            self.addValue(self.getValue("deg") == "1" ? "0" : "1", andKey: "deg")
-            sw.isOn = self.getValue("deg") == "0"
-        }
+//        sw.action(forTouch: [:]) { (obj) in
+//            self.addValue(self.getValue("deg") == "1" ? "0" : "1", andKey: "deg")
+//            sw.isOn = self.getValue("deg") == "0"
+//        }
         
         sw.alpha = data["sw"] != nil ? 1 : 0;
         
@@ -249,6 +251,16 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 break
                 
             case 2:
+                let cell = tableView.cellForRow(at: indexPath)
+                
+                let sw = (self.withView(cell, tag: 14) as! UISwitch)
+
+                self.addValue(self.getValue("deg") == "1" ? "0" : "1", andKey: "deg")
+                
+                sw.isOn = self.getValue("deg") == "0"
+                                
+                (self.topviewcontroler() as! PC_Weather_Main_ViewController).didGetWeather()
+                
                 break
                 
             case 3:

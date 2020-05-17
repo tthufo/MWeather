@@ -10,7 +10,7 @@ import UIKit
 
 import MessageUI
 
-//import MarqueeLabel
+import MarqueeLabel
 
 class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 
@@ -22,7 +22,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     @IBOutlet var coverView: UIImageView!
 
-//    @IBOutlet var titleLabel: MarqueeLabel!
+    @IBOutlet var titleLabel: MarqueeLabel!
     
     var config: NSArray!
     
@@ -36,7 +36,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
 
     func reloadState() {
         self.bottomView.isHidden = logged() ? true : false
-        self.tableView.isScrollEnabled = logged() && registered
+//        self.tableView.isScrollEnabled = logged() && registered
         self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
         self.tableView.reloadData()
         print(logged(), registered)
@@ -52,10 +52,12 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         super.viewDidLoad()
 
         let login = self.loginNav(type: "logIn") { (info) in
+            if self.coverView.alpha == 0 {
+                self.didRequestPackage()
+            }
             self.coverView.alpha = 0
-//            self.reloadState()
-            self.didRequestPackage()
         }
+        
         self.center()?.present(login, animated: false, completion: nil)
         
         weatherData = NSMutableDictionary.init()
@@ -163,6 +165,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         })
         
         didGetWeather()
+        
+        getAddressFromLatLon(pdblLatitude: self.lat(), pdblLongitude: self.lng())
     }
     
      func didGetWeather() {
@@ -187,7 +191,6 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
            self.tableView.reloadData()
         
            self.didRequestPackage()
-
        })
    }
     
@@ -295,7 +298,6 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     @IBAction func didPressLogin() {
         let login = self.loginNav(type: "logOut") { (info) in
-//            self.reloadState()
             self.didRequestPackage()
         }
         self.center()?.present(login, animated: true, completion: nil)
@@ -317,7 +319,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return !logged() || !registered ? 1 : 5
+        return 5//!logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -326,6 +328,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 0 {
             (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
+            (cell as! PC_Weather_Cell).chartState(registered)
         }
         
         if indexPath.row == 1 {
@@ -338,6 +341,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 3 {
             (cell as! PC_Rain_Cell).data = self.weatherData as NSDictionary
+            (cell as! PC_Rain_Cell).didReloadData()
         }
         
         if indexPath.row == 4 {
@@ -345,6 +349,58 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         }
         
         return cell
+    }
+    
+    func getAddressFromLatLon(pdblLatitude: String, pdblLongitude: String) {
+        if !self.isConnectionAvailable() {
+            return
+        }
+        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let lat: Double = Double("\(pdblLatitude)")!
+        let lon: Double = Double("\(pdblLongitude)")!
+        let ceo: CLGeocoder = CLGeocoder()
+        center.latitude = lat
+        center.longitude = lon
+
+        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+
+
+        ceo.reverseGeocodeLocation(loc, completionHandler:
+            {(placemarks, error) in
+                if (error != nil)
+                {
+                    print("reverse geodcode fail: \(error!.localizedDescription)")
+                    
+                    return
+                }
+                let pm = placemarks! as [CLPlacemark]
+
+                if pm.count > 0 {
+                    let pm = placemarks![0]
+                    var addressString : String = ""
+                    if pm.thoroughfare != nil {
+                                       addressString = addressString + pm.thoroughfare! + ", "
+                                   }
+                    if pm.subLocality != nil {
+                        addressString = addressString + pm.subLocality! + ", "
+                    }
+               
+                    if pm.locality != nil {
+                        addressString = addressString + pm.locality! + ""
+                    }
+//                    if pm.country != nil {
+//                        addressString = addressString + pm.country! + ", "
+//                    }
+//                    if pm.postalCode != nil {
+//                        addressString = addressString + pm.postalCode! + " "
+//                    }
+
+                    print(addressString)
+                    
+                    self.titleLabel.text = addressString
+              }
+        })
+
     }
     
     func dayCell(cell: UITableViewCell) {
@@ -392,7 +448,6 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
             index += 1
         }
     }
-    
    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

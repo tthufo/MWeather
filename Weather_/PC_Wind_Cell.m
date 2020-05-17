@@ -108,8 +108,10 @@
    _chartView.drawBarShadowEnabled = NO;
    _chartView.drawValueAboveBarEnabled = YES;
    
-   _chartView.maxVisibleCount = 60;
+//   _chartView.maxVisibleCount = 60;
    
+//    _chartView.xAxis.labelTextColor = [UIColor whiteColor];
+
    ChartXAxis *xAxis = _chartView.xAxis;
    xAxis.labelPosition = XAxisLabelPositionBottom;
    xAxis.labelFont = [UIFont systemFontOfSize:10.f];
@@ -165,7 +167,7 @@
           _chartView.chartDescription.enabled = NO;
           
           _chartView.dragEnabled = YES;
-          [_chartView setScaleEnabled:NO];
+          [_chartView setScaleEnabled:YES];
           _chartView.pinchZoomEnabled = YES;
           _chartView.drawGridBackgroundEnabled = NO;
 
@@ -221,7 +223,8 @@
           set1 = [[BarChartDataSet alloc] initWithEntries:values label:@""];
           [set1 setColors: @[[AVHexColor colorWithHexString:@"#5530F5"]]];
           set1.drawIconsEnabled = NO;
-          
+//          set1.valueColors = @[[UIColor whiteColor]];
+
           NSMutableArray *dataSets = [[NSMutableArray alloc] init];
           [dataSets addObject:set1];
           

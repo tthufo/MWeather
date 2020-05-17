@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSDictionary * data;
 
+- (void)didReloadData;
+
 @end
 
 NS_ASSUME_NONNULL_END

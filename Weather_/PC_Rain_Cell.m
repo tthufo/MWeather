@@ -39,7 +39,12 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
+    
     [self getData];
+}
+
+- (void)didReloadData {
+    [collectionView reloadData];
 }
 
 - (IBAction)didPressOption:(UIButton*)button {

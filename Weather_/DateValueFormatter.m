@@ -26,7 +26,7 @@
     if (self)
     {
         _dateFormatter = [[NSDateFormatter alloc] init];
-        _dateFormatter.dateFormat = @"HH:mm";
+        _dateFormatter.dateFormat = @"HH:mm dd/MM/yyyy";
     }
     return self;
 }
@@ -35,5 +35,12 @@
 {
     return [_dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:value]];
 }
+
+//- (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis
+//{
+//
+//    return [_dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:value]];
+//}
+
 
 @end

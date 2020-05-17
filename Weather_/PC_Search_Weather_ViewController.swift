@@ -15,6 +15,8 @@ import LocationPickerViewController
 class PC_Search_Weather_ViewController: UIViewController {
 
     var dataList: NSMutableArray!
+    
+    let refreshControl = UIRefreshControl()
 
     @IBOutlet var searchView: UIView!
 
@@ -41,6 +43,14 @@ class PC_Search_Weather_ViewController: UIViewController {
         searchView.action(forTouch: [:]) { (objc) in
             self.didPressLocation()
         }
+        
+        tableView.refreshControl = refreshControl
+               
+        refreshControl.addTarget(self, action: #selector(didReload), for: .valueChanged)
+    }
+    
+    @objc func didReload() {
+        self.didGetLocation()
     }
     
     func viewWithImageName(_ imageName: String) -> UIView {
@@ -53,10 +63,7 @@ class PC_Search_Weather_ViewController: UIViewController {
     func didPressLocation() {
         let locationPicker = LocationPicker()
         locationPicker.pickCompletion = { (pickedLocationItem) in
-            print(pickedLocationItem.mapItem.name)
-            print(pickedLocationItem.mapItem.placemark.coordinate.latitude)
-            print(pickedLocationItem.mapItem.placemark.coordinate.longitude)
-
+            self.didAddLocation(lat: String(pickedLocationItem.mapItem.placemark.coordinate.latitude), lng: String(pickedLocationItem.mapItem.placemark.coordinate.longitude), name: pickedLocationItem.mapItem.name!)
         }
         locationPicker.addBarButtons()
         locationPicker.setColors(themeColor: AVHexColor.color(withHexString: "#5530F5"), primaryTextColor: UIColor.black, secondaryTextColor: UIColor.darkGray)
@@ -64,42 +71,8 @@ class PC_Search_Weather_ViewController: UIViewController {
 
         let navigationController = UINavigationController(rootViewController: locationPicker)
         navigationController.modalPresentationStyle = .fullScreen
-
-        present(navigationController, animated: true, completion: nil)
         
-//        let locationPicker = LocationPickerViewController()
-//
-//        // you can optionally set initial location
-//        let location = CLLocation(latitude: 35, longitude: 35)
-//        let initialLocation = Location(name: "My home", location: location, placemark: CLPlacemark.init())
-//        locationPicker.location = initialLocation
-//
-//        // button placed on right bottom corner
-//        locationPicker.showCurrentLocationButton = true // default: true
-//
-//        // default: navigation bar's `barTintColor` or `.whiteColor()`
-//        locationPicker.currentLocationButtonBackground = .blue
-//
-//        // ignored if initial location is given, shows that location instead
-//        locationPicker.showCurrentLocationInitially = true // default: true
-//
-//        locationPicker.mapType = .standard // default: .Hybrid
-//
-//        // for searching, see `MKLocalSearchRequest`'s `region` property
-//        locationPicker.useCurrentLocationAsHint = true // default: false
-//
-//        locationPicker.searchBarPlaceholder = "Search places" // default: "Search or enter an address"
-//
-//        locationPicker.searchHistoryLabel = "Previously searched" // default: "Search History"
-//
-//        // optional region distance to be used for creation region when user selects place from search results
-//        locationPicker.resultRegionDistance = 500 // default: 600
-//
-//        locationPicker.completion = { location in
-//            // do some awesome stuff with location
-//        }
-//
-//        navigationController?.pushViewController(locationPicker, animated: true)
+        present(navigationController, animated: true, completion: nil)
     }
     
     func didGetLocation() {
@@ -110,7 +83,8 @@ class PC_Search_Weather_ViewController: UIViewController {
                                                      "host":self], withCache: { (cacheString) in
          }, andCompletion: { (response, errorCode, error, isValid, object) in
              let result = response?.dictionize() ?? [:]
-                                                 
+             self.refreshControl.endRefreshing()
+
              if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
                  self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
                  return
@@ -140,6 +114,29 @@ class PC_Search_Weather_ViewController: UIViewController {
               }
 
               self.showToast("Xóa địa điểm thành công", andPos: 0)
+       })
+    }
+    
+    func didAddLocation(lat: String, lng: String, name: String) {
+          LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"addFavouriteLocation",
+                                                      "session":Information.token ?? "",
+                                                      "lat": lat,
+                                                      "long": lng,
+                                                      "name":name,
+                                                      "overrideAlert":"1",
+                                                      "overrideLoading":"1",
+                                                      "host":self], withCache: { (cacheString) in
+          }, andCompletion: { (response, errorCode, error, isValid, object) in
+              let result = response?.dictionize() ?? [:]
+                                                  
+              if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                  self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                  return
+              }
+
+            self.didGetLocation()
+            
+            self.showToast("Thêm địa điểm thành công", andPos: 0)
        })
     }
 }
