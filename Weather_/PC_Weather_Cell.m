@@ -55,7 +55,7 @@
 
     double tempo = [[self getValue:@"deg"] isEqualToString:@"0"] ? [[currently getValueFromKey:key] doubleValue] : ([[currently getValueFromKey:key] doubleValue] * 9/5) + 32;
 
-    NSString * value = [NSString stringWithFormat:@"%.f", ceil(tempo)];
+    NSString * value = [NSString stringWithFormat:@"%.0f", ceil(tempo)];
     
     return value;
 }
@@ -96,26 +96,30 @@
    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
        
 
-    _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc] init];
-
+    _chartView.xAxis.valueFormatter = [[DateValueFormatter alloc] initForChart:_chartView];
+    
        _chartView.leftAxis.enabled = NO;
        
+    _chartView.leftAxis.axisMaximum =  [[self getValue:@"deg"] isEqualToString:@"0"] ? 100 : 212;
+
        
        _chartView.delegate = self;
        
        _chartView.chartDescription.enabled = NO;
        
-       _chartView.dragEnabled = YES;
+       _chartView.dragEnabled = NO;
     
        [_chartView setScaleEnabled:NO];
         
-//       _chartView.pinchZoomEnabled = YES;
+       _chartView.pinchZoomEnabled = YES;
 //
 //    _chartView.scaleXEnabled = NO;
 //
 //    _chartView.scaleYEnabled = YES;
 
 //    pinchZoomEnabled, scaleXEnabled, scaleYEnabled
+    
+    
     
     _chartView.xAxis.labelTextColor = [UIColor whiteColor];
     
@@ -160,31 +164,61 @@
        self.chartView.leftAxis.drawLabelsEnabled = NO;
        self.chartView.legend.enabled = NO;
     
-    [self updateChartData];
+    _chartView.dragEnabled = YES;
+//     [_chartView setScaleEnabled:YES];
+    _chartView.scaleYEnabled = NO;
+    _chartView.scaleXEnabled = YES;
+     _chartView.pinchZoomEnabled = YES;
+     _chartView.drawGridBackgroundEnabled = NO;
+    
+//    [_chartView ];
+    
+    if (data.allKeys.count != 0) {
+        [self updateChartData];
+    }
 }
 
 - (void)updateChartData
 {
+    _chartView.leftAxis.axisMaximum =  [[self getValue:@"deg"] isEqualToString:@"0"] ? 100 : 212;
+
     [self setDataCount];
 }
 
 - (NSDate*)date:(NSString*)dateString
 {
+    NSString *dateStr = dateString;
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"HH:mm dd/MM/yyyy"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    
+    return date;
+    
+    NSLog(@"%@", dateString);
+
+    NSLog(@"%@", [dateString dateWithFormat:@"HH:mm dd/MM/yyyy"]);
     return [dateString dateWithFormat:@"HH:mm dd/MM/yyyy"];
 }
 
 - (void)setDataCount
 {
     NSMutableArray *values = [[NSMutableArray alloc] init];
-    
+        
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+
     for (int i = 0; i < 24; i++)
     {
         NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
                         
         double val = [[self returnValueH:data[@"hourly"][i]] doubleValue];
         
-        [values addObject:[[ChartDataEntry alloc] initWithX:now y:val icon:[UIImage imageNamed:@"trans"]]];
+        [values addObject:[[ChartDataEntry alloc] initWithX:now * 1000 y:val icon:[UIImage imageNamed:@"trans"]]];
+        
+        [temp addObject: data[@"hourly"][i]];
     }
+    
+    _chartView.accessibilityLabel = [temp bv_jsonStringWithPrettyPrint:YES];
     
     LineChartDataSet *set1 = nil;
     if (_chartView.data.dataSetCount > 0)
@@ -235,69 +269,18 @@
             set.mode = LineChartModeCubicBezier;
         }
             
+        NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
+           pFormatter.numberStyle = kCFNumberFormatterPercentStyle;
+           pFormatter.maximumFractionDigits = 100;
+           pFormatter.multiplier = @1;
+        pFormatter.percentSymbol = @"°";
+        
+        [set1 setValueFormatter: [[ChartDefaultValueFormatter alloc] initWithFormatter:pFormatter]];
+
+        
         [_chartView setNeedsDisplay];
     }
 }
-
-
-//- (void)setData
-//{
-//    _chartView.data = nil;
-//
-//    NSMutableArray * dataList = [NSMutableArray new];
-//
-//    for(int o = 0; o < dataSource.count; o++)
-//    {
-//        NSMutableArray * arr = [[NSMutableArray alloc] init];
-//
-//
-//        for(int i = 0; i < ((NSArray*)dataSource[o][@"Data"]).count; i++)
-//        {
-////            NSLog(@"%@", dataSource[o][@"Data"][i][@"NgayApDung"]);
-//
-//            NSTimeInterval now = [[self date:dataSource[o][@"Data"][i][@"NgayApDung"]] timeIntervalSince1970];
-//
-//            [arr addObject:[[ChartDataEntry alloc] initWithX:now y:[((NSArray*)dataSource[o][@"Data"])[i][@"Gia"] intValue]]];
-//        }
-//
-//        LineChartDataSet *set1 = nil;
-//
-////        if (_chartView.data.dataSetCount > 0)
-////        {
-////            set1 = (LineChartDataSet *)_chartView.data.dataSets[o];
-////
-////            set1.values = arr;
-////
-////            [_chartView.data notifyDataChanged];
-////
-////            [_chartView notifyDataSetChanged];
-////        }
-////        else
-//        {
-//            set1 = [[LineChartDataSet alloc] initWithValues:arr label:dataSource[o][@"Ten"]];
-//            set1.axisDependency = AxisDependencyLeft;
-//            [set1 setColor:[self getRandomColor]];//[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]];
-//            [set1 setCircleColor:UIColor.darkGrayColor];
-//            set1.lineWidth = 2.0;
-//            set1.circleRadius = 4.0;
-//            set1.fillAlpha = 65/255.0;
-//            set1.fillColor = [self getRandomColor];//[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f];
-//            set1.highlightColor = [self getRandomColor];//[UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-//            set1.drawCircleHoleEnabled = NO;
-//        }
-//
-//        [dataList addObject:set1];
-//    }
-//
-//    LineChartData *data = [[LineChartData alloc] initWithDataSets:dataList];
-//    [data setValueTextColor:UIColor.blackColor];
-//    [data setValueFont:[UIFont systemFontOfSize:9.f]];
-//
-//    [_chartView.data notifyDataChanged];
-//    [_chartView notifyDataSetChanged];
-//
-//    _chartView.data = data;
-//}
 
 #pragma mark - ChartViewDelegate
 

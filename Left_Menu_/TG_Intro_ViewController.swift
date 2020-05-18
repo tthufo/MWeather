@@ -267,9 +267,19 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                 break
                 
             case 4:
+                let webView = PC_Web_ViewController.init()
+                
+                webView.titleString = "Dịch vụ MeWeather"
+                
+                self.center()?.pushViewController(webView, animated: true)
                 break
                 
             case 5:
+                let webView = PC_Web_ViewController.init()
+                
+                webView.titleString = "Thỏa thuận dịch vụ"
+                
+                self.center()?.pushViewController(webView, animated: true)
                 break
                 
             case 6:

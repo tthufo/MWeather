@@ -40,7 +40,9 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    [self getData];
+    if (data.allKeys.count != 0) {
+        [self getData];
+    }
 }
 
 - (void)didReloadData {
@@ -68,7 +70,7 @@
 - (void)getData {
     
     [dataList removeAllObjects];
-        
+            
     for (int i = 0; i < (!day ? 24 : ((NSArray*)data[@"daily"]).count) ; i++)
     {
         [dataList addObject:((NSArray*)self.data[!day ? @"hourly" : @"daily"])[i]];
@@ -93,6 +95,24 @@
     return [[[val componentsSeparatedByString:@" "] firstObject] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""];
 }
 
+- (NSString*)returnImg:(int)rainValue {
+    if (rainValue <= 0) {
+        return @"ic_rain_drop_0";
+    } else if (rainValue <= 10) {
+        return @"ic_rain_drop_10";
+    } else if (rainValue <= 25) {
+        return @"ic_rain_drop_25";
+    } else if (rainValue <= 50) {
+        return @"ic_rain_drop_50";
+    } else if (rainValue <= 75) {
+        return @"ic_rain_drop_75";
+    } else if (rainValue <= 99) {
+        return @"ic_rain_drop_90";
+    } else {
+        return @"ic_rain_drop_100";
+    }
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return dataList.count;
@@ -109,6 +129,8 @@
     percent.text = [NSString stringWithFormat:@"%@ %@", [dict getValueFromKey:@"precipProbability"], @"%"];
     
     UIImageView * img = (UIImageView*)[self withView:cell tag:12];
+    
+    img.image = [UIImage imageNamed:[self returnImg: [[dict getValueFromKey:@"precipProbability"] intValue]]];
 
     UILabel * rain = (UILabel*)[self withView:cell tag:13];
     

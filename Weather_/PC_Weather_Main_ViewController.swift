@@ -36,7 +36,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
 
     func reloadState() {
         self.bottomView.isHidden = logged() ? true : false
-//        self.tableView.isScrollEnabled = logged() && registered
+        self.tableView.isScrollEnabled = logged() && registered
         self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
         self.tableView.reloadData()
         print(logged(), registered)
@@ -52,9 +52,10 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         super.viewDidLoad()
 
         let login = self.loginNav(type: "logIn") { (info) in
-            if self.coverView.alpha == 0 {
-                self.didRequestPackage()
-            }
+//            if self.coverView.alpha == 0 {
+//                self.didRequestPackage()
+                self.didGetWeather()
+//            }
             self.coverView.alpha = 0
         }
         
@@ -139,7 +140,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                           "book_type": 3,
                                           "price": 0,
                                           "sorting": 1,
-                                      ], "height": 300, "direction": "horizontal", "loaded": false, "ident": "PC_Wind_Cell"],
+                                      ], "height": 350, "direction": "horizontal", "loaded": false, "ident": "PC_Wind_Cell"],
                                       ["title":"Khuyên nên đọc",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -161,10 +162,10 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         ]).withMutable() as NSArray?
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.didReload()
+            //self.didReload()
         })
         
-        didGetWeather()
+//        didGetWeather()
         
         getAddressFromLatLon(pdblLatitude: self.lat(), pdblLongitude: self.lng())
     }
@@ -189,6 +190,10 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
            self.weatherData.addEntries(from: (result["result"] as! NSDictionary) as! [AnyHashable : Any])
         
            self.tableView.reloadData()
+        
+        UIView.animate(withDuration: 0.2) {
+            self.tableView.alpha = 1
+        }
         
            self.didRequestPackage()
        })
@@ -230,18 +235,18 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getPackageInfo",
                                                     "session":Information.token ?? "",
                                                     "overrideAlert":"1",
-                                                    "overrideLoading":"1",
-                                                    "host":self], withCache: { (cacheString) in
+                                                    "overrideLoading":"1"
+                                                    ], withCache: { (cacheString) in
        }, andCompletion: { (response, errorCode, error, isValid, object) in
             let result = response?.dictionize() ?? [:]
-        
+
             if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
                self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
                return
             }
-                
+
             self.registered = self.checkRegister(package: response?.dictionize()["result"] as! NSArray)
-        
+
             self.reloadState()
         })
     }
@@ -263,8 +268,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getPackageInfo",
                                                     "session": Information.token ?? "",
                                                     "overrideAlert":"1",
-                                                    "overrideLoading":"1",
-                                                    "host":self], withCache: { (cacheString) in
+                                                    "overrideLoading":"1"
+                                                    ], withCache: { (cacheString) in
         }, andCompletion: { (response, errorCode, error, isValid, object) in
             let result = response?.dictionize() ?? [:]
                           
@@ -319,7 +324,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 //!logged() || !registered ? 1 : 5
+        return !logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -328,7 +333,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 0 {
             (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
-//            (cell as! PC_Weather_Cell).chartState(registered)
+            (cell as! PC_Weather_Cell).chartState(registered)
         }
         
         if indexPath.row == 1 {
@@ -340,8 +345,10 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         }
         
         if indexPath.row == 3 {
-            (cell as! PC_Rain_Cell).data = self.weatherData as NSDictionary
-            (cell as! PC_Rain_Cell).didReloadData()
+//            if self.weatherData.count != 0 {
+                (cell as! PC_Rain_Cell).data = self.weatherData as NSDictionary
+                (cell as! PC_Rain_Cell).didReloadData()
+//            }
         }
         
         if indexPath.row == 4 {

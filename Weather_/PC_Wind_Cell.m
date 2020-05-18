@@ -104,7 +104,6 @@
    xAxis.labelFont = [UIFont systemFontOfSize:10.f];
    xAxis.drawGridLinesEnabled = NO;
    xAxis.granularity = 1.0; // only intervals of 1 day
-   xAxis.labelCount = 7;
    xAxis.valueFormatter = [[DayAxisValueFormatter alloc] initForChart:_chartView];
    
 //   NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
@@ -197,6 +196,10 @@
         [values addObject:[[BarChartDataEntry alloc] initWithX:i y:val icon: [UIImage imageNamed:@"trans"]]];
     }
     
+    
+    
+    _chartView.accessibilityLabel = [(NSArray*)data[!day ? @"hourly" : @"daily"] bv_jsonStringWithPrettyPrint:YES];
+    
     BarChartDataSet *set1 = nil;
       if (_chartView.data.dataSetCount > 0)
       {
@@ -210,7 +213,6 @@
           set1 = [[BarChartDataSet alloc] initWithEntries:values label:@""];
           [set1 setColors: @[[AVHexColor colorWithHexString:@"#5530F5"]]];
           set1.drawIconsEnabled = NO;
-//          set1.valueColors = @[[UIColor whiteColor]];
 
           NSMutableArray *dataSets = [[NSMutableArray alloc] init];
           [dataSets addObject:set1];
@@ -235,7 +237,7 @@
     
     chartView.drawGridBackgroundEnabled = NO;
     
-    chartView.dragEnabled = YES;
+    chartView.dragEnabled = NO;
     [chartView setScaleEnabled:YES];
     chartView.pinchZoomEnabled = NO;
         

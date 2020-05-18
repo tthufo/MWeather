@@ -9,6 +9,7 @@
 @implementation DayAxisValueFormatter
 {
     NSArray *months;
+    
     __weak BarLineChartViewBase *_chart;
 }
 
@@ -29,9 +30,34 @@
     return self;
 }
 
+- (NSString*)timer:(NSString*)time {
+    if ([[time componentsSeparatedByString:@" "] count] != 1) {
+        NSString * val = [[time componentsSeparatedByString:@" "] firstObject];
+        return val;
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *year = [formatter stringFromDate:[NSDate date]];
+       
+    NSString * val = [time stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""];
+    return val;
+}
+
 - (NSString *)stringForValue:(double)value
                         axis:(ChartAxisBase *)axis
 {
+    NSArray * data = [_chart.accessibilityLabel objectFromJSONString];
+    
+    int myInt = (int)value;
+    
+    if (myInt > data.count) {
+        myInt = data.count - 1;
+    }
+
+    return [self timer: data[myInt][@"time"]];
+    
+    return [NSString stringWithFormat:@"%.0f", value];
+        
     int days = (int)value;
     int year = [self determineYearForDays:days];
     int month = [self determineMonthForDayOfYear:days];

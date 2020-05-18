@@ -15,4 +15,6 @@
 
 @interface DateValueFormatter : NSObject <IChartAxisValueFormatter>
 
+- (id)initForChart:(LineChartView *)chart;
+
 @end
