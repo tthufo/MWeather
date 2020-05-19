@@ -123,7 +123,7 @@ mời quý khách đăng nhập để sử dụng.</string>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="gZ9-U5-GqT"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <state key="normal" title="ĐĂNG NHẬP" backgroundImage="gradient">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -141,7 +141,7 @@ mời quý khách đăng nhập để sử dụng.</string>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="u3W-h8-fQj"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <state key="normal" title="Đ. KÝ TÀI KHOẢN">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>

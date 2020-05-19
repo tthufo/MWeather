@@ -37,6 +37,13 @@
     [super awakeFromNib];
 
     [self optional];
+    
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//
+//               [self updateChartData];
+//
+//        });
 }
 
 - (IBAction)didPressOption:(UIButton*)button {
@@ -157,7 +164,14 @@
           _chartView.pinchZoomEnabled = YES;
           _chartView.drawGridBackgroundEnabled = NO;
 
-    [self updateChartData];
+//    [self updateChartData];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+       dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+              [self updateChartData];
+
+       });
 }
 
 - (void)updateChartData

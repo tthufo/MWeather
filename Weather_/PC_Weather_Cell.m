@@ -41,6 +41,11 @@
 
 - (NSString*)returnValue:(NSString*)key {
     NSDictionary * currently = data[@"currently"];
+    
+    if ([key isEqualToString:@"precipProbability"]) {
+        NSString * value = [NSString stringWithFormat:@"%.0f", [[currently getValueFromKey:key] floatValue]];
+        return value;
+    }
 
     double tempo = [[self getValue:@"deg"] isEqualToString:@"0"] ? [[currently getValueFromKey:key] doubleValue] : ([[currently getValueFromKey:key] doubleValue] * 9/5) + 32;
 
@@ -86,6 +91,9 @@
     down.text = [NSString stringWithFormat:@"%@°↓", [self returnValue:@"temperatureLow"]];
 
     current.text = [NSString stringWithFormat:@"Thực tế ~ %@°", [self returnValue:@"apparentTemperature"]];
+    
+    rainy.text = [NSString stringWithFormat:@"Khả năng mưa %@ %@", [self returnValue:@"precipProbability"], @"%"];
+        
     
     state.image = [UIImage imageNamed:[[currently getValueFromKey: @"icon"] stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
         

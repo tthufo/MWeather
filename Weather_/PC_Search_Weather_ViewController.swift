@@ -62,6 +62,7 @@ class PC_Search_Weather_ViewController: UIViewController {
     
     func didPressLocation() {
         let locationPicker = LocationPicker()
+        locationPicker.preselectedIndex = 0
         locationPicker.pickCompletion = { (pickedLocationItem) in
             self.didAddLocation(lat: String(pickedLocationItem.mapItem.placemark.coordinate.latitude), lng: String(pickedLocationItem.mapItem.placemark.coordinate.longitude), name: pickedLocationItem.mapItem.name!)
         }

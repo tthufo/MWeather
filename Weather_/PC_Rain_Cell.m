@@ -35,14 +35,29 @@
     dataList = [NSMutableArray new];
     
     [self optional];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+        if (data.allKeys.count != 0) {
+            [self getData];
+        }
+        
+        [self didReloadData];
+
+    });
 }
 
 - (void)prepareForReuse {
     [super prepareForReuse];
     
-    if (data.allKeys.count != 0) {
-        [self getData];
-    }
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+       dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+           if (data.allKeys.count != 0) {
+                 [self getData];
+             }
+       });
 }
 
 - (void)didReloadData {

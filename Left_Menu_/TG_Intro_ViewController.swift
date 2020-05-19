@@ -302,6 +302,9 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
                    DropAlert.shareInstance()?.alert(withInfor: ["cancel":"Thoát", "buttons":["Đăng xuất"], "title":"Thông báo", "message": "Bạn có muốn đăng xuất khỏi tài khoản ?"], andCompletion: { (index, objc) in
                        if index == 0 {
                         self.didRequestLogout()
+                        if (self.topviewcontroler()?.isKind(of: PC_Weather_Main_ViewController.self))! {
+                            (self.topviewcontroler() as! PC_Weather_Main_ViewController).tableView.setContentOffset(CGPoint.zero, animated:true)
+                        }
                        }
                    })
                 } else {

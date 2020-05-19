@@ -179,7 +179,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                                    "host":self], withCache: { (cacheString) in
        }, andCompletion: { (response, errorCode, error, isValid, object) in
            let result = response?.dictionize() ?? [:]
-                                               
+           self.refreshControl.endRefreshing()
+
            if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
                self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
                return
@@ -200,12 +201,13 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
    }
     
     @objc func didReload() {
+        didGetWeather()
         for dict in self.config {
             (dict as! NSMutableDictionary)["loaded"] = false
         }
-        tableView.reloadData()
+//        tableView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.refreshControl.endRefreshing()
+//            self.refreshControl.endRefreshing()
         })
     }
     
@@ -345,10 +347,8 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         }
         
         if indexPath.row == 3 {
-//            if self.weatherData.count != 0 {
-                (cell as! PC_Rain_Cell).data = self.weatherData as NSDictionary
-                (cell as! PC_Rain_Cell).didReloadData()
-//            }
+            (cell as! PC_Rain_Cell).data = self.weatherData as NSDictionary
+            (cell as! PC_Rain_Cell).didReloadData()
         }
         
         if indexPath.row == 4 {

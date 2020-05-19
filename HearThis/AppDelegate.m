@@ -671,13 +671,18 @@ UIBackgroundTaskIdentifier bgTask;
         return value;
     }
     
+    if ([unit isEqualToString:@"mm"]){
+        NSString * val = [NSString stringWithFormat:@"%.02f %@", [value floatValue], unit];
+        return val;
+       }
+    
     if ([unit isEqualToString:@"mb"]) {
         NSString * display = [NSNumberFormatter localizedStringFromNumber:@([value intValue])
         numberStyle:NSNumberFormatterDecimalStyle];
         return [NSString stringWithFormat:@"%@ %@", display, unit];
     }
     
-    double tempo = [unit isEqualToString:@"%"] ? [value doubleValue] * 100 : [unit isEqualToString:@"mm"] || [unit isEqualToString:@"UV"] ? [value doubleValue] : [value doubleValue] * 1.609344;
+    double tempo = [unit isEqualToString:@"%"] ? [value doubleValue] :  [unit isEqualToString:@"UV"] ? [value doubleValue] : [value doubleValue] * 1.609344;
 
     NSString * val = [NSString stringWithFormat:@"%.f %@", ceil(tempo), unit];
     
