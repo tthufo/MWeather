@@ -133,7 +133,8 @@
     
        _chartView.drawGridBackgroundEnabled = NO;
 
-    _chartView.xAxis.granularity = 10;
+    _chartView.xAxis.granularity = 1;
+    
        // x-axis limit line
        ChartLimitLine *llXAxis = [[ChartLimitLine alloc] initWithLimit:10.0 label:@"Index 10"];
        llXAxis.lineWidth = 4.0;
@@ -219,9 +220,21 @@
     {
         NSTimeInterval now = [[self date:data[@"hourly"][i][@"time"]] timeIntervalSince1970];
                         
+//        NSLog(@"--%@", data[@"hourly"][i][@"time"]);
+        NSDateFormatter * dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"HH:mm dd/MM/yyyy"];
+        NSDate *date = [dateFormatter dateFromString:data[@"hourly"][i][@"time"]];
+//        NSLog(@"date=%@",date);
+        NSTimeInterval interval  = [date timeIntervalSince1970];
+//        NSLog(@"interval=%f",interval);
+//        NSDate *methodStart = [NSDate dateWithTimeIntervalSince1970:interval];
+//        NSLog(@"result: %@", [dateFormatter stringFromDate:methodStart]);
+//
+//        NSLog(@"%f", interval);
+        
         double val = [[self returnValueH:data[@"hourly"][i]] doubleValue];
         
-        [values addObject:[[ChartDataEntry alloc] initWithX:now * 1000 y:val icon:[UIImage imageNamed:@"trans"]]];
+        [values addObject:[[ChartDataEntry alloc] initWithX:i y:val icon:[UIImage imageNamed:@"trans"]]];
         
         [temp addObject: data[@"hourly"][i]];
     }

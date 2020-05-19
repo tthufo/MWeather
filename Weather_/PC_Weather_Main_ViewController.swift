@@ -36,7 +36,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
 
     func reloadState() {
         self.bottomView.isHidden = logged() ? true : false
-        self.tableView.isScrollEnabled = logged() && registered
+//        self.tableView.isScrollEnabled = logged() && registered
         self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
         self.tableView.reloadData()
         print(logged(), registered)
@@ -219,11 +219,9 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     @IBAction func didPressSearch() {
         if logged() {
 //            self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
-
             self.didGetPackage(showMenu: true)
         } else {
             let login = self.loginNav(type: "logOut") { (info) in
-//                self.reloadState()
                 self.didRequestPackage()
             }
             self.center()?.present(login, animated: true, completion: nil)
@@ -281,9 +279,11 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
             }
                     
             let info = ((result["result"] as! NSArray)[0] as! NSDictionary)
-            
+                        
             if showMenu {
-                if info.getValueFromKey("status") == "1" {
+                self.registered = self.checkRegister(package: response?.dictionize()["result"] as! NSArray)
+
+                if self.registered {
                     self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
                 } else {
                     EM_MenuView.init(package: (info as! [AnyHashable : Any])).show { (index, objc, menu) in
@@ -311,7 +311,13 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     }
     
     @IBAction func didPressRegister() {
-       
+       if (MFMessageComposeViewController.canSendText()) {
+              let controller = MFMessageComposeViewController()
+              controller.body = "V"
+              controller.recipients = ["1095"]
+              controller.messageComposeDelegate = self
+              self.present(controller, animated: true, completion: nil)
+          }
     }
 }
 
@@ -326,7 +332,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return !logged() || !registered ? 1 : 5
+        return 5//  !logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -335,7 +341,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 0 {
             (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
-            (cell as! PC_Weather_Cell).chartState(registered)
+//            (cell as! PC_Weather_Cell).chartState(registered)
         }
         
         if indexPath.row == 1 {

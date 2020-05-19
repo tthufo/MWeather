@@ -65,7 +65,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eIP-7u-FSn" customClass="OwnTableView" customModule="MeWeather" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="196" width="414" height="666"/>
+                    <rect key="frame" x="0.0" y="227.5" width="414" height="634.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="AF9-YK-8pc"/>
@@ -97,22 +97,45 @@
                         <constraint firstAttribute="height" constant="54" id="fXu-ep-RV5"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Điểm yêu thích" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4g-ny-1GF">
+                    <rect key="frame" x="0.0" y="188" width="414" height="31"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="M28-3q-ZsH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7le-XI-FgW">
+                    <rect key="frame" x="0.0" y="227" width="414" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="6vC-td-hd5"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="7le-XI-FgW" secondAttribute="trailing" id="43i-oc-Qyu"/>
                 <constraint firstItem="XxF-bS-61h" firstAttribute="trailing" secondItem="Kgp-9c-0gJ" secondAttribute="trailing" id="867-aW-KCN"/>
+                <constraint firstItem="eIP-7u-FSn" firstAttribute="trailing" secondItem="Kgp-9c-0gJ" secondAttribute="trailing" id="8uk-Lv-sDe"/>
+                <constraint firstItem="eIP-7u-FSn" firstAttribute="bottom" secondItem="Kgp-9c-0gJ" secondAttribute="bottom" id="A26-o1-Nlc"/>
                 <constraint firstItem="90q-Cr-ePD" firstAttribute="top" secondItem="XxF-bS-61h" secondAttribute="bottom" constant="18" id="ARE-6k-iMN"/>
-                <constraint firstItem="eIP-7u-FSn" firstAttribute="leading" secondItem="Kgp-9c-0gJ" secondAttribute="leading" id="GZs-H6-UcM"/>
+                <constraint firstItem="7le-XI-FgW" firstAttribute="top" secondItem="o4g-ny-1GF" secondAttribute="bottom" id="HHm-JF-GbB"/>
+                <constraint firstItem="eIP-7u-FSn" firstAttribute="leading" secondItem="Kgp-9c-0gJ" secondAttribute="leading" id="KdV-wN-Fk6"/>
+                <constraint firstItem="o4g-ny-1GF" firstAttribute="top" secondItem="90q-Cr-ePD" secondAttribute="bottom" constant="8" id="Tvq-ic-wL4"/>
                 <constraint firstItem="Kgp-9c-0gJ" firstAttribute="trailing" secondItem="90q-Cr-ePD" secondAttribute="trailing" constant="20" id="X8c-Z2-5Zc"/>
-                <constraint firstItem="eIP-7u-FSn" firstAttribute="trailing" secondItem="Kgp-9c-0gJ" secondAttribute="trailing" id="evS-6q-zxW"/>
                 <constraint firstItem="90q-Cr-ePD" firstAttribute="leading" secondItem="Kgp-9c-0gJ" secondAttribute="leading" constant="20" id="f39-Rd-Sn0"/>
                 <constraint firstItem="XxF-bS-61h" firstAttribute="leading" secondItem="Kgp-9c-0gJ" secondAttribute="leading" id="fqh-jU-UsQ"/>
-                <constraint firstItem="eIP-7u-FSn" firstAttribute="top" secondItem="90q-Cr-ePD" secondAttribute="bottom" constant="16" id="g4y-jd-A0y"/>
-                <constraint firstItem="eIP-7u-FSn" firstAttribute="bottom" secondItem="Kgp-9c-0gJ" secondAttribute="bottom" id="jpW-Gj-Ezq"/>
+                <constraint firstItem="o4g-ny-1GF" firstAttribute="leading" secondItem="Kgp-9c-0gJ" secondAttribute="leading" id="giB-KO-jQm"/>
+                <constraint firstItem="eIP-7u-FSn" firstAttribute="top" secondItem="7le-XI-FgW" secondAttribute="bottom" id="itC-fZ-jKZ"/>
                 <constraint firstItem="XxF-bS-61h" firstAttribute="top" secondItem="Kgp-9c-0gJ" secondAttribute="top" id="lHI-gv-1y0"/>
+                <constraint firstItem="Kgp-9c-0gJ" firstAttribute="trailing" secondItem="o4g-ny-1GF" secondAttribute="trailing" id="mn1-0Q-Dgv"/>
+                <constraint firstItem="7le-XI-FgW" firstAttribute="leading" secondItem="rzu-sC-TFg" secondAttribute="leading" id="rDE-Na-r4u"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Kgp-9c-0gJ"/>
-            <point key="canvasLocation" x="-288" y="-66"/>
+            <point key="canvasLocation" x="-288.40579710144931" y="-66.294642857142861"/>
         </view>
     </objects>
     <resources>

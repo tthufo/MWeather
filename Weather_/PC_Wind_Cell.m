@@ -102,6 +102,8 @@
    _chartView.drawBarShadowEnabled = NO;
    _chartView.drawValueAboveBarEnabled = YES;
    
+    _chartView.xAxis.labelRotationAngle = 45;
+
 //   _chartView.maxVisibleCount = 60;
    
 //    _chartView.xAxis.labelTextColor = [UIColor whiteColor];

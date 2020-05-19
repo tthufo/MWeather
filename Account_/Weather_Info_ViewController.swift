@@ -33,7 +33,8 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
         
         name.action(forTouch: [:]) { (obj) in
             let edit = Weather_Name_ViewController.init()
-            edit.uName = Information.userInfo?.getValueFromKey("name")
+            edit.uName = Information.userInfo?.getValueFromKey("name") // == ""
+//                ? Information.userInfo?.getValueFromKey("msisdn") : Information.userInfo?.getValueFromKey("name")
             self.navigationController?.pushViewController(edit, animated: true)
         }
         
@@ -77,7 +78,7 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
     }
     
     func viewInfo() {
-        avatarName.text = Information.userInfo?.getValueFromKey("msisdn")
+        avatarName.text = Information.userInfo?.getValueFromKey("name") == "" ? Information.userInfo?.getValueFromKey("msisdn") : Information.userInfo?.getValueFromKey("name")
 
         phone.text = Information.userInfo?.getValueFromKey("msisdn")
         

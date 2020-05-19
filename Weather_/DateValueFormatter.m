@@ -28,6 +28,7 @@
     if (self)
     {
         _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.locale = NSLocale.currentLocale;
         _dateFormatter.dateFormat = @"HH:mm";
     }
     return self;
@@ -41,7 +42,8 @@
         self->_chart = chart;
         
         _dateFormatter = [[NSDateFormatter alloc] init];
-               _dateFormatter.dateFormat = @"HH:mm";
+        _dateFormatter.locale = NSLocale.currentLocale;
+        _dateFormatter.dateFormat = @"HH:mm";
     }
     return self;
 }
@@ -64,6 +66,8 @@
 {
     NSArray * data = [_chart.accessibilityLabel objectFromJSONString];
     
+    NSLog(@"%f", value);
+
        int myInt = (int)value;
        
 //    NSLog(@"%i", myInt);
@@ -71,8 +75,13 @@
 //       if (myInt > data.count) {
 //           myInt = data.count - 1;
 //       }
+    NSDateFormatter * dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"HH:mm dd/MM/yyyy"];
+    NSDate *methodStart = [NSDate dateWithTimeIntervalSince1970:value];
+//    NSLog(@"result: %@", [_dateFormatter stringFromDate:methodStart]);
+    NSLog(@"result: %@", [dateFormatter stringFromDate:methodStart]);
 
-    return [_dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:value]];
+//    return [_dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:value]];
 
     return [self timer: data[myInt][@"time"]];
 }
