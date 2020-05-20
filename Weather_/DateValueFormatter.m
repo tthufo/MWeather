@@ -66,8 +66,6 @@
 {
     NSArray * data = [_chart.accessibilityLabel objectFromJSONString];
     
-    NSLog(@"%f", value);
-
        int myInt = (int)value;
        
 //    NSLog(@"%i", myInt);

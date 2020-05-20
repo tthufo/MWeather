@@ -465,7 +465,7 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
             print(result)
         
             if !self.checkRegister(package: response?.dictionize()["result"] as! NSArray) {
-                self.showToast("Xin chào " + self.uName.text! + ", Quý khách chưa đăng ký dịch vụ, hãy bấm \"Đăng ký\" để sử dụng dịch vụ", andPos: 0)
+                self.showToast("Xin chào " + self.uName.text! + ", hãy đăng ký dịch vụ để xem thông tin đầy đủ.", andPos: 0)
             } else {
 //                (UIApplication.shared.delegate as! AppDelegate).changeRoot(false)
 //                if self.uName != nil {

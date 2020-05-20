@@ -36,7 +36,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
 
     func reloadState() {
         self.bottomView.isHidden = logged() ? true : false
-//        self.tableView.isScrollEnabled = logged() && registered
+        self.tableView.isScrollEnabled = logged() && registered
         self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
         self.tableView.reloadData()
         print(logged(), registered)
@@ -332,7 +332,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//  !logged() || !registered ? 1 : 5
+        return !logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -341,7 +341,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
         
         if indexPath.row == 0 {
             (cell as! PC_Weather_Cell).data = self.weatherData as NSDictionary
-//            (cell as! PC_Weather_Cell).chartState(registered)
+            (cell as! PC_Weather_Cell).chartState(registered)
         }
         
         if indexPath.row == 1 {
