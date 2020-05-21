@@ -99,10 +99,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgt-Rc-wce">
-                            <rect key="frame" x="19" y="12" width="337" height="58"/>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgt-Rc-wce">
+                            <rect key="frame" x="19" y="10" width="337" height="70"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="58" id="Pp3-mY-G8T"/>
+                                <constraint firstAttribute="height" constant="70" id="Pp3-mY-G8T"/>
                             </constraints>
                             <string key="text">Để xem thông tin chi tiết
 mời quý khách đăng nhập để sử dụng.</string>
@@ -111,14 +111,14 @@ mời quý khách đăng nhập để sử dụng.</string>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clr-X8-izz">
-                            <rect key="frame" x="186" y="80" width="3" height="80"/>
+                            <rect key="frame" x="186" y="120" width="3" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="80" id="7pS-UO-3UJ"/>
+                                <constraint firstAttribute="height" constant="40" id="7pS-UO-3UJ"/>
                                 <constraint firstAttribute="width" constant="3" id="KM1-0b-d3O"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdL-mC-vpB">
+                        <button opaque="NO" clipsSubviews="YES" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdL-mC-vpB">
                             <rect key="frame" x="197" y="89" width="170" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="gZ9-U5-GqT"/>
@@ -136,7 +136,7 @@ mời quý khách đăng nhập để sử dụng.</string>
                                 <action selector="didPressLogin" destination="-1" eventType="touchUpInside" id="NgQ-lT-sa7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTr-4p-ovT">
+                        <button opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTr-4p-ovT">
                             <rect key="frame" x="8" y="89" width="170" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="u3W-h8-fQj"/>
@@ -177,7 +177,7 @@ mời quý khách đăng nhập để sử dụng.</string>
                         <constraint firstItem="h5m-SG-iL7" firstAttribute="leading" secondItem="k9t-Hi-1Nd" secondAttribute="leading" id="YpJ-CL-6Ea"/>
                         <constraint firstItem="DdL-mC-vpB" firstAttribute="leading" secondItem="Clr-X8-izz" secondAttribute="trailing" constant="8" id="k1s-sR-0Vg"/>
                         <constraint firstAttribute="trailing" secondItem="DdL-mC-vpB" secondAttribute="trailing" constant="8" id="k5A-lC-8hH"/>
-                        <constraint firstAttribute="bottom" secondItem="xgt-Rc-wce" secondAttribute="bottom" constant="90" id="kVk-Qd-qSw"/>
+                        <constraint firstAttribute="bottom" secondItem="xgt-Rc-wce" secondAttribute="bottom" constant="80" id="kVk-Qd-qSw"/>
                         <constraint firstAttribute="trailing" secondItem="xgt-Rc-wce" secondAttribute="trailing" constant="19" id="qpp-Rp-HOf"/>
                     </constraints>
                 </view>

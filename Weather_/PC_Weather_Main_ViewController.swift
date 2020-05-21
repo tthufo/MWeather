@@ -35,17 +35,30 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     var registered: Bool = false
 
     func reloadState() {
-        self.bottomView.isHidden = logged() ? true : false
+        self.bottomView.isHidden = logged() && registered ? true : false
+        
+        (self.withView(self.bottomView, tag: 11) as! UIButton).isHidden = logged() ? registered ? false : true : false
+        (self.withView(self.bottomView, tag: 12) as! UIButton).isHidden = logged() ? registered ? false : true : false
+        
+        (self.withView(self.bottomView, tag: 1) as! UILabel).text = logged() ? "Để sử dụng đầy đủ chức năng của ứng dụng, Quý khách cần đăng ký dịch vụ. Để kích hoạt dịch vụ, soạn tin V gửi 1095." : "Để xem thông tin chi tiết mời quý khách đăng nhập để sử dụng."
+
+        
         self.tableView.isScrollEnabled = logged() && registered
         self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
-        self.tableView.reloadData()
+        self.tableView.reloadData(withAnimation: true)
         print(logged(), registered)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
                 
-        self.reloadState()
+        bottomView.isHidden = true
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+        if !logged() {
+            self.reloadState()
+        }
+//        })
     }
     
     override func viewDidLoad() {
@@ -190,8 +203,8 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         
            self.weatherData.addEntries(from: (result["result"] as! NSDictionary) as! [AnyHashable : Any])
         
-           self.tableView.reloadData()
-        
+           self.tableView.reloadData(withAnimation: true)
+
         UIView.animate(withDuration: 0.2) {
             self.tableView.alpha = 1
         }
@@ -286,17 +299,17 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                 if self.registered {
                     self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
                 } else {
-                    EM_MenuView.init(package: (info as! [AnyHashable : Any])).show { (index, objc, menu) in
-                        if index == 0 {
-                            let data = (objc as! NSDictionary)
-                            if (MFMessageComposeViewController.canSendText()) {
-                                 let controller = MFMessageComposeViewController()
-                                 controller.body = data.getValueFromKey("reg_keyword")
-                                 controller.recipients = [data.getValueFromKey("reg_shortcode")]
-                                 controller.messageComposeDelegate = self
-                                 self.present(controller, animated: true, completion: nil)
-                             }
-                        }
+                    EM_MenuView.init(packageShow: (info as! [AnyHashable : Any])).show { (index, objc, menu) in
+//                        if index == 0 {
+//                            let data = (objc as! NSDictionary)
+//                            if (MFMessageComposeViewController.canSendText()) {
+//                                 let controller = MFMessageComposeViewController()
+//                                 controller.body = data.getValueFromKey("reg_keyword")
+//                                 controller.recipients = [data.getValueFromKey("reg_shortcode")]
+//                                 controller.messageComposeDelegate = self
+//                                 self.present(controller, animated: true, completion: nil)
+//                             }
+//                        }
                     }
                 }
             }

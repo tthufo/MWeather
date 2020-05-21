@@ -36,7 +36,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khả năng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mk-i1-kxy">
                         <rect key="frame" x="10" y="68" width="77" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="77" id="hvY-tT-TIP"/>
+                            <constraint firstAttribute="width" id="hvY-tT-TIP"/>
                             <constraint firstAttribute="height" constant="21" id="lbP-9Y-mn8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -84,7 +84,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-pS-bLc">
                         <rect key="frame" x="10" y="138" width="90" height="72"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="90" id="GTw-JX-g1Z"/>
+                            <constraint firstAttribute="width" id="GTw-JX-g1Z"/>
                             <constraint firstAttribute="height" constant="72" id="UdW-7S-ztc"/>
                         </constraints>
                         <string key="text">Lượng mưa 
@@ -124,7 +124,7 @@
                     <constraint firstAttribute="trailing" secondItem="6aM-q2-Sj8" secondAttribute="trailing" constant="12" id="0Xf-Lr-scB"/>
                     <constraint firstItem="O0K-Ge-ell" firstAttribute="top" secondItem="6aM-q2-Sj8" secondAttribute="bottom" constant="15" id="1QV-MF-C1F"/>
                     <constraint firstItem="pHb-aa-1hU" firstAttribute="top" secondItem="rsZ-ue-seq" secondAttribute="top" constant="12" id="3oV-ud-mEh"/>
-                    <constraint firstItem="O0K-Ge-ell" firstAttribute="leading" secondItem="Jaw-pS-bLc" secondAttribute="trailing" constant="8" id="6WT-IE-WZi"/>
+                    <constraint firstItem="O0K-Ge-ell" firstAttribute="leading" secondItem="Jaw-pS-bLc" secondAttribute="trailing" id="6WT-IE-WZi"/>
                     <constraint firstItem="wH7-Aq-AZS" firstAttribute="leading" secondItem="rsZ-ue-seq" secondAttribute="leading" id="Fo6-WU-lC6"/>
                     <constraint firstItem="Jaw-pS-bLc" firstAttribute="top" secondItem="2Mk-i1-kxy" secondAttribute="bottom" constant="49" id="GUf-7b-V42"/>
                     <constraint firstItem="gWW-FI-Ypd" firstAttribute="leading" secondItem="rsZ-ue-seq" secondAttribute="leading" constant="10" id="Nil-vh-Pyz"/>

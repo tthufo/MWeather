@@ -41,6 +41,8 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
         package.action(forTouch: [:]) { (obj) in
             self.didGetPackage(showMenu: true)
         }
+        
+        avatar.imageUrl(url: (Information.userInfo?.getValueFromKey("avatar"))!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +85,30 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
         phone.text = Information.userInfo?.getValueFromKey("msisdn")
         
         name.text = Information.userInfo?.getValueFromKey("name")
+        
+//        avatar.imageUrl(url: (Information.userInfo?.getValueFromKey("avatar"))!)
     }
+    
+    func didEditAvatar() {
+         LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"updateUserInfo",
+                                                      "session":Information.token ?? "",
+                                                      "avatar":(self.avatarTemp.imageScaledToHalf() as UIImage).fullImageString(),
+                                                      "overrideAlert":"1",
+                                                      "overrideLoading":"1",
+                                                      "host":self], withCache: { (cacheString) in
+         }, andCompletion: { (response, errorCode, error, isValid, object) in
+             let result = response?.dictionize() ?? [:]
+                                                 
+             if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
+                 self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
+                 return
+             }
+          
+             self.didGetInfo()
+            
+             self.showToast("Cập nhật thông tin thành công", andPos: 0)
+        })
+     }
     
     func didGetPackage(showMenu: Bool) {
         LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getPackageInfo",
@@ -138,6 +163,7 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
                                        self.avatarTemp = (image as! UIImage)
                                        self.avatar.image = (image as! UIImage)
                                        Information.avatar = (image as! UIImage)
+                                    self.didEditAvatar()
                                    }
                                })
                            })
@@ -155,6 +181,7 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
                                        self.avatarTemp = (image as! UIImage)
                                        self.avatar.image = (image as! UIImage)
                                        Information.avatar = (image as! UIImage)
+                                    self.didEditAvatar()
                                    }
                                })
                            })
@@ -177,6 +204,7 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
                                    self.avatarTemp = (image as! UIImage)
                                    self.avatar.image = (image as! UIImage)
                                    Information.avatar = (image as! UIImage)
+                                    self.didEditAvatar()
                                   }
                               })
                           })
@@ -194,6 +222,7 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
                                    self.avatarTemp = (image as! UIImage)
                                    self.avatar.image = (image as! UIImage)
                                    Information.avatar = (image as! UIImage)
+                                    self.didEditAvatar()
                                   }
                               })
                            })

@@ -20,6 +20,30 @@
 
 @synthesize menuCompletion;
 
+- (id)initWithPackageShow:(NSDictionary*)info
+{
+    self = [self init];
+    
+    [self setContainerView:[self didCreatePackageViewShow:info]];
+    
+    [self setUseMotionEffects:true];
+    
+    return self;
+}
+
+- (UIView*)didCreatePackageViewShow:(NSDictionary*)dict
+{
+    UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 310, 135)];
+    
+    [commentView setBackgroundColor:[UIColor clearColor]];
+    
+    UIView *contentView = [[NSBundle mainBundle] loadNibNamed:@"EM_Menu" owner:self options:nil][10];
+  
+    [commentView addSubview:contentView];
+    
+    return commentView;
+}
+
 - (id)initWithPackage:(NSDictionary*)info
 {
     self = [self init];

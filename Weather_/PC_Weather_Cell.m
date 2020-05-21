@@ -80,7 +80,7 @@
     
     NSDictionary * currently = data[@"currently"];
 
-    date.text = [[currently getValueFromKey:@"time"] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""];
+    date.text = [NSString stringWithFormat:@"Cập nhật lúc %@", [[currently getValueFromKey:@"time"] stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"/%@", year] withString:@""]];
     
     temprature.text = [self returnValue:@"temperature"];
     
@@ -110,6 +110,8 @@
        
     _chartView.leftAxis.axisMaximum =  [[self getValue:@"deg"] isEqualToString:@"0"] ? 100 : 212;
 
+    _chartView.xAxis.avoidFirstLastClippingEnabled = YES;
+    
        
        _chartView.delegate = self;
        

@@ -42,7 +42,9 @@ class TG_Intro_ViewController: UIViewController {
         phoneNo.text = Information.userInfo != nil ?
             (Information.userInfo?.getValueFromKey("name")) == "" ? (Information.userInfo?.getValueFromKey("phone")) :
             (Information.userInfo?.getValueFromKey("name"))! : "84xxxxxxxxx"
-
+        
+        avatar.imageUrl(url: Information.userInfo != nil ? (Information.userInfo?.getValueFromKey("avatar"))! : "")
+        
         self.tableView.reloadData()
     }
     
