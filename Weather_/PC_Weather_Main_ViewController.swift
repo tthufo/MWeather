@@ -67,7 +67,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         let login = self.loginNav(type: "logIn") { (info) in
 //            if self.coverView.alpha == 0 {
 //                self.didRequestPackage()
-                self.didGetWeather()
+            self.didGetWeather(loading: true)
 //            }
             self.coverView.alpha = 0
         }
@@ -183,17 +183,23 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
         getAddressFromLatLon(pdblLatitude: self.lat(), pdblLongitude: self.lng())
     }
     
-     func didGetWeather() {
+    func didGetWeather(loading: Bool = false) {
+//        if loading {
+       self.showSVHUD("", andOption: 0)
+//        }
        LTRequest.sharedInstance()?.didRequestInfo(["cmd_code":"getCurrentWeather",
                                                    "lat": self.lat(),
                                                    "long": self.lng(),
                                                    "overrideAlert":"1",
-                                                   "overrideLoading":"1",
-                                                   "host":self], withCache: { (cacheString) in
+//                                                   "overrideLoading":"1",
+//                                                   "host":self
+        ], withCache: { (cacheString) in
        }, andCompletion: { (response, errorCode, error, isValid, object) in
+        
            let result = response?.dictionize() ?? [:]
            self.refreshControl.endRefreshing()
-
+           self.hideSVHUD()
+        
            if result.getValueFromKey("error_code") != "0" || result["result"] is NSNull {
                self.showToast(response?.dictionize().getValueFromKey("error_msg") == "" ? "Lỗi xảy ra, mời bạn thử lại" : response?.dictionize().getValueFromKey("error_msg"), andPos: 0)
                return
@@ -214,7 +220,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
    }
     
     @objc func didReload() {
-        didGetWeather()
+        didGetWeather(loading: true)
         for dict in self.config {
             (dict as! NSMutableDictionary)["loaded"] = false
         }

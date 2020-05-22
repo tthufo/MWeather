@@ -37,7 +37,7 @@
                                 <action selector="didPressMenu" destination="-1" eventType="touchUpInside" id="883-bI-uup"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEWEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hi2-2t-4Rs" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEWEATHER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hi2-2t-4Rs" customClass="MarqueeLabel" customModule="MarqueeLabel">
                             <rect key="frame" x="60" y="22" width="255" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="qbY-G4-Gx6"/>

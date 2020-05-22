@@ -220,6 +220,7 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func checkLogin() {
         if (self.topviewcontroler()?.isKind(of: PC_Weather_Main_ViewController.self))! {
+            (self.topviewcontroler() as! PC_Weather_Main_ViewController).didGetWeather()
             (self.topviewcontroler() as! PC_Weather_Main_ViewController).reloadState()
         }
     }
@@ -327,7 +328,9 @@ extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
       let myWebsite = NSURL(string:"http://weather.nhanongxanh.vn/")
       let shareAll = [text, myWebsite as Any]
       let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-      activityViewController.popoverPresentationController?.sourceView = self.view
+      activityViewController.popoverPresentationController?.sourceView = self.topviewcontroler().view
+//      activityViewController.popoverPresentationController?.sourceRect = self.topviewcontroler().view.frame
+
       self.present(activityViewController, animated: true, completion: nil)
     }
 }
