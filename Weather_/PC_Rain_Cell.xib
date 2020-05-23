@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PC_Rain_Cell" rowHeight="301" id="ZXr-aW-4Oh" customClass="PC_Rain_Cell">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PC_Rain_Cell" rowHeight="247" id="ZXr-aW-4Oh" customClass="PC_Rain_Cell">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="247"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZXr-aW-4Oh" id="rsZ-ue-seq">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="247"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LƯỢNG MƯA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riZ-om-Ggr">
@@ -27,14 +27,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH7-Aq-AZS">
-                        <rect key="frame" x="0.0" y="300" width="414" height="1"/>
+                        <rect key="frame" x="0.0" y="246" width="414" height="1"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="tNY-yI-Xfh"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khả năng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mk-i1-kxy">
-                        <rect key="frame" x="10" y="68" width="77" height="21"/>
+                        <rect key="frame" x="10" y="68" width="0.0" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" id="hvY-tT-TIP"/>
                             <constraint firstAttribute="height" constant="21" id="lbP-9Y-mn8"/>
@@ -82,7 +82,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-pS-bLc">
-                        <rect key="frame" x="10" y="138" width="90" height="72"/>
+                        <rect key="frame" x="10" y="138" width="0.0" height="72"/>
                         <constraints>
                             <constraint firstAttribute="width" id="GTw-JX-g1Z"/>
                             <constraint firstAttribute="height" constant="72" id="UdW-7S-ztc"/>
@@ -94,10 +94,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="O0K-Ge-ell">
-                        <rect key="frame" x="108" y="57" width="296" height="205"/>
+                        <rect key="frame" x="10" y="57" width="394" height="110"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="205" id="jTo-DJ-e3A"/>
+                            <constraint firstAttribute="height" constant="130" id="jTo-DJ-e3A"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0Id-qC-pUc">
                             <size key="itemSize" width="50" height="50"/>
@@ -111,7 +111,7 @@
                         </connections>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tổng lượng mưa trong ngày" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWW-FI-Ypd">
-                        <rect key="frame" x="10" y="275" width="394" height="21"/>
+                        <rect key="frame" x="10" y="180" width="394" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="tfl-z6-pi6"/>
                         </constraints>
@@ -145,9 +145,10 @@
             <connections>
                 <outlet property="collectionView" destination="O0K-Ge-ell" id="2T6-fU-ncu"/>
                 <outlet property="daily" destination="pHb-aa-1hU" id="jiG-UN-mvw"/>
+                <outlet property="rainy" destination="gWW-FI-Ypd" id="aSW-yZ-cBZ"/>
                 <outlet property="weekLy" destination="6aM-q2-Sj8" id="BNC-Xr-vZL"/>
             </connections>
-            <point key="canvasLocation" x="-144.92753623188406" y="0.33482142857142855"/>
+            <point key="canvasLocation" x="-144.92753623188406" y="-17.745535714285712"/>
         </tableViewCell>
     </objects>
 </document>

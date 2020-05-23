@@ -262,7 +262,7 @@
                 </button>
                 <button opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQ2-Wf-nLp">
                     <rect key="frame" x="115" y="215" width="184" height="52"/>
-                    <color key="backgroundColor" red="0.0" green="0.63529411764705879" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="HgR-QH-xkC"/>
                         <constraint firstAttribute="width" constant="184" id="Z7e-U0-iYI"/>
@@ -322,7 +322,7 @@
     <resources>
         <image name="bg-1" width="180" height="370"/>
         <image name="design_ic_visibility_off" width="29.333333969116211" height="29.333333969116211"/>
-        <image name="gradient" width="79.666664123535156" height="11"/>
+        <image name="gradient" width="150" height="32.333332061767578"/>
         <image name="ic_menu_down_white" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ic_phone_white" width="13.666666984558105" height="13.666666984558105"/>
         <image name="icon_pass" width="13.333333015441895" height="13.333333015441895"/>

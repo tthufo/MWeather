@@ -19,8 +19,12 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
     @IBOutlet var phone: UILabel!
 
     @IBOutlet var name: UILabel!
+    
+    @IBOutlet var nameSub: UILabel!
 
     @IBOutlet var package: UILabel!
+    
+    @IBOutlet var packageSub: UILabel!
     
     @IBOutlet var expire: UILabel!
 
@@ -38,10 +42,21 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
             self.navigationController?.pushViewController(edit, animated: true)
         }
         
+       nameSub.action(forTouch: [:]) { (obj) in
+            let edit = Weather_Name_ViewController.init()
+            edit.uName = Information.userInfo?.getValueFromKey("name") // == ""
+//                ? Information.userInfo?.getValueFromKey("msisdn") : Information.userInfo?.getValueFromKey("name")
+            self.navigationController?.pushViewController(edit, animated: true)
+        }
+        
         package.action(forTouch: [:]) { (obj) in
             self.didGetPackage(showMenu: true)
         }
         
+        packageSub.action(forTouch: [:]) { (obj) in
+           self.didGetPackage(showMenu: true)
+        }
+
         avatar.imageUrl(url: (Information.userInfo?.getValueFromKey("avatar"))!)
     }
     
@@ -133,14 +148,14 @@ class Weather_Info_ViewController: UIViewController, MFMessageComposeViewControl
             if showMenu {
                 EM_MenuView.init(package: (info as! [AnyHashable : Any])).show { (index, objc, menu) in
                     if index == 0 {
-                        let data = (objc as! NSDictionary)
-                        if (MFMessageComposeViewController.canSendText()) {
-                             let controller = MFMessageComposeViewController()
-                             controller.body = data.getValueFromKey("reg_keyword")
-                             controller.recipients = [data.getValueFromKey("reg_shortcode")]
-                             controller.messageComposeDelegate = self
-                             self.present(controller, animated: true, completion: nil)
-                         }
+//                        let data = (objc as! NSDictionary)
+//                        if (MFMessageComposeViewController.canSendText()) {
+//                             let controller = MFMessageComposeViewController()
+//                             controller.body = data.getValueFromKey("reg_keyword")
+//                             controller.recipients = [data.getValueFromKey("reg_shortcode")]
+//                             controller.messageComposeDelegate = self
+//                             self.present(controller, animated: true, completion: nil)
+//                         }
                     }
                 }
             }

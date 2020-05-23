@@ -39,6 +39,12 @@
     
     UIView *contentView = [[NSBundle mainBundle] loadNibNamed:@"EM_Menu" owner:self options:nil][10];
   
+    UILabel * label = (UILabel*)[self withView:contentView tag:111];
+           
+    if ([dict responseForKey:@"info"]) {
+        label.text = [dict getValueFromKey:@"info"];
+    }
+    
     [commentView addSubview:contentView];
     
     return commentView;
@@ -65,8 +71,8 @@
         
     UILabel * label = (UILabel*)[self withView:contentView tag:11];
         
-    label.text = [dict getValueFromKey:@"info"];
-    
+    label.text = [NSString stringWithFormat:@"%@. Giá cước %@, tự động gia hạn hàng ngày. Để đăng ký dịch vụ soạn tin %@ gửi %@", [dict getValueFromKey:@"info"], [dict getValueFromKey:@"price"], [dict getValueFromKey:@"reg_keyword"], [dict getValueFromKey:@"reg_shortcode"]];
+        
     float k = label.sizeOfMultiLineLabel.height;
     
     CGRect fram = commentView.frame;

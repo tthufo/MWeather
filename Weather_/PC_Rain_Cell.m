@@ -14,6 +14,8 @@
 {
     IBOutlet UIButton * daily, * weekLy;
     
+    IBOutlet UILabel * rainy;
+    
     IBOutlet UICollectionView * collectionView;
     
     BOOL day;
@@ -92,10 +94,12 @@
     }
     
     [collectionView reloadData];
+        
+    rainy.text = [NSString stringWithFormat:@"Tổng lượng mưa trong ngày %@", [self returnVal:data[@"currently"][@"precipIntensity"]]];
 }
 
 - (NSString*)returnVal:(NSString*)val {
-    return [NSString stringWithFormat:@"%.01f", [val floatValue]];
+    return [NSString stringWithFormat:@"%.02f", [val floatValue]];
 }
 
 - (NSString*)returnTime:(NSString*)val {
@@ -149,12 +153,13 @@
 
     UILabel * rain = (UILabel*)[self withView:cell tag:13];
     
-    rain.text = [self returnVal:[dict getValueFromKey:@"precipIntensity"]];
+//    rain.text = [self returnVal:[dict getValueFromKey:@"precipIntensity"]];
 
-    UILabel * time = (UILabel*)[self withView:cell tag:14];
+    rain.text = [self returnTime:[dict getValueFromKey:@"time"]];
 
-    time.text = [self returnTime:[dict getValueFromKey:@"time"]];
+//    UILabel * time = (UILabel*)[self withView:cell tag:14];
 
+//    time.text = [self returnTime:[dict getValueFromKey:@"time"]];
     
     cell.backgroundColor = [UIColor whiteColor];
     
@@ -163,7 +168,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(50, 205);
+    return CGSizeMake(50, 130);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -145,7 +145,7 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
                                           "book_type": 0,
                                           "price": 0,
                                           "sorting": 1,
-                                      ], "height": 320, "direction": "vertical", "loaded": false, "ident": "PC_Rain_Cell"],
+                                      ], "height": 240, "direction": "vertical", "loaded": false, "ident": "PC_Rain_Cell"],
                                       ["title":"Sách nói",
                                        "url": ["CMD_CODE":"getListBook",
                                           "page_index": 1,
@@ -330,13 +330,15 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     }
     
     @IBAction func didPressRegister() {
-       if (MFMessageComposeViewController.canSendText()) {
-              let controller = MFMessageComposeViewController()
-              controller.body = "V"
-              controller.recipients = ["1095"]
-              controller.messageComposeDelegate = self
-              self.present(controller, animated: true, completion: nil)
-          }
+        EM_MenuView.init(packageShow: ["info": "Để đăng ký tài khoản, soạn tin nhắn MK gửi 1095."]).show { (index, objc, menu) in
+      }
+//       if (MFMessageComposeViewController.canSendText()) {
+//              let controller = MFMessageComposeViewController()
+//              controller.body = "V"
+//              controller.recipients = ["1095"]
+//              controller.messageComposeDelegate = self
+//              self.present(controller, animated: true, completion: nil)
+//          }
     }
 }
 
