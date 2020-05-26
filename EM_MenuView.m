@@ -45,6 +45,16 @@
         label.text = [dict getValueFromKey:@"info"];
     }
     
+    float k = label.sizeOfMultiLineLabel.height;
+    
+    CGRect fram = commentView.frame;
+    
+    fram.size.height = k + 70;
+    
+    commentView.frame = fram;
+    
+    contentView.frame = CGRectMake(0, 0, commentView.frame.size.width, commentView.frame.size.height);
+    
     [commentView addSubview:contentView];
     
     return commentView;

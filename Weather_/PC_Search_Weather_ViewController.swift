@@ -67,7 +67,7 @@ class PC_Search_Weather_ViewController: UIViewController {
             self.didAddLocation(lat: String(pickedLocationItem.mapItem.placemark.coordinate.latitude), lng: String(pickedLocationItem.mapItem.placemark.coordinate.longitude), name: pickedLocationItem.mapItem.name!)
         }
         locationPicker.addBarButtons()
-        locationPicker.setColors(themeColor: AVHexColor.color(withHexString: "#5530F5"), primaryTextColor: UIColor.black, secondaryTextColor: UIColor.darkGray)
+//        locationPicker.setColors(themeColor: AVHexColor.color(withHexString: "#5530F5"), primaryTextColor: UIColor.black, secondaryTextColor: UIColor.darkGray)
         
 
         let navigationController = UINavigationController(rootViewController: locationPicker)

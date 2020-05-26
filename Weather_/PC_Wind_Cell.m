@@ -241,6 +241,14 @@
           [_chartView.data notifyDataChanged];
           [_chartView notifyDataSetChanged];
           
+          NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
+             pFormatter.numberStyle = kCFNumberFormatterPercentStyle;
+             pFormatter.maximumFractionDigits = 100;
+             pFormatter.multiplier = @1;
+          pFormatter.percentSymbol = @"";
+          
+          [set1 setValueFormatter: [[ChartDefaultValueFormatter alloc] initWithFormatter:pFormatter]];
+          
           _chartView.data = data;
       }
 }

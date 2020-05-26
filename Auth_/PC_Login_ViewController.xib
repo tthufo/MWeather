@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
                 <outlet property="bottom" destination="1nj-Ed-LW2" id="jTc-Te-oz0"/>
                 <outlet property="check" destination="zeJ-OL-x5t" id="ISU-vA-ec6"/>
                 <outlet property="cover" destination="Ndf-cm-WVk" id="B8W-Vq-Tmq"/>
+                <outlet property="dismiss" destination="6FO-KC-YKE" id="rWx-RJ-Y0o"/>
                 <outlet property="login" destination="OcZ-aC-z0r" id="Yle-Pt-zGh"/>
                 <outlet property="logo" destination="zYp-AB-pzy" id="TKu-6p-vWl"/>
                 <outlet property="pass" destination="iJD-7N-Ny2" id="UOv-pf-ppc"/>
@@ -67,7 +68,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6FO-KC-YKE">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6FO-KC-YKE">
                     <rect key="frame" x="359" y="10" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="6sd-Zb-t9O"/>

@@ -43,8 +43,12 @@ class TG_Intro_ViewController: UIViewController {
             (Information.userInfo?.getValueFromKey("name")) == "" ? (Information.userInfo?.getValueFromKey("phone")) :
             (Information.userInfo?.getValueFromKey("name"))! : "84xxxxxxxxx"
         
-        avatar.imageUrl(url: Information.userInfo != nil ? (Information.userInfo?.getValueFromKey("avatar"))! : "")
-        
+        if Information.check == "1" {
+            avatar.imageUrl(url: Information.userInfo != nil ? (Information.userInfo?.getValueFromKey("avatar"))! : "")
+        } else {
+            avatar.image = UIImage.init(named: "ic_default_avatar")
+        }
+                
         self.tableView.reloadData()
     }
     
@@ -170,12 +174,17 @@ class TG_Intro_ViewController: UIViewController {
             self.center()?.present(login, animated: true, completion: nil)
         })
     }
+    
+    func check() -> Bool {
+      return Information.check == "0"
+    }
 }
 
 extension TG_Intro_ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return  UITableView.automaticDimension
+        if check() && indexPath.row == 3 { return 10 }
+        return check() ? [0, 1, 4, 5, 8].contains(indexPath.row) ? 0 : UITableView.automaticDimension : UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

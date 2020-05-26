@@ -72,14 +72,14 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDarkContent];
     
-    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)])
-    {
-        [UINavigationBar appearance].tintColor = [AVHexColor colorWithHexString:@"#FFFFFF"];
-    }
-    
-    [[UITabBar appearance] setSelectedImageTintColor:[AVHexColor colorWithHexString:kColor]];
-    
-    
+//    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)])
+//    {
+//        [UINavigationBar appearance].tintColor = [AVHexColor colorWithHexString:kColor];
+//    }
+//    
+//    [[UITabBar appearance] setSelectedImageTintColor:[AVHexColor colorWithHexString:@"#FFFFFF"]];
+//    
+//    
     
     
     

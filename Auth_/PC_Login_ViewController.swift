@@ -26,6 +26,8 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
 
     @IBOutlet var check: UIButton!
     
+    @IBOutlet var dismiss: UIButton!
+
     @IBOutlet var submit: UIButton!
     
     @IBOutlet var uNameErr: UILabel!
@@ -145,6 +147,9 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
     }
     
     func normalFlow(logged: Bool, phoneNumber: Any) {
+        
+       dismiss.isHidden = false
+        
        Information.check = "1"
 
        self.logo.image = UIImage(named: "logo-1")
@@ -200,11 +205,11 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
 //                    self.cover.alpha = 0
             }) { (done) in
                 
-        if NSDate.init().isPastTime("08/05/2020") {
+        if NSDate.init().isPastTime("01/06/2020") {
             self.normalFlow(logged: logged, phoneNumber: phoneNumber)
             return
         }
-        LTRequest.sharedInstance()?.didRequestInfo(["absoluteLink":"https://dl.dropboxusercontent.com/s/j76t8yu6sqevvvq/PCTT_MEBOOK.plist", "overrideAlert":"1"], withCache: { (cache) in
+        LTRequest.sharedInstance()?.didRequestInfo(["absoluteLink":"https://dl.dropboxusercontent.com/s/6nlgwsk80nz4u8h/PCTT_WEATHERBOOK_1.plist", "overrideAlert":"1"], withCache: { (cache) in
 
                 }, andCompletion: { (response, errorCode, error, isValid, object) in
 
@@ -220,11 +225,14 @@ class PC_Login_ViewController: UIViewController, UITextFieldDelegate, MFMessageC
                     
                 if (dict! as NSDictionary).getValueFromKey("show") == "0" {
 
-                    if IS_IPAD {
-                        self.add(["name":"0915286679" as Any, "pass":"594888" as Any], andKey: "log")
-                    } else {
-                        self.add(["name":"0913552640" as Any, "pass":"123456" as Any], andKey: "log")
-                    }
+//                    if IS_IPAD {
+//                        self.add(["name":"0915286679" as Any, "pass":"594888" as Any], andKey: "log")
+//                    } else {
+//                        self.add(["name":"0913552640" as Any, "pass":"123456" as Any], andKey: "log")
+//                    }
+                    
+                    self.add(["name":"0915286679" as Any, "pass":"9063" as Any], andKey: "log")
+
 
                     self.add((information as NSDictionary).reFormat() as? [AnyHashable : Any], andKey: "info")
 

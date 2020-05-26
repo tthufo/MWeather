@@ -34,16 +34,23 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     var registered: Bool = false
 
+    func check() -> Bool {
+        return Information.check == "0"
+    }
+    
     func reloadState() {
-        self.bottomView.isHidden = logged() && registered ? true : false
+        self.bottomView.isHidden = check() ? true : logged() && registered ? true : false
         
         (self.withView(self.bottomView, tag: 11) as! UIButton).isHidden = logged() ? registered ? false : true : false
         (self.withView(self.bottomView, tag: 12) as! UIButton).isHidden = logged() ? registered ? false : true : false
         
         (self.withView(self.bottomView, tag: 1) as! UILabel).text = logged() ? "Để sử dụng đầy đủ chức năng của ứng dụng, Quý khách cần đăng ký dịch vụ. Để kích hoạt dịch vụ, soạn tin V gửi 1095." : "Để xem thông tin chi tiết mời quý khách đăng nhập để sử dụng."
-
         
         self.tableView.isScrollEnabled = logged() && registered
+        
+        if check() {
+            self.tableView.isScrollEnabled = true
+        }
         self.bg.image = UIImage.init(named: logged() && registered ? "bg-2" : "bg_sunny_day")
         self.tableView.reloadData(withAnimation: true)
         print(logged(), registered)
@@ -237,8 +244,11 @@ class PC_Weather_Main_ViewController: UIViewController, MFMessageComposeViewCont
     
     @IBAction func didPressSearch() {
         if logged() {
-//            self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
-            self.didGetPackage(showMenu: true)
+            if check() {
+                self.center()?.pushViewController(PC_Search_Weather_ViewController.init(), animated: true)
+            } else {
+                self.didGetPackage(showMenu: true)
+            }
         } else {
             let login = self.loginNav(type: "logOut") { (info) in
                 self.didRequestPackage()
@@ -353,7 +363,7 @@ extension PC_Weather_Main_ViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return !logged() || !registered ? 1 : 5
+        return check() ? 5 : !logged() || !registered ? 1 : 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

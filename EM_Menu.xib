@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -433,20 +433,18 @@
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-693.75" y="1702.2887323943662"/>
         </view>
-        <view contentMode="scaleToFill" id="Oru-7v-zKx">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="Oru-7v-zKx">
             <rect key="frame" x="0.0" y="0.0" width="310" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uwr-pN-rnd">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwr-pN-rnd">
                     <rect key="frame" x="0.0" y="0.0" width="310" height="135"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-DZ-SF1">
-                            <rect key="frame" x="21" y="12" width="275" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-DZ-SF1">
+                            <rect key="frame" x="14" y="12" width="282" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MEWEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Du0-ra-Sbs">
-                                    <rect key="frame" x="-7" y="1" width="274" height="21"/>
+                                    <rect key="frame" x="0.0" y="1" width="283" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <nil key="textColor"/>
@@ -454,20 +452,42 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="eXG-Im-zxx"/>
+                            </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Để sử dụng đầy đủ chức năng của ứng dụng, Quý khách cần đăng ký dịch vụ. Để kích hoạt dịch vụ, soạn tin V gửi 1095." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjL-de-yLD">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Để sử dụng đầy đủ chức năng của ứng dụng, Quý khách cần đăng ký dịch vụ. Để kích hoạt dịch vụ, soạn tin V gửi 1095." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjL-de-yLD">
                             <rect key="frame" x="13" y="37" width="284" height="90"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="4e2-DZ-SF1" firstAttribute="leading" secondItem="Uwr-pN-rnd" secondAttribute="leading" constant="14" id="cqy-iy-k7v"/>
+                        <constraint firstItem="LjL-de-yLD" firstAttribute="leading" secondItem="Uwr-pN-rnd" secondAttribute="leading" constant="13" id="hUz-pd-lF0"/>
+                        <constraint firstAttribute="bottom" secondItem="LjL-de-yLD" secondAttribute="bottom" constant="8" id="jkf-28-5Ro"/>
+                        <constraint firstItem="4e2-DZ-SF1" firstAttribute="top" secondItem="Uwr-pN-rnd" secondAttribute="top" constant="12" id="piD-Bu-7vi"/>
+                        <constraint firstAttribute="trailing" secondItem="4e2-DZ-SF1" secondAttribute="trailing" constant="14" id="sB3-IR-L99"/>
+                        <constraint firstItem="LjL-de-yLD" firstAttribute="top" secondItem="Uwr-pN-rnd" secondAttribute="top" constant="37" id="vyp-l7-RQY"/>
+                        <constraint firstAttribute="trailing" secondItem="LjL-de-yLD" secondAttribute="trailing" constant="13" id="zZC-yt-bfd"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Uwr-pN-rnd" firstAttribute="leading" secondItem="Oru-7v-zKx" secondAttribute="leading" id="SZA-fo-qE0"/>
+                <constraint firstItem="Uwr-pN-rnd" firstAttribute="top" secondItem="Oru-7v-zKx" secondAttribute="top" id="sjW-M9-6TV"/>
+                <constraint firstAttribute="trailing" secondItem="Uwr-pN-rnd" secondAttribute="trailing" id="xiu-KX-xOJ"/>
+                <constraint firstAttribute="bottom" secondItem="Uwr-pN-rnd" secondAttribute="bottom" id="yAF-hr-4t0"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-654.375" y="1446.6549295774648"/>
         </view>
     </objects>
